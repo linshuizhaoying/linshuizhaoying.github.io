@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Create Text Filling with Water Effect（创建水波纹效果文字） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150819">Create Text Filling with Water Effect（创建水波纹效果文字）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpsblogsadobecomdreamweaver201508create-a-text-filling-with-water-effecthtml">原文来源:<a href="https://blogs.adobe.com/dreamweaver/2015/08/create-a-text-filling-with-water-effect.html">这里</a></h3>
+
+<h3 id="by-lucas-bebber">作者:by Lucas Bebber</h3>
+
+<h3 id="section-1">译者:临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+
+<p>吸取第一篇翻译的教训，将在译文中加入自己的东西，可能会扩充来讲。</p>
+
+<h2 id="section-3">正文</h2>
+<p>在这边文章中，我将向你展示如何制作“文字被水逐渐填满”的效果。它可用于预加载，标题等等。但总的来说，它终归只是一个svg效果的学习。</p>
+
+<p>具体效果戳<a href="http://codepen.io/lbebber/pen/RPvxGp">这里</a></p>
+
+<h3 id="section-4">在实现效果之前</h3>
+
+<p>在我们写代码之前，我们先来探讨这个效果实现的流程。首先，我们需要创建一个卷曲的水波纹的效果，这个可以通过波状的图形来实现。（译者PS:比如word里的柱形图拉一拉。）</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-2-1.png" alt="img1" />      </p>
+
+<p>然后将它无缝重叠。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-2-2.png" alt="img2" /></p>
+
+<p>然后让它无限滚动起来。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-2-3.gif" alt="img3" /></p>
+
+<p>从上图中的红色框框中，你可以看到基本我们将要实现的效果。</p>
+
+<p>然后我们同时增加它的高度。</p>
+
+<p>我们将从零实现。基础代码点<a href="http://codepen.io/lbebber/pen/doadze/">这里</a></p>
+
+<p>增加图片的高度，而不是简单的向上移动，这会让细节看起来更加细腻。也可以让水波效果更加真实，因为它在不断填充它的容器。</p>
+
+<p>最后，我们只需要遮住掉我们的文字动画就大功告成了，</p>
+
+<p>现在，我们来看看我们代码该如何写。</p>
+
+<h3 id="css">Css</h3>
+
+<p>这个效果用Css来写更加简单，但是这有个问题：用文字来作为遮罩。我们需要用到 <code>background-clip:text</code>这个属性，但是不幸的是只有支持Webkit的浏览器支持(PS:也就是IE呵呵哒)。不过我们可以用图像和文本来绕过它。但又带来一个新问题，文字不是可选的，它无法被编辑，它可能很难被辨认。因此，我不打算深入css版本来写，但是你可以看到另一个实现的例子。点<a href="http://codepen.io/lbebber/pen/xrwja/">这里</a></p>
+
+<h3 id="svg">Svg</h3>
+
+<p>另一个选择就是Svg，Sara Soueidan写了一篇关于文字效果的很棒的文章，你可以点<a href="http://blogs.adobe.com/dreamweaver/2015/07/css-vs-svg-graphical-text.html">这里</a>.在那篇文章中，她介绍了Svg遮罩和它的工作原理。</p>
+
+<p>但这里实现的原理不同，与其用图形来遮罩文字，还不如用文字来作为遮罩，来遮罩我们的水波图像。</p>
+
+<p>这是我们创建的遮罩</p>
+
+<pre><code>  &lt;defs&gt;
+     &lt;text id="text" font-size="100"&gt;YOUR TEXT HERE&lt;/text&gt;
+       &lt;mask id="text-mask"&gt;
+          &lt;use x="0" y="0" xlink:href="#text" fill="#ffffff"/&gt;
+       &lt;/mask&gt;
+  &lt;/defs&gt;
+</code></pre>
+
+<p>将文本放在<code>&lt;defs&gt;</code>标签里面是因为我们需要重复使用，一个作为遮罩，一个作为背景。通过这种实现方式，我们可以做到一次编写，多次引用。</p>
+
+<p>通过<code>&lt;use&gt;</code>标签，当我们想用的时候，只要通过<code>xlink:href</code>属性指向对应<code>ID</code>就行了。</p>
+
+<p>注意，当用文字作为遮罩，我们设置<code>fill</code>属性来使其填充色为白色。这是因为Svg遮罩的原理：白色遮罩使后面的内容可视，黑色使它隐藏。任何深浅之间使其透明对应。</p>
+
+<p>水波图形需要提前制作，然后反复调整整体，使其看上去更加形似。你可以用Svg的<code>pattern</code>，因为它可以重复自身并包含任意大小的文字。Svg的<code>pattern</code>可以模糊，这可以单开一章来说明。但现在我们只需要使用它：</p>
+
+<pre><code>&lt;defs&gt;
+  ...
+
+  &lt;pattern id="water" width=".25" height="1.1" patternContentUnits="objectBoundingBox"&gt;
+    &lt;path fill="#fff" d="..."/&gt;
+  &lt;/pattern&gt;
+&lt;/defs&gt;
+
+&lt;rect class="water-fill" fill="url(#water)" mask="url(#text-mask)" x="0" y="0" width="1600" height="120"/&gt;
+</code></pre>
+
+<p>注意<code>&lt;rect&gt;</code>的<code>fill</code>属性指向 <code>#water</code>(这是我们上面提到的),同时要注意到<code>mask</code>属性指向我们之前提前写好的内容。</p>
+
+<p>如果你想用其他类型的元素来作为波形图，像<code>path</code>属性来代替<code>patterns</code>，你需要自己来设置<code>mask</code>的属性。</p>
+
+<p>所以我们现在可以看到实现的效果，点<a href="http://codepen.io/lbebber/pen/waNyQv">这里</a></p>
+
+<p>到目前为止都很棒，现在我们让它动起来。。。</p>
+
+<h3 id="section-5">动起来</h3>
+
+<p>再次的，我们原本可以简单的用css来实现，但是当我们运行在浏览器时，很多浏览器并不支持用css改变SVG的一些属性，比如<code>x</code>和<code>y</code>.更多的浏览器支持用<code>transform:translate(x,y)</code>设置SVG元素的位置。然而这并不能在我们的例子中工作，因为它会带动遮罩一起移动。如果你的浏览器支持用css来操作SVG，你可以点<a href="http://codepen.io/lbebber/pen/doagyV/">这里</a></p>
+
+<p>这个Css动画非常简单：</p>
+
+<pre><code>@keyframes wave {
+  0% {
+    x: -400px;
+  }
+  100% {
+    x: 0;
+  }
+}
+
+@keyframes fill-up {
+  0% {
+    height: 0;
+    y: 130px;
+  }
+  100% {
+    height: 160px;
+    y: -30px;
+  }
+}
+
+.water-fill{
+  ...
+  animation: wave 0.7s infinite linear, fill-up 10s infinite ease-out alternate;
+}
+</code></pre>
+
+<p>我们这里同时运行两个动画，一个叫做wave，这让动画效果看起来向右边无限的波动(注意波动的距离只是其中一个波的宽度，循环设置为无限，easing设置为线性。)然后让fill-up不断的增加高度。</p>
+
+<p>对于浏览器支持问题我们解决的办法是用javascript。如果你想把这个效果用在一个基于进程的预加载，你也不得不使用javascript,不过好消息是我们已经进行到一半了。</p>
+
+<p>你可以用任意的js动画库作为你的选择，像<a href="http://ricostacruz.com/jquery.transit/">Transit</a> 或者<a href="http://julian.com/research/velocity/">Velocity.js</a>.在这个例子中，我们将用到<a href="http://greensock.com/gsap">GSAP</a></p>
+
+<h3 id="gsap">GSAP动画</h3>
+
+<p>这是<a href="http://greensock.com/get-started-js">GSAP</a>的简介，为了以防你之前从没用过它。</p>
+
+<p>我们将把刚刚css的动画写成js版本：</p>
+
+<pre><code>// Select the element
+  var fill=document.querySelector(".water-fill");
+
+    // "Wave" animation
+    TweenMax.fromTo(fill,0.8,{
+      // Set the "from" position
+      attr:{
+        x:-400
+      }
+    },
+    {
+      // Set the "to" position
+      attr:{
+        x:0,
+      },
+      // Repeat infinitely
+      repeat:-1,
+      // Linear easing
+      ease:Linear.easeNone
+    });
+
+
+    // "Fill up" animation
+    TweenMax.fromTo(fill,10,{
+      // From
+      attr:{
+        y:120,
+        height:0
+      },
+    },{
+      // To
+      attr:{
+        y:-20,
+        height:140
+      },
+      repeat:-1,
+      // Reverse animation on loop
+      yoyo:true,
+      ease:Linear.easeNone
+    });
+</code></pre>
+
+<p>最后，我们可以选择用变暗的文字拷贝来作为背景，来使在被填满之前的效果更清晰。为了达到这个效果，我们可以重复使用我们之前的代码：</p>
+
+<pre><code>&lt;use x="0" y="0" xlink:href="#text" fill="#222"/&gt;
+</code></pre>
+
+<p>这是我们最终的结果，你可以点<a href="http://codepen.io/lbebber/pen/RPvxGp">这里</a></p>
+
+<p>希望你能感到有趣并觉得有帮助。</p>
+
+<h2 id="section-6">译者言</h2>
+<p>根据原理调了下参数，然后改成了一个vue组件，只需要在页面加载的时候加载作者提到的TweenMax.min.js就行了。<br />
+例子如下：</p>
+
+<pre><code>&lt;template&gt;
+	&lt;svg class="loading" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+ width="574.558px" height="60px" viewBox="0 0 574.558 120" enable-background="new 0 0 574.558 120" xml:space="preserve"&gt;
+  &lt;defs&gt;
+    &lt;pattern id="water" width=".25" height="1.1" patternContentUnits="objectBoundingBox"&gt;
+      &lt;path fill="#fff"     d="M0.25,1H0c0,0,0-0.659,0-0.916c0.083-0.303,0.158,0.334,0.25,0C0.25,0.327,0.25,1,0.25,1z"/&gt;
+    &lt;/pattern&gt;
+
+    &lt;text id="text" transform="matrix(1 0 0 1 -8.0684 116.7852)" font-family="'Cabin Condensed'" font-size="48"&gt;&lt;/text&gt;
+
+    &lt;mask id="text-mask"&gt;
+      &lt;use x="0" y="0" xlink:href="#text" opacity="1" fill="#ffffff"/&gt;
+    &lt;/mask&gt;
+  &lt;/defs&gt;
+ 
+      &lt;use x="0" y="0" xlink:href="#text" fill="#222"/&gt;
+  
+  &lt;rect class="water-fill" mask="url(#text-mask)" fill="url(#water)" x="-400" y="0" width="800" height="10"/&gt;
+
+
+&lt;/template&gt;
+
+
+
+
+&lt;script&gt;
+    module.exports = {
+      created: function () {
+    	document.addEventListener("DOMContentLoaded",function(){
+    	  var fill=document.querySelector(".water-fill");
+    	  TweenMax.fromTo(fill,0.8,{
+    	    attr:{
+    	      x:-200
+    	    }
+    	  },
+    	  {
+    	    attr:{
+    	      x:0,
+    	    },
+	        repeat:-1,
+	        ease:Linear.easeNone
+	      });
+	  
+	      TweenMax.fromTo(fill,10,{
+	        attr:{
+	          y:120,
+	          height:0
+	        },
+	      },{
+    	    attr:{
+    	      y:60,
+    	      height:140
+    	    },
+	        repeat:-1,
+    	    yoyo:true,
+	        ease:Linear.easeNone
+    	  });
+	  
+	    });
+  },
+  data: function () {
+    return {
+      msg: '这是一个测试' 
+    }
+  }
+
+}
+&lt;/script&gt;
+</code></pre>
+
+<p>希望有所帮助。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Create Text Filling with Water Effect（创建水波纹效果文字）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/19/translate%20two.html&text=Create Text Filling with Water Effect（创建水波纹效果文字）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/19/translate%20two.html&title=Create Text Filling with Water Effect（创建水波纹效果文字）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

@@ -1,0 +1,15 @@
+---
+layout: base
+---
+
+<article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="{{ page.date | date: "%Y%m%d" }}">{{ page.title }}</h1>
+  {{ content }}
+   <button><a href="http://comments.haoqiao.me/show/{{page.title}}/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+{% include share.html %}
+{% include disqus.html %}

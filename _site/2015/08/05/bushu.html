@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Node.js 伪部署 | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="Node.js,部署">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150805">Node.js 伪部署</h1>
+  <h2 id="section">正文</h2>
+<p>前几天写了几个应用，打算在重构某个应用之前先把其他的部署到服务器，可能由于我RP太差，production环境下我总是失败，不过由于需求只是能够在服务器上运行，因此即便nginx下反代理无效，但是我可以通过域名加端口形式访问我的应用就行了。</p>
+
+<p>##准备工作<br />
+   * 一台vps   <br />
+  我选择的是digitalocean.com,五美金一个月，差不多31RMB的样子，比阿里云动辄58RMB便宜好多，而且它一旦注册就送10美金，于是买一个月能用三个月。然后等到圣诞节，嘿嘿。。。<br />
+   * 一个域名。我的是haoqiao.me 只需要解析二级域名到服务器上就行了</p>
+
+<p>##开始伪部署</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%2009.10.32%20PM.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10" alt="Mou icon" /><br />
+    由于是node.js环境，因此直接在选择系统后选择了node.js的环境包。（当然可以选择自己去搭建）<br />
+    然后就是自己链接上去。因为是新主机，先</p>
+
+<pre><code>sudo apt-get upgrade
+</code></pre>
+
+<p>再</p>
+
+<pre><code>sudo apt-get update 
+</code></pre>
+
+<p>然后再搭建mongdb数据库，这个网上有。<br />
+ 下载安装完后</p>
+
+<pre><code>mongd
+use gym   这样就完成数据库的初始化。之后把工程传到github上，在服务端运行git clone XXX.git就行了  然后因各种奇怪的原因，恩，我一直部署的都是开发环境，摔！  装上supervisor，反正我用Pm2 或者Node app都是各种奇怪的问题我就懒得去弄了。。。  之后就是把我传了很久的本地数据导出然后传到服务器上。因为mongdb有导出功能，不过直接导出数据库会导出bson这种json二进制格式，反正没导入成功，因此选择把库里的表一张张导出，还好也不多，就两张表。
+ 
+mongoexport -d gym -c trains -o trains.dat   把导出的文件传到git上，然后服务器clone一些。然后在服务器上运行对应导入命令就好了。这样最后
+  
+supervisor ./bin/www
+</code></pre>
+
+<p>一下就能看到上帝了。这样伪部署就好了，不过还有个问题，当你断开连接的时候，进程也会断掉，网上后台运行进程的方案很多，但是经过我的尝试，只有新建一个screen来运行命令才不会断=-=。</p>
+
+<pre><code>	screen -dmS Urumchi
+	screen -list
+    screen -r Urumchi
+</code></pre>
+
+<p>Ok，一个伪部署就结束了。接下来就是继续重构开发然后试着正式部署了。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Node.js 伪部署/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/05/bushu.html&text=Node.js 伪部署" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/05/bushu.html&title=Node.js 伪部署" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Sprite动画与ScrollMagic的使用 | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习资料,前端,Css3">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150821">Sprite动画与ScrollMagic的使用</h1>
+  <h2 id="section">写在前面</h2>
+<p>这几天没怎么写东西，光忙着翻译国外的优质文章了，对于我来说，收获是极大的。尤其是干货满满的文章，翻译的时候真的能感受到作者的所付出的心血。因此我积压了还有十几篇的文章=-=还有好多没加进来的优质文章。言归正传，昨天翻译了Tom Bennet的雪碧图动画。觉得挺有收获，因此按照作者的给的彩蛋延伸开来，发现了一个新世界。</p>
+
+<h2 id="section-1">正文</h2>
+
+<p>首先我在翻译的时候发现作者写的雪碧图动画好像很理所当然，好像很顺利。于是我自己去GOOGLE了一堆Sprite图。经过几个小时的实践。我得到了以下结论：</p>
+
+<pre><code>1.童话里都是骗人的。童话里都是骗人的。童话里都是骗人的。重要的事情说三遍。尝试了很多种雪碧图来做连贯的动画，最后我发现，想要利用雪碧图做连贯的动画，首先你要有图。
+2.文中使动画连贯起来的重点是自己调好 animation的参数。
+举个例子，文中
+   animation: sprite 3.5s steps(45);
+他是一个60张连贯的PNG图组合的，因此45/3.5=30 也就是一秒两张的播放。这样连贯性才能保证。
+=-=但是60张连贯的雪碧图我至今只看到国外一个设计师自己画的猫咪跑。。。因此做连贯性的雪碧图动画代价是蛮大的。
+</code></pre>
+
+<p>接下来我们介绍今天的主角：ScrollMagic</p>
+
+<h3 id="scrollmagic">ScrollMagic</h3>
+
+<p>ScrollMagic是一个非常棒的库，它能帮助你处理用户当前滚动的位置。现在网上很多根据滚动条滚动的动画效果就是基于它。很多产品展示站都有它的影子在。</p>
+
+<p>来看个典型的例子</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//scrollmagic1.gif" alt="magic1" /></p>
+
+<p>它可以做到钉帧spnning效果。如此炫酷的效果却只需要短短几行代码</p>
+
+<pre><code>	var scene = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 300})
+					.setPin("#pin1")
+					.addIndicators({name: "1 (duration: 300)"}) // add indicators (requires plugin)
+					.addTo(controller);
+</code></pre>
+
+<p>它还能配合svg做动画效果，以及配合雪碧图动画等等。</p>
+
+<p>我们来看个例子</p>
+
+<p>由于某些同学不喜欢codepen，所以我例子放在了jsfiddle里。<a href="http://jsfiddle.net/linshuizhaoying/z16u2wjt/">Click here</a></p>
+
+<p>国内关于ScrollMagic的详解基本没有，官方文档也只是给例子。因此我这边例子举的国外某位大神写的文章中的引用。你可以<a href="https://scotch.io/tutorials/building-interactive-scrolling-websites-with-scrollmagic-js">点这里</a>看原文。</p>
+
+<p>他写的比我写的好很多，我之所以厚脸皮写中文版的，一个是为了加深印象，一个是为了给懒得看英文原文的同学方便。</p>
+
+<p>从例子中我们可以看到，它先定义了一个scrollMagicController，然后再定义一个scene，然后再载入tween插件，最后加一个演示指标到页面。</p>
+
+<p>我们来总结一下，一个基础的scrollMagic的用法：</p>
+
+<pre><code>1.创建一个scrollMagic控制器
+2.创建一个动画对象
+3.创建一个舞台对象
+4.将动画对象加到舞台
+5.将舞台放到控制器内。
+</code></pre>
+
+<p>一个动画对象是需要插件的，scrollmagic用的是gsap。我原本想去深入学习下的。。看到官网的演示我被吓退了。。。</p>
+
+<p>不过一个简洁的我们还是可以探讨下的，设置对应ID的动画。</p>
+
+<pre><code>  var tween = TweenMax.to('#animation', 0.5, {
+    backgroundColor: 'rgb(255, 39, 46)',
+    scale: 5,
+    rotation: 360
+  });
+</code></pre>
+
+<p>然后是最后几步</p>
+
+<pre><code>    // Create the Scene and trigger when visible with ScrollMagic
+    var scene = new ScrollScene({
+        triggerElement: '#scene',
+        offset: 150 /* offset the trigger 150px below #scene's top */
+    })
+    .setTween(tween)
+    .addTo(scrollMagicController);
+</code></pre>
+
+<p>我们可以看到例子还是很简单的。。。</p>
+
+<p>我们将动画中的offset改为duration这个属性。<br />
+这代表这将动画绑定到了scroll上，滚动的距离就是播放对应的帧数。这样你回滚也可以看到动画在回放。两者差别你可以从动画效果中看出。<a href="http://jsfiddle.net/linshuizhaoying/a62Ly4hc/">click here</a></p>
+
+<p>这样你是不是觉得非常简单就能做到自己想要的效果，如果想要改变更多属性，你可以直接去看gsap的例子，我这边找到了对应的css插件，你可以从里面挑选想要修改的属性<a href="http://greensock.com/docs/#/HTML5/GSAP/Plugins/CSSPlugin/">click here</a></p>
+
+<p>tween.to你可以联想到有to就有from，对，它还有个属性叫做from，效果和to是相反的。你可以点这里的例子查看.<a href="http://jsfiddle.net/linshuizhaoying/6e0homcu/">click here</a>.</p>
+
+<p>如果机智的你发散思维，你会想到，有了to有了from，那么一定有组合的fromto吧。是的，它还有个属性叫做fromto，效果你可以点<a href="http://jsfiddle.net/linshuizhaoying/foagpapz/">这里</a></p>
+
+<p>代码在这里：</p>
+
+<pre><code>var tween = TweenMax.fromTo('#animation', 0.5,
+    {
+        backgroundColor: 'rgb(255, 39, 46)',
+        scale: 5,
+        left: -400
+    },
+    {
+        scale: 1,
+        left: 400,
+        rotation: 360,
+        repeat: -1, /*无限循环 */
+        yoyo: true /* 是否回转 */
+    }
+);
+</code></pre>
+
+<h3 id="section-2">组合</h3>
+
+<p>单一动画会做后，你该了解下如何将动画组合。</p>
+
+<p>官网上的写法是这样的：</p>
+
+<pre><code>var tween = new TimelineMax()
+			.to("#animate2", 1, {top: "-=200",
+					onStart: function () {$box.html("This");},
+					onReverseComplete: function () {$box.html("Let's draw!");}
+				}
+			)
+			.to("#animate2", 1, {top: "+=200", left: "+=200",
+					onStart: function () {$box.html("is");},
+					onReverseComplete: function () {$box.html("This");}
+				}
+			)
+			.to("#animate2", 1, {top: "-=200",
+					onStart: function () {$box.html("the");},
+					onReverseComplete: function () {$box.html("is");}
+				}
+			)
+</code></pre>
+
+<p>直接将多个动画写成链式。</p>
+
+<p>如果是相同动画想要按次序播放你可以这么写：</p>
+
+<pre><code>&lt;div class="col-xs-3"&gt;
+  &lt;div class="wrap"&gt;  
+    &lt;h2&gt;Magic Happens Here&lt;/h2&gt;
+    &lt;div class="animation"&gt;&lt;i class="fa fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="col-xs-3"&gt;
+  &lt;div class="wrap"&gt;  
+    &lt;h2&gt;Magic Happens Here&lt;/h2&gt;
+    &lt;div class="animation"&gt;&lt;i class="fa fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="col-xs-3"&gt;
+  &lt;div class="wrap"&gt;  
+    &lt;h2&gt;Magic Happens Here&lt;/h2&gt;
+    &lt;div class="animation"&gt;&lt;i class="fa fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="col-xs-3"&gt;
+  &lt;div class="wrap"&gt;  
+    &lt;h2&gt;Magic Happens Here&lt;/h2&gt;
+    &lt;div class="animation"&gt;&lt;i class="fa fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+var tween = TweenMax.staggerFromTo('.animation', 0.5,
+{
+    scale: 1,
+},
+{
+    backgroundColor: 'rgb(255, 39, 46)',
+    scale: 5,
+    rotation: 360
+},
+0.4 /* 间隔的duration */
+);
+</code></pre>
+
+<p>你可以点<a href="http://jsfiddle.net/linshuizhaoying/so730Loz/1/">这里</a>看效果</p>
+
+<h3 id="class">触发class</h3>
+
+<p>比如你想让在某个场景出现时触发某些动画，你可以用setClassToggle这个方法。</p>
+
+<p>举个例子：</p>
+
+<pre><code> &lt;div class="col-md-6 col-md-offset-3"&gt;
+  &lt;div class="wrap" id="scene-1"&gt;  
+    &lt;h2&gt;Magic Happens Here&lt;/h2&gt;
+    &lt;div class="animation" id="animation-1"&gt;&lt;i class="fa fa-heart"&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+
+  var tween1 = TweenMax.to('#animation-1', 0.3, {
+      backgroundColor: 'rgb(255, 39, 46)',
+      scale: 10,
+      rotation: 360
+    });
+    var scene1 = new ScrollScene({
+      triggerElement: '#scene-1',
+      offset: 50
+    })
+    .setClassToggle('body', 'scene-1-active')
+    .setTween(tween1)
+    .addTo(scrollMagicController);
+</code></pre>
+
+<p>想看具体效果点<a href="http://jsfiddle.net/linshuizhaoying/yLymhbL1/">这里</a></p>
+
+<h3 id="section-3">移动端</h3>
+
+<p>在移动端，当scroll停止时它可能都没检测到事件。不过有个解决方法就是将设置每个元素overflow: scroll，这样就能让设备时时刻刻接受到事件。</p>
+
+<h3 id="scrollmaic">子区域使用scrollmaic</h3>
+
+<p>你可能不想在整个body中使用scroll，因此你可以这么做：</p>
+
+<pre><code>var scrollMagicController = new ScrollMagic({container: '#my-container'});
+</code></pre>
+
+<p>移动端也支持这种方式。</p>
+
+<p>但这个是中hack，因此你可能需要增加一个css3属性</p>
+
+<pre><code>-webkit-overflow-scrolling: touch;
+</code></pre>
+
+<p>然后有个悲剧就是不是所有浏览器都支持这个属性-0-不过你可自己试试对吧。</p>
+
+<h3 id="section-4">在移动端禁用</h3>
+
+<pre><code>两种方式：
+如果你加载了Modernizr.js
+    if (!Modernizr.touch) {
+     // Start ScrollMagic code
+     }
+ 如果你没加载
+    if (!is_touch_device()) {
+      // Start ScrollMagic code
+   }
+   function is_touch_device() {
+     return 'ontouchstart' in window // works on most browsers 
+         || 'onmsgesturechange' in window; // works on ie10
+   };
+</code></pre>
+
+<h2 id="section-5">结尾</h2>
+<p>ScrollMagic开辟了一种网页风格，我个人觉得还是很有必要去学习并应用到实践中。</p>
+
+   <button><a href="http://comments.haoqiao.me/show/Sprite动画与ScrollMagic的使用/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/21/sprite-scrollmagic.html&text=Sprite动画与ScrollMagic的使用" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/21/sprite-scrollmagic.html&title=Sprite动画与ScrollMagic的使用" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

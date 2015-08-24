@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Node.js + React.js 开发评论插件系统 | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习资料，程序语言">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150816">Node.js + React.js 开发评论插件系统</h1>
+  <h2 id="section">前言</h2>
+
+<p>一开始是因为Jekyll的评论插件如果是放到github还需要分支什么的，后来我用了多说系统，但是它页面每次只加载一次，导致如果页内跳转，转到的页面是没有评论的。因此萌生了自己开发一个评论插件系统，通过跳转将参数传来，事实上只需要在加载的前的js写好，可以达到和多说系统一样的外置功能，但是处理起来比较麻烦，因此我选择了直接传参。其实一开始我像选择用react.js+vue.js来开发的，但是用React写完后发现没vue啥事。。。毕竟同是view层，React用的顺手，因此我打算下一个大项目中用vue.js做前端，react做后台。</p>
+
+<h2 id="section-1">正文</h2>
+
+<p>由于本篇并不是在开发中写的，而是一篇总结，因此很多东西我都会跳过不说，只讲重点的，工程我已经放到了github上。有兴趣的可以点<a href="https://github.com/linshuizhaoying/commets.haoqiao.me">这里</a></p>
+
+<p>首先我们来看下界面<img src="http://7s1say.com1.z0.glb.clouddn.com//test.gif" alt="gif1" /><br />
+因此我们可以先确定要构建的组件</p>
+
+<pre><code>1.Content 用来作为包含内容的父组件
+2.Comments 用来作为一个评论组合的容器
+3.Admin 用来作为管理回复
+4.SubmitComment 发布评论
+</code></pre>
+
+<p>其实官网是有个评论的例子，但是-0-我之前写的时候不知道。之后查资料的时候发现了=-=，整个人斯巴达，因为很多设计都是类似的。。。不过由于是之前一手设计的，因此我在开发途中大改了好几次。因为一开始是没有总设计稿，因此我的设计步骤是这样的。</p>
+
+<pre><code>1.设计评论列表静态布局
+2.转为react
+3.添加动态效果
+4.添加测试数据
+5.设计发表评论组件
+6.设计动态效果
+7.后台设计数据库
+8.后台添加代码
+9.前后台沟通
+</code></pre>
+
+<h3 id="section-2">代码分析</h3>
+<p>因为这篇是总结类型，我就挑着讲了。<br />
+首先从需要渲染的页面index.jade来讲。关键代码如下：</p>
+
+<pre><code>span#name.hide #{name}
+span#link.hide #{link}
+span#adminpass.hide #{adminpass}
+span#lock.hide #{lock}
+</code></pre>
+
+<p>name和link是传过来的参数，我需要后台route拿到后重新渲染进来，方便其他组件获取这个参数。</p>
+
+<p>adminpass是一个开启管理员模式的关键，后台会根据获取到的密码来判断。之所以做这个是因为懒得再写个管理页面。<br />
+lock就是是否开启回复功能，因此游客是不给回复的，组件需要判断是否是管理员，如果是才解锁。</p>
+
+<p>来看content.jsx</p>
+
+<pre><code>loadCommentsFromServer:function() {
+if($("#adminpass").text().length !=0){
+$.post("/getAllData" , {link:$("#link").text(),adminpass:$("#adminpass").text()}, function(result) {
+  if (this.isMounted()) {
+    this.setState({
+      data:JSON.parse(result)
+    });
+  }
+}.bind(this));
+}else{
+$.post("/getData" , {link:$("#link").text(),title:$("#name").text()}, function(result) {
+  var list = result;
+  if (this.isMounted()) {
+    this.setState({
+      data:JSON.parse(result)
+    });
+  }
+}.bind(this));
+}
+},
+componentDidMount: function() {
+  this.loadCommentsFromServer();
+  setInterval(this.loadCommentsFromServer, 2000);
+},
+</code></pre>
+
+<p>数据的获取是在组件渲染之前，之后再每隔2秒去获取更新。<br />
+ 这个更新方法是从官网学来的</p>
+
+<pre><code> 我们把旧的评论数组替换成从服务器拿到的新的数组，然后UI自动更新。正是有了这种响应式，一个小的改变都会触发实时的更新。这里我们将使用简单的轮询，但是你可以简单地使用WebSockets或者其它技术。
+</code></pre>
+
+<p>接着我们可以看到后台是如何处理参数的</p>
+
+<pre><code>router.get('/show/:name/:link', function(req, res, next) {
+NewsData.findOne({ link:req.body.link,title: req.body.title }, function(err, content) {
+	if(content!=null){
+		console.log("找到了"); // { name: 'Frodo', inventory: { ringOfPower: 1 }}
+	}else{
+		console.log("没找到");
+	}
+});
+ res.render('index', {title: '临水照影  评论系统',lock:"t",name:req.params.name,li
+ nk:req.params.link});}); 这是对每个网站的每个文章进行分类。数据的获取还是通过getDate这个来获得的。
+
+router.post('/getData', function(req, res, next) {
+//	NewsData.find({link:req.body.link}, function(err, content) {
+	NewsData.find({link:req.body.link,title: req.body.title},null,{sort:                           {_id:-1}},function(err, content){  
+	if(content!=null){
+	console.log("getdate");
+		res.send(JSON.stringify(content));
+		res.end();
+		//console.log("找到了content" + JSON.stringify(content)); // { name: 'Frodo', inventory: { ringOfPower: 1 }}
+	}else{
+	  res.send(JSON.stringify(""));
+	  res.end();
+	}
+});
+});
+</code></pre>
+
+<p>这里我们可以看到数据先经过排序再通过json格式化再输出的。</p>
+
+<p>##总结<br />
+使用方法就是在需要评论的地方加一个跳转。比如我在jekyll的posts.html里面是这么写的</p>
+
+<pre><code>   &lt;button&gt;&lt;a href="http://comments.haoqiao.me/show/page.title/haoqiao.me"&gt;跳到评论系统&lt;/a&gt;&lt;/button&gt;
+</code></pre>
+
+<p>然后把代码部署到服务器就行了。其实展开讲还是挺多的，但是事情比较多，点到为止。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Node.js + React.js 开发评论插件系统/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/16/react-comments.html&text=Node.js + React.js 开发评论插件系统" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/16/react-comments.html&title=Node.js + React.js 开发评论插件系统" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

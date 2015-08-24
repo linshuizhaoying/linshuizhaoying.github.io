@@ -1,0 +1,3664 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>临水照影的博客</title>
+    <link>http://linshuizhaoying.github.io</link>
+    <description>临水照影的博客</description>
+    
+      <item>
+        <title>Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/24/translate%20eight.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/24/translate%20eight.html</guid>
+        <pubDate>Mon, 24 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpiamvdomeenblogcss-element-function&quot;&gt;原文来源:&lt;a href=&quot;http://iamvdo.me/en/blog/css-element-function&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;iamvdo&quot;&gt;作者: iamvdo&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;这是今天的翻译文-0-。。。我发现我有种突然想把&lt;a href=&quot;http://greensock.com/&quot;&gt;gsap&lt;/a&gt;的官方文档认真的翻译或者系统的写一些列学习文章（⊙﹏⊙其实是最近在练习一个demo，但是没有系统的学习总感觉不得劲。。）。不过自己已经作死的每日刷一个翻译日常，=-=也不知道哪天能开坑。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;闭包&lt;/h3&gt;
+
+&lt;p&gt;在javascript中，一个闭包是任何函数保存对其父作用域中变量的引用，即使这个父类已经返回结束。&lt;/p&gt;
+
+&lt;p&gt;这意味着几乎所有函数都是一个闭包，因为在&lt;a href=&quot;http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/#variable-scope&quot;&gt;变量作用域&lt;/a&gt;中我们明白了，一个函数能被引用，或者可以访问&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;任何在它们自己的作用域中的变量和参数
+任何在外部（父）函数中的变量和参数
+任何在全局作用域中的变量
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所以，你甚至不知道你已经在不经意间使用过闭包，但是我们不仅仅追求能够使用它，更要理解它。如果我们不知道它是如何工作的，我们无法完整的使用它。因此，我们把闭包定义成三个知识点。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;知识点1：你可以引用当前函数的父函数中的变量&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;function setLocation(city) {
+  var country = &quot;France&quot;; 
+
+  function printLocation() {       
+    console.log(&quot;You are in &quot; + city + &quot;, &quot; + country);  
+  }
+
+  printLocation();
+}
+
+setLocation (&quot;Paris&quot;);  // output: You are in Paris, France
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/1/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这例子中，printLocation函数调用了包含它的setLocation函数的country变量&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;知识点2:内部函数可以引用定义外部函数中的变量，即使它们已经执行返回&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;function setLocation(city) {
+  var country = &quot;France&quot;; 
+
+  function printLocation() {       
+    console.log(&quot;You are in &quot; + city + &quot;, &quot; + country);  
+  }
+
+  return printLocation;
+}
+
+var currentLocation = setLocation (&quot;Paris&quot;);   
+
+currentLocation();   // output: You are in Paris, France
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/vajihuwixu/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;知识点3:内部函数可以通过引用存储外部函数的变量，而不是保存值&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;function cityLocation() {
+  var city = &quot;Paris&quot;;
+
+  return {
+    get: function() { console.log(city); },  
+    set: function(newCity) { city = newCity; }
+  };
+}
+
+var myLocation = cityLocation();
+
+myLocation.get();           // output: Paris
+myLocation.set(&#39;Sydney&#39;);
+myLocation.get();           // output: Sydney
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/3/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个例子说明闭包可以读和更新它们存储的变量，任何闭包都能够看到这个更新。这意味着闭包是引用它们外部函数的变量而不是拷贝它们的值。这是很重要的一点，因为我们等会会看到在立即执行函数表达式中看到一些复杂的逻辑问题。&lt;/p&gt;
+
+&lt;p&gt;闭包有个有趣的是特性就是它内部的函数都会自动隐藏。唯一改变内部存储的值方法只有间接修改。比如我们刚刚的例子。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;回调&lt;/h2&gt;
+
+&lt;p&gt;在javascript中，函数是第一类对象。函数可以作为参数传递或者作为返回值。&lt;/p&gt;
+
+&lt;p&gt;一个函数作为其它函数的参数或者返回值这叫做高阶函数。作为参数传递的函数叫做回调函数。&lt;/p&gt;
+
+&lt;p&gt;回调函数有很多常规用途。其中一项就是使用浏览器的windows对象中的setTimeout()和setInterval()。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function showMessage(message){
+  setTimeout(function(){
+    alert(message);
+  }, 3000);  
+}
+
+showMessage(&#39;Function called 3 seconds ago&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/4/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;另一个例子就是在页面中对元素添加事件监听&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// HTML
+
+&amp;amp;lt;button id=&#39;btn&#39;&amp;amp;gt;Click me&amp;amp;lt;/button&amp;amp;gt;
+
+// JavaScript
+
+function showMessage(){
+  alert(&#39;Woohoo!&#39;);
+}
+
+var el = document.getElementById(&quot;btn&quot;);
+el.addEventListener(&quot;click&quot;, showMessage);    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/5/edit?html,js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;  &lt;/p&gt;
+
+&lt;p&gt;建立一个理解高级函数和回调函数的工作原理的例子是很简单的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function fullName(firstName, lastName, callback){
+  console.log(&quot;My name is &quot; + firstName + &quot; &quot; + lastName);
+  callback(lastName);
+}
+
+var greeting = function(ln){
+  console.log(&#39;Welcome Mr. &#39; + ln);
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/6/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;我们传送的是函数的定义而不是调用函数。这是为了防止函数立刻执行，只是在回调函数中需要注意的一点。回调函数就像一个运行中的闭包。他们能访问任何包含他们的外部函数的变量和参数，甚至从全局作用域中获取变量。&lt;/p&gt;
+
+&lt;p&gt;下面这个回调函数可以在上个例子中存在，或者它可以在任何匿名函数中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function fullName(firstName, lastName, callback){
+  console.log(&quot;My name is &quot; + firstName + &quot; &quot; + lastName);
+  callback(lastName);
+}
+
+fullName(&quot;Jackie&quot;, &quot;Chan&quot;, function(ln){console.log(&#39;Welcome Mr. &#39; + ln);});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/7/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;回调在javascript库中提供管理和复用中非常重要。它们让库方法很容易定制和扩展。而且，代码更容易维护，更容易阅读。&lt;/p&gt;
+
+&lt;p&gt;让我们写两个函数，一个输出关于发布的文章的信息，另一个输出发送的信息。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function publish(item, author, callback){   // Generic function with common data
+  console.log(item);
+  var date = new Date();
+
+  callback(author, date);
+}
+
+function messages(author, time){   // Callback function with specific data
+  var sendTime = time.toLocaleTimeString();
+  console.log(&quot;Sent from &quot; + author + &quot; at &quot; + sendTime);
+}
+
+function articles(author, date){   // Callback function with specific data
+  var pubDate = date.toDateString();
+  console.log(&quot;Written by &quot; + author);
+  console.log(&quot;Published &quot; + pubDate);
+}
+
+publish(&quot;How are you?&quot;, &quot;Monique&quot;, messages);
+
+publish(&quot;10 Tips for JavaScript Developers&quot;, &quot;Jane Doe&quot;, articles);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/8/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;我们把代码抽象然后复用，可以发现最后仅需要一个Publish函数即可搞定(译者PS：这已经有点策略模式的味道了。)&lt;/p&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;立即执行函数表达式&lt;/h2&gt;
+
+&lt;p&gt;这是两种有点不同的写法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// variant 1
+
+(function () {
+  alert(&#39;Woohoo!&#39;);
+})();
+
+// variant 2
+
+(function () {
+  alert(&#39;Woohoo!&#39;);
+}());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将一个常规的的函数放入立即执行函数表达式你需要做两步：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.你需要将整个函数包含在一对括号中。立即执行函数表达式必须是一个表达式而不是函数定义。用一对括号是将一个函数定义转化为函数表达。
+2.你需要在末尾加一对括号，如变式1或者变式2.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还有三件事你需要记住：&lt;/p&gt;
+
+&lt;p&gt;首先，如果你将一个函数赋值给变量，你不需要将整个函数用括号包住.因为它已经是一个表达式了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var sayWoohoo = function () {
+  alert(&#39;Woohoo!&#39;);
+ }();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第二，必须在末尾加分号，否则可能不会正常工作&lt;/p&gt;
+
+&lt;p&gt;最后，你可以传递参数给立即执行函数表达式，像这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(function (name, profession) {
+  console.log(&quot;My name is &quot; + name + &quot;. I&#39;m an &quot; + profession + &quot;.&quot;);
+})(&quot;Jackie Chan&quot;, &quot;actor&quot;);   // output: My name is Jackie Chan. I&#39;m an actor.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/9/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;传递一个全局对象给立即执行函数表达式是很常见的，因为它可以让函数内部不需要用window对象。这让代码在浏览器环境中更加独立。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(function (global) {
+  // access the global object via &#39;global&#39;
+})(this);
+&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+
+&amp;lt;p&amp;gt;This code will work both in the browser (where the global object is &amp;lt;code&amp;gt;window&amp;lt;/    code&amp;gt;), or in a Node.js environment (where we refer to the global object with the special     variable &amp;lt;code&amp;gt;global&amp;lt;/code&amp;gt;). &amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;One of the great benefits of an IIFE is that, when using it, you don’t have to worry about polluting the global space with temporary variables. All the variables you define inside an IIFE will be local. Let’s check this out:&amp;lt;/p&amp;gt;
+
+[code language=&quot;javascript&quot;](function(){
+
+  var today = new Date();
+  var currentTime = today.toLocaleTimeString();
+  console.log(currentTime);   // output: the current local time (e.g. 7:08:52 PM)
+
+})();
+
+console.log(currentTime);   // output: undefined
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/10/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在这个例子中，第一个console工作正常，第二个无法输出，因为调用的参数是一个立即执行函数表达式中的局部变量。&lt;/p&gt;
+
+&lt;p&gt;我们已经知道闭包保存与外部函数之间变量的引用，然后它们返回最新的值。你认为下列输出会是什么？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function printFruits(fruits){
+  for (var i = 0; i &amp;lt; fruits.length; i++) {
+    setTimeout( function(){
+      console.log( fruits[i] );
+    }, i * 1000 );
+  }
+}
+
+printFruits([&quot;Lemon&quot;, &quot;Orange&quot;, &quot;Mango&quot;, &quot;Banana&quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/11/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;最终结果都是Undefined，这是为什么呢？&lt;/p&gt;
+
+&lt;p&gt;首先这个函数迭代四遍，由于一开始我们fruits中什么值都没有，它输出undefined。然后当i &amp;lt; fruits.length时返回false。所以这个时候i等于4.这是最近版本中变量在函数中因为在循环中使用，闭包只链接变量本身而不是它的值。(译者PS:其实就是printFruits函数一开始定义的时候已经内部开始循环了，然后因为循环到最后i等于4，这时候你传递参数进来它是输出fruits[4]，注意因为数组是从0开始计数，所以你只能看到输出undfined.你可以输出i的值试试)&lt;/p&gt;
+
+&lt;p&gt;为了解决这个问题，我们需要提供一个新的作用域，让每个函数被循环创建，这样能追踪到i变量的状态。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function printFruits(fruits){
+  for (var i = 0; i &amp;amp;lt; fruits.length; i++) {
+    (function(){
+      var current = i;                    // define new variable that will hold the     current value of &quot;i&quot;
+      setTimeout( function(){
+        console.log( fruits[current] );   // this time the value of &quot;current&quot; will be different for each iteration
+      }, current * 1000 );
+    })();
+  }
+}
+
+printFruits([&quot;Lemon&quot;, &quot;Orange&quot;, &quot;Mango&quot;, &quot;Banana&quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsbin.com/sakiqepato/12/edit?js,console,output&quot;&gt;在js bin中的例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;当然我们可以用下面这种变体&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function printFruits(fruits){
+  for (var i = 0; i &amp;amp;lt; fruits.length; i++) {
+    (function(current){
+      setTimeout( function(){
+        console.log( fruits[current] );
+      }, current * 1000 );
+    })( i );
+  }
+}
+
+printFruits([&quot;Lemon&quot;, &quot;Orange&quot;, &quot;Mango&quot;, &quot;Banana&quot;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;立即执行函数表达式通常用在封装模块。来防止被修改其中的内容。这衍生了一种技术：&lt;a href=&quot;http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript&quot;&gt;模块模式&lt;/a&gt;它被用在很多现代javascript的库中(举个例子：Jquery和underscore)&lt;/p&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;结尾&lt;/h2&gt;
+
+&lt;p&gt;这个教程主要目的是为了将这些概念介绍清楚，简要的浓缩为一系列规则。理解它们是成为一个成功的优秀的javascript开发者的必要元素。&lt;/p&gt;
+
+&lt;p&gt;如果你想深入了解这些内容，可以点&lt;a href=&quot;http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;译者&lt;/h2&gt;
+&lt;p&gt;前面两个挺简单，第三块内容很有嚼头。建议去看作者推荐的深入内容。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>2015阅读书单</title>
+        <link>http://linshuizhaoying.github.io/2015/08/24/book-list-of-2015.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/24/book-list-of-2015.html</guid>
+        <pubDate>Mon, 24 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;nodejs&quot;&gt;了不起的Node.js&lt;/h2&gt;
+
+&lt;h2 id=&quot;cssweb2&quot;&gt;精通CSS:高级Web标准解决方案(第2版)&lt;/h2&gt;
+
+&lt;h2 id=&quot;javascript&quot;&gt;JavaScript面向对象编程指南&lt;/h2&gt;
+
+&lt;h2 id=&quot;react&quot;&gt;React引领未来的用户界面开发框架&lt;/h2&gt;
+
+&lt;h2 id=&quot;web&quot;&gt;Web前端开发最佳实践&lt;/h2&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/23/translate%20seven.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/23/translate%20seven.html</guid>
+        <pubDate>Sun, 23 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpwwwsmashingmagazinecom201506responsive-typography-with-sass-maps&quot;&gt;原文来源:&lt;a href=&quot;http://www.smashingmagazine.com/2015/06/responsive-typography-with-sass-maps/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;jonathan-suh&quot;&gt;作者: Jonathan Suh&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;这应该只是一篇小品文。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;管理一致的字体印刷不是一件容易的事情，又是是当需要字体能够响应式，事情会变得更加麻烦。Sass Map技术能够让响应式印刷更加易于管理。&lt;/p&gt;
+
+&lt;p&gt;写代码是一件事，保持跟踪字体大小值又是另一件事。从&lt;code&gt;h1&lt;/code&gt;到&lt;code&gt;h6&lt;/code&gt;，每一段有不同的字体尺寸，跟追会变得很麻烦，尤其是这个类型不能够线性扩展。&lt;/p&gt;
+
+&lt;p&gt;如果你想要实现响应式字体，你可能会这么写：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p { font-size: 15px; }
+
+@media screen and (min-width: 480px) {
+  p { font-size: 16px; }
+}
+@media screen and (min-width: 640px) {
+  p { font-size: 17px; }
+}
+@media screen and (min-width: 1024px) {
+  p { font-size: 19px; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sass变量在项目中可以重复使用，这个特性很棒，但是当它管理字体响应式化，将从简单变成复杂。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$p-font-size-mobile : 15px;
+$p-font-size-small  : 16px;
+$p-font-size-medium : 17px;
+$p-font-size-large  : 19px;
+
+$h1-font-size-mobile: 28px;
+$h1-font-size-small : 31px;
+$h1-font-size-medium: 33px;
+$h1-font-size-large : 36px;
+
+// I think you get the point…（2333）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里将能体现到Sass maps和循环大强大之处。它们可以帮你管理z-index的值(可以看这篇&lt;a href=&quot;https://jonsuh.com/blog/organizing-z-index-with-sass/&quot;&gt;文章&lt;/a&gt;)和颜色（可以看这篇&lt;a href=&quot;https://jonsuh.com/blog/sass-maps/#loops-and-maps&quot;&gt;文章&lt;/a&gt;）还有你很快就能看到的,字体尺寸。&lt;/p&gt;
+
+&lt;h2 id=&quot;sass-maps&quot;&gt;用Sass Maps管理字体尺寸&lt;/h2&gt;
+
+&lt;p&gt;让我们开始用键值对创建Sass maps，断点（这里可以理解为你所要响应的尺寸）作为键，字体大小作为值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$p-font-sizes: (
+  null  : 15px,
+  480px : 16px,
+  640px : 17px,
+  1024px: 19px
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;首先我们可以看到 &lt;code&gt;null&lt;/code&gt;代表默认字体尺寸（并不是在媒体查询中），断点按升序排列。&lt;/p&gt;
+
+&lt;p&gt;接下来，在&lt;code&gt;@mixin&lt;/code&gt;中，它将通过迭代一个Sass map来生成相应的媒体查询&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@mixin font-size($fs-map) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;
+    }
+    @else {
+      @media screen and (min-width: $fs-breakpoint) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+} 注意：值得一提的是该`@mixin`中，混入了一些编程的逻辑。Sass，在[SassScript](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#sassscript)的帮助下实现了类似编程逻辑的 if /else 这类判断,甚至是each循环等。我强烈推荐你花点时间来看文档。该文档将会向你介绍sass的各个方面。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们可以这么应用该&lt;code&gt;@mixin&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p {
+  @include font-size($p-font-sizes);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它将产生以下的css&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p { font-size: 15px; }
+
+@media screen and (min-width: 480px) {
+  p { font-size: 16px; }
+}
+@media screen and (min-width: 640px) {
+  p { font-size: 17px; }
+}
+@media screen and (min-width: 1024px) {
+  p { font-size: 19px; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;管理和跟踪这类字体尺寸将变得非常简单。&lt;/p&gt;
+
+&lt;p&gt;对每一个新元素，都创建一个map然后调用mixin。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$h1-font-sizes: (
+  null  : 28px
+  480px : 31px,
+  640px : 33px,
+  1024px: 36px
+);
+
+h1 {
+  @include font-size($h1-font-sizes);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后使各类元素保持一致。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; p, ul, ol {
+   @include font-size($p-font-sizes);
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;解决断点碎片&lt;/h3&gt;
+
+&lt;p&gt;但是等等！假如当我们想要响应式700x中将17px 的p 和 33px 的h1 代替640px是，该如何做？为了解决这个问题，这需要我们改变640px中的每个实例。为了解决这个问题，我们又不经意间创建了另一个问题：断点碎片。&lt;/p&gt;
+
+&lt;p&gt;如果我们在Sass maps里面管理字体尺寸，我们可以做同样的断点对吗？当然！&lt;/p&gt;
+
+&lt;p&gt;让我们创建一个普通断点的map然后给它们取一个合适的名字。我们将这断点Map和字体尺寸Map进行映射建立联系&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $breakpoints: (
+   small : 480px,
+   medium: 700px, // Previously 640px
+   large : 1024px
+ );
+
+ $p-font-sizes: (
+   null  : 15px,
+   small : 16px,
+   medium: 17px,
+   large : 19px
+ );
+
+ $h1-font-sizes: (
+   null  : 28px,
+   small : 31px,
+   medium: 33px,
+   large : 36px
+ );
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这最后一步是在迭代字体尺寸map的时候在mixin里面混入一点东西，它在建立媒体查询之前将用断点的名称来从$breakpoints中获取对应的值。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@mixin font-size($fs-map, $fs-breakpoints: $breakpoints) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      font-size: $fs-font-size;
+    }
+    @else {
+      // If $fs-font-size is a key that exists in
+      // $fs-breakpoints, use the value
+      @if map-has-key($fs-breakpoints, $fs-breakpoint) {
+        $fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
+      }
+      @media screen and (min-width: $fs-breakpoint) {
+        font-size: $fs-font-size;
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里用到了map-has-key方法（Returns whether a map has a value associated with a given key.）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Examples:
+
+map-has-key((&quot;foo&quot;: 1, &quot;bar&quot;: 2), &quot;foo&quot;) =&amp;gt; true
+map-has-key((&quot;foo&quot;: 1, &quot;bar&quot;: 2), &quot;baz&quot;) =&amp;gt; false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它用来验证这个Key的名字是不是存在于$breakpoints，如果存在，它将用key里的值，否则它会用一个自认为重要的值然后产生媒体查询。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p { font-size: 15px; }
+
+@media screen and (min-width: 480px) {
+  p { font-size: 16px; }
+}
+@media screen and (min-width: 700px) {
+  p { font-size: 17px; }
+}
+@media screen and (min-width: 900px) {
+  p { font-size: 18px; }
+}
+@media screen and (min-width: 1024px) {
+ p { font-size: 19px; }
+}
+@media screen and (min-width: 1440px) {
+  p { font-size: 20px; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;提升垂直间距的行高&lt;/h3&gt;
+
+&lt;p&gt;行高是垂直间距的重要部分。让我们在这个解决方案中包含行高&lt;/p&gt;
+
+&lt;p&gt;通过一个列表中的字体尺寸和行高作为键值扩展字体尺寸map。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$breakpoints: (
+  small : 480px,
+  medium: 700px,
+  large : 1024px
+);
+
+$p-font-sizes: (
+  null  : (15px, 1.3),
+  small : 16px,
+  medium: (17px, 1.4),
+  900px : 18px,
+  large : (19px, 1.45),
+  1440px: 20px,
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：即使行高值能用任何的CSS单位定义。为了避免继承意外的东西，推荐用无单位行高。(可以点&lt;a href=&quot;https://css-tricks.com/almanac/properties/l/line-height/&quot;&gt;这里&lt;/a&gt;看详细的内容，还有&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#Prefer_unitless_numbers_for_line-height_values&quot;&gt;这里&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;我们需要修改mixin&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@mixin font-size($fs-map, $fs-breakpoints: $breakpoints) {
+  @each $fs-breakpoint, $fs-font-size in $fs-map {
+    @if $fs-breakpoint == null {
+      @include make-font-size($fs-font-size);
+    }
+    @else {
+      // If $fs-font-size is a key that exists in
+      // $fs-breakpoints, use the value
+      @if map-has-key($fs-breakpoints, $fs-breakpoint) {
+        $fs-breakpoint: map-get($fs-breakpoints, $fs-breakpoint);
+      }
+      @media screen and (min-width: $fs-breakpoint) {
+        @include make-font-size($fs-font-size);
+      }
+    }
+  }
+}
+
+// Utility function for mixin font-size
+@mixin make-font-size($fs-font-size) {
+  // If $fs-font-size is a list, include
+  // both font-size and line-height
+  @if type-of($fs-font-size) == &quot;list&quot; {
+    font-size: nth($fs-font-size, 1);
+    @if (length($fs-font-size) &amp;gt; 1) {
+      line-height: nth($fs-font-size, 2);
+    }
+  }
+  @else {
+    font-size: $fs-font-size;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个mixin验证了一下font-sizes map的值是不是一个字体尺寸列表。如果是一个列表，通过&lt;code&gt;nth&lt;/code&gt;&lt;a href=&quot;http://sass-lang.com/documentation/Sass/Script/Functions.html#nth-instance_method&quot;&gt;函数&lt;/a&gt;&lt;br /&gt;
+将从里面获得正确的值。它假设第一个值是字体尺寸第二个是行高。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p {
+ @include font-size($p-font-sizes);
+} 它会生成以下css
+
+p { font-size: 15px; line-height: 1.3; }
+
+@media screen and (min-width: 480px) {
+  p { font-size: 16px; }
+}
+@media screen and (min-width: 700px) {
+  p { font-size: 17px; line-height: 1.4; }
+}
+@media screen and (min-width: 900px) {
+  p { font-size: 18px; }
+}
+@media screen and (min-width: 1024px) {
+  p { font-size: 19px; line-height: 1.45; }
+}
+@media screen and (min-width: 1440px) {
+  p { font-size: 20px; }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个最终方案很容易扩展，像字体宽度，margin等等。关键是用 &lt;code&gt;make-font-size&lt;/code&gt;和&lt;code&gt;nth&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;结论&lt;/h2&gt;
+
+&lt;p&gt;还有很多方法可以实现响应式字体尺寸，但是我觉得这种对我来说是最好的。&lt;/p&gt;
+
+&lt;p&gt;利用mixin可以在你编译css时创建重复的媒体查询，但还有很多争议.&lt;a href=&quot;https://tech.bellycard.com/blog/sass-mixins-vs-extends-the-data/&quot;&gt;点这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;我也意识到我的方法不是最好的，但是我觉得我更喜欢手工写复杂的媒体查询。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;备用方案&lt;/h2&gt;
+
+&lt;p&gt;Viewport 单位((vh, vw, vmin and vmax)(&lt;a href=&quot;https://css-tricks.com/viewport-sized-typography/&quot;&gt;资料&lt;/a&gt;)可以创建响应式印刷。&lt;/p&gt;
+
+&lt;p&gt;一个viewport单位等于百分之一viewport宽度或者高度。&lt;/p&gt;
+
+&lt;p&gt;Viewport 单位还可以创建&lt;a href=&quot;http://demosthenes.info/blog/739/Creating-Responsive-Hero-Text-With-vw-Units&quot;&gt;Hero文本&lt;/a&gt;但它不适合用在body里面。它会变得太大或太小。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.modularscale.com/&quot;&gt;Modular Scale&lt;/a&gt;是一个创建响应式印刷的很好的工具。 Sara Soueidan也有篇关于响应式印刷的很好的&lt;a href=&quot;http://tympanus.net/codrops/2013/11/19/techniques-for-responsive-typography/&quot;&gt;文章&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/&quot;&gt;Image source&lt;/a&gt;帮你把图片制作各种响应式版本提供下载。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;译者&lt;/h2&gt;
+
+&lt;p&gt;总的来说，这篇文章能帮助更好的了解sass。至于你用不用他的方案，我觉得这已经不是很重要了-0-不过我反正会去尝试用。因为我也喜欢将能掌握的东西都手写。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/22/translate%20six.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/22/translate%20six.html</guid>
+        <pubDate>Sat, 22 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpwwwsitepointcomthinking-outside-dom-composed-validators-data-collection&quot;&gt;原文来源:&lt;a href=&quot;http://www.sitepoint.com/thinking-outside-dom-composed-validators-data-collection/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;christian-johansen&quot;&gt;作者: Christian Johansen&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+&lt;p&gt;这篇文章好像有姊妹篇，不过这篇更能引起我的兴趣。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;在第一篇文章中，我们讨论了大多数javascript库的普遍问题：紧密耦合的代码。（那篇文章点&lt;a href=&quot;http://www.sitepoint.com/thinking-outside-dom-concepts-setup/&quot;&gt;这里&lt;/a&gt;）然后，我向你介绍了分离观念的好处。为了证明观念，我们开始开发了一个不仅限于表单的表单验证系统，它甚至可以在DOM之外的地方工作。&lt;/p&gt;
+
+&lt;p&gt;这本章我们将介绍如何编写验证器，怎样采集数据和如何报错，最后我会给你一个包含本文例子的Github的仓库链接。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;编写校验器&lt;/h3&gt;
+
+&lt;p&gt;在上一篇文章我们介绍了验证单个字段的验证器，用一个规则一对一的验证字段是可以工作的，但是当有大量例子的时候需要更深层次的考虑。你可以通过一个很长的正则表达式来验证一个Email地址，但是这只能告诉你的用户Email是否被接受。一个更好的方法是对email的各个部分进行验证。&lt;/p&gt;
+
+&lt;p&gt;它可能长这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var rules = [
+  pattern(&#39;email&#39;, /@/, &#39;Your email is missing an @&#39;),
+  pattern(&#39;email&#39;, /^\S+@/, &#39;Please enter the username in your email address&#39;,
+  // ...
+];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当这个开始工作，它可能为一个邮箱地址而产生多个错误信息。这要求我们手动重复判断每个部分是否有意义。即使我们现在还没讨论关于错误信息的渲染，拥有一个关于多个验证最后只显示第一个错误信息抽象的概念是很重要的。事实证明，这是&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;操作符的语义。下面这个验证器将把多个验证方法作为参数，然后依次应用直到找到失败的那项。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function and() {
+  var rules = arguments;
+
+  return function (data) {
+    var result, l = rules.length;
+
+    for (var i = 0; i &amp;lt; l; ++i) {
+      result = rules[i](data);
+      if (result) {
+        return result;
+      }
+    }
+  };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在我们可以用一种方法来表现我们的邮箱验证而且它只会显示一个错误信息提示。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var rules = [and(
+  pattern(&#39;email&#39;, /@/, &#39;Your email is missing an @&#39;),
+  pattern(&#39;email&#39;, /^\S+@/, &#39;Please enter the username in your email address&#39;,
+  // ...
+)];
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个可以被编写成一个独立的验证。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function email(id, messages) {
+  return and(
+    pattern(&#39;email&#39;, /@/, messages.missingAt),
+    pattern(&#39;email&#39;, /^\S+@/, messages.missingUser)
+    // ...
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当我们想要只有在某些条件符合时检测某些情况，为了解决这个问题，我们需要介绍&lt;code&gt;when&lt;/code&gt;方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function when(pred, rule) {
+  return function (data) {
+    if (pred(data)) {
+      return rule(data);
+    }
+  };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正如你所见，&lt;code&gt;when&lt;/code&gt;是一个验证，就像&lt;code&gt;required&lt;/code&gt;。你可以传入一个验证数据的方法，如果它返回&lt;code&gt;true&lt;/code&gt;，我们执行了验证，否则&lt;code&gt;when&lt;/code&gt;认为数据是正确的。&lt;/p&gt;
+
+&lt;p&gt;我们还需要一个匹配模式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function matches(id, re) {
+  return function (data) {
+    return re.test(data[id]);
+  };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;除了它不是一个验证，它已经很接近我们的模式验证。另外值得一提的是这些方法都很简约，而且它们一起应用在实际情况比单个应用更加高效。通过这最后一个拼图，我们已经可以获得一个完整的验证器&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function email(id, messages) {
+  return and(
+    pattern(id, /@/, messages.missingAt),
+    pattern(id, /^\S+@/, messages.missingUser),
+    pattern(id, /@\S+$/, messages.missingDomain),
+    pattern(id, /@\S+\.\S+$/, messages.missingTLD),
+    when(matches(id, /@hotmail\.[^\.]+$/),
+      pattern(id, /@hotmail\.com$/, messages.almostHotmail)
+    ),
+    when(matches(id, /@gmail\.[^\.]+$/),
+      pattern(id, /@gmail\.com$/, messages.almostGmail)
+    )
+  );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它可以这么应用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;email(&#39;email&#39;, {
+ missingAt: &#39;Missing @&#39;,
+ missingUser: &#39;You need something in front of the @&#39;,
+ missingDomain: &#39;You need something after the @&#39;,
+ missingTLD: &#39;Did you forget .com or something similar?&#39;,
+ almostHotmail: &#39;Did you mean hotmail&amp;lt;strong&amp;gt;.com&amp;lt;/strong&amp;gt;?&#39;,
+ almostGmail: &#39;Did you mean gmail&amp;lt;strong&amp;gt;.com&amp;lt;/strong&amp;gt;?&#39;
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是Demo &lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/ytL0hm9n/&quot;&gt;Click Here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;提取数据&lt;/h3&gt;
+
+&lt;p&gt;现在我们可以验证数据，为了解决我们的表单验证初始化我们需要从表单中将数据提取出来。首先，我们将&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;form action=&quot;/doit&quot; novalidate&amp;gt;
+  &amp;lt;label for=&quot;email&quot;&amp;gt;
+    Email
+    &amp;lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot; value=&quot;christian@cjohansen.no&quot;&amp;gt;
+  &amp;lt;/label&amp;gt;
+  &amp;lt;label for=&quot;password&quot;&amp;gt;
+    Password
+    &amp;lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot;&amp;gt;
+  &amp;lt;/label&amp;gt;
+  &amp;lt;label class=&quot;faded hide-lt-pad&quot;&amp;gt;
+    &amp;lt;input type=&quot;checkbox&quot; name=&quot;remember&quot; value=&quot;1&quot; checked&amp;gt;
+    Remember me
+  &amp;lt;/label&amp;gt;
+  &amp;lt;button type=&quot;submit&quot;&amp;gt;Login&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;转变为&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  email: &#39;christian@cjohansen.no&#39;,
+  password: &#39;&#39;,
+  remember: &#39;1&#39;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在测试中这一步相当简单，但是它将请求访问DOM元素。接下来的测试例子长这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;describe(&#39;extractData&#39;, function () {
+  it(&#39;fetches data out of a form&#39;, function () {
+    var form = document.createElement(&#39;form&#39;);
+    var input = document.createElement(&#39;input&#39;);
+    input.type = &#39;text&#39;;
+    input.name = &#39;phoneNumber&#39;;
+    input.value = &#39;+47 998 87 766&#39;;
+    form.appendChild(input);
+
+    assert.deepEqual(extractData(form), {&#39;phoneNumber&#39;: &#39;+47 998 87 766&#39;});
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们来抽象它&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;it(&#39;fetches data out of a form&#39;, function () {
+  var form = document.createElement(&#39;form&#39;);
+  addElement(
+    form,
+    &#39;input&#39;,
+    {type: &#39;text&#39;, name: &#39;phoneNumber&#39;, value: &#39;+47 998 87 766&#39;}
+  );
+
+  assert.deepEqual(extractData(form), {&#39;phoneNumber&#39;: &#39;+47 998 87 766&#39;});
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们将从表单中选择所有的输入来获取数据，比如&lt;code&gt;input&lt;/code&gt;，&lt;code&gt;select&lt;/code&gt;，&lt;code&gt;textarea&lt;/code&gt;。然后提取&lt;code&gt;name&lt;/code&gt;属性和当前的值。当然，还需要处理一些特殊值，比如复选框和单选按钮。这个主函数长这样:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function extractData(form) {
+  return getInputs(form).reduce(function (data, el) {
+    var val = getValue[el.tagName.toLowerCase()](el);
+    if (val) { data[el.name] = val.trim(); }
+    return data;
+  }, {});
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在这个片段中，&lt;code&gt;extractData&lt;/code&gt;函数依靠 getInputs()函数。这是为了得到一组表单里的DOM元素作为参数。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;错误报告&lt;/h2&gt;
+
+&lt;p&gt;为了显示错误，我们需要设计一个函数来接受一个表单和一组错误信息。然而，这里有个挑战需要解决：为了避免在DOM里复制错误，这个方法需要保持一个状态，让它自己明白哪些错误已经渲染了。它还需要让每个错误在表单中都能在新的被渲染时销毁。&lt;br /&gt;
+哪种方案更合适取决于你自己的选择。&lt;/p&gt;
+
+&lt;p&gt;我不会深入渲染的细节，下面是一个简单的例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function renderErrors(form, errors) {
+  removeErrors(form);
+  errors.forEach(function (error) {
+    renderError(form, error);
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;为了渲染错误，我们需要找到对应的input，然后在它的右侧插入元素。我们只渲染第一个错误提醒。这是一个非常基础的渲染策略但是效果很好：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function renderError(form, error) {
+  var input = form.querySelector(&quot;[name=&quot; + error.id + &quot;]&quot;);
+  var el = document.createElement(&quot;div&quot;);
+  el.className = &quot;error js-validation-error&quot;;
+  el.innerHTML = error.messages[0];
+  input.parentNode.insertBefore(el, input);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在这段代码中，设定了两个class，前者只是为了style，后者作为一个内部的判断，在下面函数里删除&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function removeErrors(form) {
+  var errors = form.querySelectorAll(&quot;.js-validation-error&quot;);
+
+  for (var i = 0, l = errors.length; i &amp;lt; l; ++i) {
+    errors[i].parentNode.removeChild(errors[i]);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/z8vmc68e/&quot;&gt;Demo Click Here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;将它们整合在一起&lt;/h2&gt;
+
+&lt;p&gt;我们现在需要以下功能：从DOM中读取，验证数据，渲染验证结果。我们需要高级的接口将它们绑在一起：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; validateForm(myForm, [
+   required(&quot;login&quot;, &quot;Please choose a login&quot;),
+   email(&quot;email&quot;, i18n.validation.emailFormat),
+   confirmation(&quot;password&quot;, &quot;password-confirmation&quot;, &quot;Passwords don&#39;t match&quot;)
+ ], {
+   success: function (e) {
+     alert(&quot;Congratulations, it&#39;s all correct!&quot;);
+   }
+ });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;作为渲染，这种高等级接口可以很简单也可以很复杂。在代码中，validateForm()函数直到用户提交第一次submit才会进行验证。如果有错误，它会进入一种“智能验证模式”，错误如果被修复错误信息将会很快被移除。&lt;/p&gt;
+
+&lt;p&gt;完整的代码看&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/yxwvvxny/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这是该项目的&lt;a href=&quot;https://github.com/sitepoint-editors/validate&quot;&gt;github地址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;##译者&lt;/p&gt;
+
+&lt;p&gt;最后直接给出的项目有点复杂，建议还是自己重新写一个比较好。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/21/translate%20five.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/21/translate%20five.html</guid>
+        <pubDate>Fri, 21 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpscss-trickscombuilding-a-circular-navigation-with-css-clip-paths&quot;&gt;原文来源:&lt;a href=&quot;https://css-tricks.com/building-a-circular-navigation-with-css-clip-paths/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;sara-soueidan&quot;&gt;作者: Sara Soueidan&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;还记得水波纹效果的作者提到的Sara么，这篇就是那位作者的大作，好像她专注于css，很多长篇的文章都能看到她的作品，由于太长了，可能会翻译时间长一点。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;Css的路径裁剪属性是一个尚未被充分利用但是非常有意思的属性之一。它可以和Css形状属性结合创建有意思的布局（&lt;a href=&quot;http://alistapart.com/article/css-shapes-101&quot;&gt;点这里&lt;/a&gt;）。它也可以用来创建令人难以置信的动画(&lt;a href=&quot;http://species-in-pieces.com/#&quot;&gt;点这里&lt;/a&gt;就是之前流传很广的30个动物变来变去的动画，国内有人专门为这个动画做过分析，感兴趣的可以自己去搜索。)&lt;/p&gt;
+
+&lt;p&gt;当尝试去用css和svg创建任意形状时，路径裁剪对我而言是一个非常有帮助的属性。它可以结合svg来创建环形菜单。特别是考虑到需要在浏览器中用指针触碰裁剪区域需要触发事件的时候。让我们来深入探讨这个想法。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;写作背景&lt;/h3&gt;
+
+&lt;p&gt;几年前，我为&lt;a href=&quot;http://tympanus.net/codrops/&quot;&gt;codcops&lt;/a&gt;写关于通过css转换属性和一些css技巧来用纯css创建环形按钮。那个时候的技术是很匮乏的，你不得不用大量奇淫巧计来完成你所需要完成的效果。&lt;/p&gt;
+
+&lt;p&gt;为了在那个技术时代创建一个菜单，所需要的步骤是非常多的而且不是很灵活，需要一些hack，而且它的内部只能用icon，因为其它内容很难被定位在一个倾斜的子项中，你可以看看之前的&lt;a href=&quot;http://tympanus.net/codrops/2013/08/09/building-a-circular-navigation-with-css-transforms/&quot;&gt;这篇文章&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;今天，CSS路径裁剪属性结合svg路径，可以很轻松的创建环形菜单。这个技术不是hack，不需要任何转换工作。而且它的效果正如你所预料的那么棒。虽然这篇文章用的技术有些限制，但是制作菜单的代码是很简短干净的。&lt;/p&gt;
+
+&lt;p&gt;在你深入了解代码之前，即使代码非常简单很容易模仿，但你依旧需要学一些裁剪路径的知识，除非你已经非常熟悉了。这里你可以看我之前写的&lt;a href=&quot;http://sarasoueidan.com/blog/css-svg-clipping/&quot;&gt;文章&lt;/a&gt;。它已经包含了前期的知识要点。(简直是业界良心(๑•̀ㅂ•́)و✧)&lt;/p&gt;
+
+&lt;p&gt;在我们准备写代码之前我们同时需要注意浏览器支持的情况。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;浏览器支持&lt;/h3&gt;
+
+&lt;p&gt;我们要用css裁剪路径这个属性，首先要先明白浏览器支持情况。&lt;a href=&quot;http://caniuse.com/#feat=css-clip-path&quot;&gt;查表&lt;/a&gt;查表之后我们可以看到这个属性的支持情况并不算很好。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IE不支持，但是他们说他们在考虑
+
+如果你用css形状方法来定义裁剪属性，FireFox不支持裁剪路径因为他们现在只支持SVG的裁剪路径属性值。
+
+Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BUG，默认的指针事件不应该被局限于可见的裁剪元素外。
+
+按照期望的行为来说，当你用CSS形状方法来定义一个裁剪路径，这些浏览器应该是正确支持指针事件。然而，当你通过用SVG的裁剪路径属性来路径裁剪，指针事件应该依旧被局限于可见的裁剪元素外。这会干扰和阻止任何隐藏于裁剪路径下的元素的指针事件。我在写这篇文章的时候提交了bug，让我们期待能够尽快被修复。这个BUG意味着在这篇文章的例子中，依旧存在。对不起。
+还有一个渲染的BUG也存在于其他浏览器中，我已经提交了这个BUG。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(总之：这篇文章的DEMO应该是只工作在FireBox，但是文章提到的技术和知识可以扩散性的应用到其他地方。)&lt;/p&gt;
+
+&lt;p&gt;如果你打算用css基础形状来代替文章中用到的裁剪路径，那么这个DEMO将可以用到其它浏览器，但不能在FireFox。&lt;/p&gt;
+
+&lt;p&gt;如果你想用css形状方法中定义裁剪路径而且想让它工作在Firefox，你需要用SVG的&lt;clippath&gt;元素创建相同的形状并将其作为Firefox的后备选择。&lt;/clippath&gt;&lt;/p&gt;
+
+&lt;p&gt;举个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.element {
+  clip-path: url(#SVGPolygonShape); /* For Firefox */
+  clip-path: polygon(...); /* For other browsers */
+} 最后要注意的一件事是Firefox只支持外部引用的SVG，所有的其他浏览器要求SVG路径定义在文档之中。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在浏览器的BUG全部解决了，让我们开始制作我们的菜单。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;标记&lt;/h3&gt;
+
+&lt;p&gt;这个标记非常直接，这个菜单是包含一些子项的无序列表，其中包含了一些的内容像文本或者ICON。我用简单的标签来代替”ICON”。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul class=&quot;menu&quot;&amp;gt;
+  &amp;lt;li class=&quot;one&quot;&amp;gt;
+    &amp;lt;a href=&quot;#&quot;&amp;gt;
+      &amp;lt;span class=&quot;icon&quot;&amp;gt;icon-1&amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li class=&quot;two&quot;&amp;gt;
+    &amp;lt;a href=&quot;#&quot;&amp;gt;
+      &amp;lt;span class=&quot;icon&quot;&amp;gt;icon-2&amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li class=&quot;three&quot;&amp;gt;
+    &amp;lt;a href=&quot;#&quot;&amp;gt;
+      &amp;lt;span class=&quot;icon&quot;&amp;gt;icon-3&amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li class=&quot;four&quot;&amp;gt;
+    &amp;lt;a href=&quot;#&quot;&amp;gt;
+      &amp;lt;span class=&quot;icon&quot;&amp;gt;icon-4&amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li class=&quot;five&quot;&amp;gt;
+    &amp;lt;a href=&quot;#&quot;&amp;gt;
+      &amp;lt;span class=&quot;icon&quot;&amp;gt;icon-5&amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/li&amp;gt;
+  &amp;lt;li class=&quot;six&quot;&amp;gt;
+    &amp;lt;a href=&quot;#&quot;&amp;gt;
+      &amp;lt;span class=&quot;icon&quot;&amp;gt;icon-6&amp;lt;/span&amp;gt;
+    &amp;lt;/a&amp;gt;
+  &amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在整个粗略页面就完成了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;定义裁剪路径（扇形）&lt;/h3&gt;
+
+&lt;p&gt;为了创建一个扇形，你需要画弧形。但是现在基础css并没有提供类似的方法： &lt;code&gt;circle()&lt;/code&gt;,&lt;code&gt;ellipse()&lt;/code&gt;,&lt;code&gt;inset()&lt;/code&gt;,&lt;code&gt;polygon()&lt;/code&gt;这些都不能。（当然除非你用&lt;code&gt;polygon()&lt;/code&gt;来配合一大堆点的坐标来实现。。。问题是，你愿意这么做么？）&lt;/p&gt;
+
+&lt;p&gt;所以，我们需要找到一个更加方便的方法来制作一个扇形。幸运的是，&lt;code&gt;clip-path&lt;/code&gt;属性给了我们通过引用SVG路径作为路径裁剪的值的能力。&lt;/p&gt;
+
+&lt;p&gt;换句话说，你可以通过SVG定义一个你想要的的裁剪路径（它可以是多个分离的路径），然后SVG的&lt;code&gt;clipPath&lt;/code&gt;元素配合对应ID包含这个图形。然后再通过CSS URL语法来引用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clip-path: url(#clipPathID);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;因此，通过SVG定义一个扇形变得非常简单。然而，这里需要考虑一些数学和定位的问题。&lt;/p&gt;
+
+&lt;p&gt;首先，你需要确定你的菜单有多少个子项。它将决定扇形中心角的值。&lt;/p&gt;
+
+&lt;p&gt;接着。你需要用SVG的&lt;code&gt;path&lt;/code&gt;元素画一个扇形。这个在SVG存在的路径命令可以让你能否基于一些简单的绘图原则来画路径。&lt;/p&gt;
+
+&lt;p&gt;我们将用四个路径命令来画扇形：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; M
+ L
+ A
+ z
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但在我们画之前，我们需要考虑子项与扇形之间的对应关系。因此，我们需要在执行前先规划。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;决定菜单项在裁剪路径中的位置&lt;/h3&gt;
+
+&lt;p&gt;菜单项将绝对定位于它们之间的顶部，然后将所有菜单项裁剪到扇形之中。&lt;/p&gt;
+
+&lt;p&gt;为了达到这个目的，我们需要考虑这些子项的该如何放置层次（字面上的意思），然后再裁切这些层，最后只有这些层的扇形是可见的。我们来看一张原理图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//menu-layers.png&quot; alt=&quot;menu&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;半透明的黑色盒子仅用于演示需要。这些项在实际中是旋转而不是路径裁剪。因此对于每一个项，都将被裁剪为相同大小的扇形。然后旋转相应的角度来使它们之间不会重叠。我们再来看另一张原理图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//menu-layers-rotated.png&quot; alt=&quot;menu2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你倾斜下脑袋，你会更加清晰的看到里面的结构。对于第一个子项，它不是旋转的结构而是已经裁剪了。&lt;/p&gt;
+
+&lt;p&gt;注意第二张原理图，黑色盒子还是存在于这张页面，即使是已经通过裁剪来显示部分区域，但这个矩形依旧存在，只不过是隐藏了而已。&lt;/p&gt;
+
+&lt;p&gt;在我们想要继续之前。这里有个动图来展现我们之前讲到的理论。你可以看到它们都是从同一的地方出发，然后旋转不同角度。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//circ.gif&quot; alt=&quot;menu3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;即使这些元素被裁剪，原则上它们还是一个矩形。所以你看到扇形在旋转，你要记得这是一个矩形在旋转。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;决定应用在菜单项中裁剪路径的点坐标&lt;/h3&gt;
+
+&lt;p&gt;现在我们知道了子项是如何旋转的，我们知道了所有扇形初始状态都是一样的。接下来我们需要在svg中画这些形状。为了完成这个任务，我们需要决定扇形中这些点的坐标。&lt;/p&gt;
+
+&lt;p&gt;让我们来剖析一下扇形的代码：为了能够让css引用。我们需要将svg放到页面中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;svg height=&quot;0&quot; width=&quot;0&quot;&amp;gt;
+  &amp;lt;defs&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;objectBoundingBox&quot; id=&quot;sector&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M0.5,0.5 l0.5,0 A0.5,0.5 0 0,0 0.75,.066987298 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+  &amp;lt;/defs&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;代码中最重要的部分是&lt;code&gt;clipPathUnits=&quot;objectBoundingBox&quot;&lt;/code&gt;声明。&lt;code&gt;clipPathUnits&lt;/code&gt;属性接受两个值，&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;userSpaceOnUse&lt;/code&gt; 和 &lt;code&gt;objectBoundingBox&lt;/code&gt;，前者将用整个页面作为坐标系，后者将用当前项目中的坐标系，例子中我们的是ID为sector的项目。&lt;/p&gt;
+
+&lt;p&gt;当我们用&lt;code&gt;objectBoundingBox&lt;/code&gt;，用于绘制扇形路径的点坐标的值将在[0,1]之间的区间中。这些值近似于百分比。我们需要计算相对于元素盒子边框的坐标。这就是为什么我们取的值都小于1.&lt;/p&gt;
+
+&lt;p&gt;如果你使用&lt;code&gt;userSpaceOnUse&lt;/code&gt;，浏览器将用整个页面作为坐标系或者用户当前所用的坐标系（cavans或者svg），这意味着它可能不是真正应用在你的元素中，你可以看我关于这点所写的&lt;a href=&quot;http://sarasoueidan.com/blog/css-svg-clipping/index.html#clippathunits&quot;&gt;文章&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;知道了原理，我们来看一下原理演示图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//bounding-box-coordinates.png&quot; alt=&quot;menu4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这些坐标，环绕着扇形半径，将被应用于path命令来画扇形。&lt;/p&gt;
+
+&lt;p&gt;由于我们希望应用在我们的菜单子项中，这些坐标需要在图像中被明确指明。我们需要三个点来确定一个扇形，然后还需要这个扇形的半径。&lt;/p&gt;
+
+&lt;p&gt;演示中半径为0.5 第一个坐标是中心坐标(0.5,0.5)，第二个坐标是(1,0.5)第三个坐标需要简单的计算，(0.75,0.66987298).然后我们用Svg弧形命令A，和线命令l。来画一个路径。我们不需要知道它的工作原理，因为它不在本文的探讨范围之内。接下来是一个Demo&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/vn3nxk7w/&quot;&gt;DEMO Click Here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;想要了解更多Svg的Path命令，可以参考我的&lt;a href=&quot;http://sarasoueidan.com/blog/building-a-circular-navigation-with-svg/&quot;&gt;文章&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;裁剪菜单项&lt;/h3&gt;
+
+&lt;p&gt;SVg的路径裁剪已经准备好了，接下来我们将用&lt;code&gt;clip-path&lt;/code&gt;属性来裁剪我们的菜单项。&lt;/p&gt;
+
+&lt;p&gt;首先，子项需要被绝对定位于菜单的最高层。我们先创建一个容器&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.menu {
+  position: relative;
+
+  list-style: none;
+  margin: 30px auto;
+
+  /* padding trick for maintaining aspect ratio */
+  height: 0;
+  padding: 0;
+  padding-top: 70%;
+  width: 70%;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;为了让menu是正方形，我用了padding的hack，来让它保持1：1的宽高比。&lt;/p&gt;
+
+&lt;p&gt;因为我们希望它能流动，因此我们设定它的宽度为百分比的值。通过媒体查询，你可以指定最小的和最大的尺寸，然后调整padding。下面的例子中已经包含了我所讲的内容。&lt;/p&gt;
+
+&lt;p&gt;接着，指定子项在菜单的位置然后裁剪为扇形&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.menu li { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  clip-path: url(#sector)
+}
+
+.menu li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.menu li:hover {
+  background-color: gold;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这将使所有的菜单项都变为扇形，然后只有最后一个子项显示，因为重叠了。然后我们需要旋转这些子项&lt;/p&gt;
+
+&lt;p&gt;通过&lt;code&gt;x * angle = x * 60 = 60xdeg&lt;/code&gt;公式来计算&lt;br /&gt;
+下面是sass代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.one {
+  background-color: $base;
+  transform: rotate(0deg);
+}
+.two {
+  background-color: darken($base, 7%);
+  transform: rotate(-60deg);
+}
+.three {
+  background-color: darken($base, 14%);
+  transform: rotate(-120deg);
+}
+.four {
+  background-color: darken($base, 21%);
+  transform: rotate(-180deg);
+}
+.five {
+  background-color: darken($base, 28%);
+  transform: rotate(-240deg);
+}
+.six {
+  background-color: darken($base, 35%);
+  transform: rotate(-300deg);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面是一个demo&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/9er0xdh7/&quot;&gt;Demo Click Here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;注意，在写这篇文章的时候chrome浏览器对指针事件有Bug,你可以用下面的来代替SVG裁剪&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;clip-path: polygon(50% 50%, 100% 50%, 75% 6.6%);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后这么改了火狐可能不支持，不过你可以把原先那句加到后面备用。&lt;/p&gt;
+
+&lt;p&gt;这是polygon()函数裁剪的路径&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//diamond-menu.png&quot; alt=&quot;menu6&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;icons&quot;&gt;往菜单里增加icons/内容&lt;/h3&gt;
+
+&lt;p&gt;这个非常简单。你只需要确定icons/文本/其它内容在可见区域里面可视。再次的，用坐标系来确定元素的高和宽。&lt;br /&gt;
+你可以估计这些子项的位置然后在这些新的扇形区域展现。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//text-position.png&quot; alt=&quot;menu7&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这可能需要一些实验才能精确定位。&lt;/p&gt;
+
+&lt;p&gt;在我的demo里，我用了文本。所以我制定了30%的下边距和15%的左边距与右边距。这看起来很和谐。&lt;/p&gt;
+
+&lt;p&gt;最后，你需要旋转你的内容来达到它确实像在菜单里这个效果。&lt;/p&gt;
+
+&lt;p&gt;这是错误的例子&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//text-not-rotated.png&quot; alt=&quot;menu8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这才是正确的&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//text-rotated.png&quot; alt=&quot;menu9&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-11&quot;&gt;另一种方法&lt;/h2&gt;
+
+&lt;p&gt;以上技术我们是使用css的路径裁剪。&lt;/p&gt;
+
+&lt;p&gt;另一种技术是比较复杂的，因为你需要指定坐标系然后旋转每一个svg&lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt;，更不用说增加内容时所带来的更多工作量。因此我们不能说这个的技术是一个非常好的实现。&lt;/p&gt;
+
+&lt;p&gt;但是我还是想要给你看下这个代码长什么样子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;svg height=&quot;0&quot; width=&quot;0&quot;&amp;gt;
+  &amp;lt;defs&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;userSpaceOnUse&quot; transform=&quot;matrix(1,0,0,1,0,0)&quot; id=&quot;one-2&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M250,250 l250,0 A250,250 0 0,0 375,33.49364905389035 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;userSpaceOnUse&quot; transform=&quot;matrix(0.5,-0.86602,0.86602,0.5,-91.5063509461097,341.5063509461096)&quot; id=&quot;two-2&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M250,250 l250,0 A250,250 0 0,0 375,33.49364905389035 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;userSpaceOnUse&quot; transform=&quot;matrix(-0.49999,-0.86602,0.86602,-0.49999,158.49364905389024,591.5063509461097)&quot; id=&quot;three-2&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M250,250 l250,0 A250,250 0 0,0 375,33.49364905389035 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;userSpaceOnUse&quot; transform=&quot;matrix(-1,0,0,-1,500,500)&quot; id=&quot;four-2&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M250,250 l250,0 A250,250 0 0,0 375,33.49364905389035 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;userSpaceOnUse&quot; transform=&quot;matrix(-0.5,0.86602,-0.86602,-0.5,591.5063509461097,158.4936490538905)&quot; id=&quot;five-2&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M250,250 l250,0 A250,250 0 0,0 375,33.49364905389035 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+    &amp;lt;clipPath clipPathUnits=&quot;userSpaceOnUse&quot; transform=&quot;matrix(0.5,0.86602,-0.86602,0.5,341.5063509461096,-91.5063509461097)&quot; id=&quot;six-2&quot;&amp;gt;
+      &amp;lt;path fill=&quot;none&quot; stroke=&quot;#111&quot; stroke-width=&quot;1&quot; class=&quot;sector&quot; d=&quot;M250,250 l250,0 A250,250 0 0,0 375,33.49364905389035 z&quot;&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/clipPath&amp;gt;
+  &amp;lt;/defs&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是完全由SVG代码组成的。&lt;/p&gt;
+
+&lt;p&gt;但注意，我并不是手工写的，我之前写了一个生成器来帮助我完成这项工作。（PS:这样好像也是可以接受使用的样子。。。）&lt;/p&gt;
+
+&lt;h3 id=&quot;svg&quot;&gt;SVG环形菜单&lt;/h3&gt;
+
+&lt;p&gt;注意如果你用SVG来画，你需要用绝对值而不是相对值，因为你是在cavans画布上绘图。你不需要应用这些扇形到任何元素，因为它们本身就是菜单项。&lt;/p&gt;
+
+&lt;p&gt;因此，如果你需要一个环形菜单，svg是一个更好的选择，毕竟所有现代浏览器都支持这个属性。另外你可以获得更加灵活的svg图标来代替传统字体图标，如果你对此感兴趣，你可以看我写的&lt;a href=&quot;http://sarasoueidan.com/blog/building-a-circular-navigation-with-svg/&quot;&gt;文章&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;最后附赠一个作者写的生成器&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//circulus-screenshot.png&quot; alt=&quot;menu8&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://sarasoueidan.com/tools/circulus/&quot;&gt;生成器&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;后记&lt;/h2&gt;
+
+&lt;p&gt;当前最适合做环形菜单的还是svg，如果你想用css的路径裁剪，至少要等所有浏览器都支持再来。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-13&quot;&gt;译者后记&lt;/h2&gt;
+
+&lt;p&gt;在我翻译第一篇Sara Soueidan的文章的时候我就视她为女神，她的文章每一个细节都处理的无可挑剔，厚实的基本功，以及对持着对读者负责态度的各种提醒，还有各种彩蛋引用让人能从她的一篇文章中吸取更多养分。&lt;/p&gt;
+
+&lt;p&gt;这篇文章是我翻译的最长的一篇，即使那么长，我还是坚持去翻译它。因为对我而言，翻译是一个学习的过程，当你遇到一篇质量很高的文章时，你会感到由衷的开心。&lt;/p&gt;
+
+&lt;p&gt;希望这篇文章能够帮到你。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Sprite动画与ScrollMagic的使用</title>
+        <link>http://linshuizhaoying.github.io/2015/08/21/sprite-scrollmagic.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/21/sprite-scrollmagic.html</guid>
+        <pubDate>Fri, 21 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;写在前面&lt;/h2&gt;
+&lt;p&gt;这几天没怎么写东西，光忙着翻译国外的优质文章了，对于我来说，收获是极大的。尤其是干货满满的文章，翻译的时候真的能感受到作者的所付出的心血。因此我积压了还有十几篇的文章=-=还有好多没加进来的优质文章。言归正传，昨天翻译了Tom Bennet的雪碧图动画。觉得挺有收获，因此按照作者的给的彩蛋延伸开来，发现了一个新世界。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;首先我在翻译的时候发现作者写的雪碧图动画好像很理所当然，好像很顺利。于是我自己去GOOGLE了一堆Sprite图。经过几个小时的实践。我得到了以下结论：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.童话里都是骗人的。童话里都是骗人的。童话里都是骗人的。重要的事情说三遍。尝试了很多种雪碧图来做连贯的动画，最后我发现，想要利用雪碧图做连贯的动画，首先你要有图。
+2.文中使动画连贯起来的重点是自己调好 animation的参数。
+举个例子，文中
+   animation: sprite 3.5s steps(45);
+他是一个60张连贯的PNG图组合的，因此45/3.5=30 也就是一秒两张的播放。这样连贯性才能保证。
+=-=但是60张连贯的雪碧图我至今只看到国外一个设计师自己画的猫咪跑。。。因此做连贯性的雪碧图动画代价是蛮大的。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来我们介绍今天的主角：ScrollMagic&lt;/p&gt;
+
+&lt;h3 id=&quot;scrollmagic&quot;&gt;ScrollMagic&lt;/h3&gt;
+
+&lt;p&gt;ScrollMagic是一个非常棒的库，它能帮助你处理用户当前滚动的位置。现在网上很多根据滚动条滚动的动画效果就是基于它。很多产品展示站都有它的影子在。&lt;/p&gt;
+
+&lt;p&gt;来看个典型的例子&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//scrollmagic1.gif&quot; alt=&quot;magic1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;它可以做到钉帧spnning效果。如此炫酷的效果却只需要短短几行代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	var scene = new ScrollMagic.Scene({triggerElement: &quot;#trigger1&quot;, duration: 300})
+					.setPin(&quot;#pin1&quot;)
+					.addIndicators({name: &quot;1 (duration: 300)&quot;}) // add indicators (requires plugin)
+					.addTo(controller);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;它还能配合svg做动画效果，以及配合雪碧图动画等等。&lt;/p&gt;
+
+&lt;p&gt;我们来看个例子&lt;/p&gt;
+
+&lt;p&gt;由于某些同学不喜欢codepen，所以我例子放在了jsfiddle里。&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/z16u2wjt/&quot;&gt;Click here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;国内关于ScrollMagic的详解基本没有，官方文档也只是给例子。因此我这边例子举的国外某位大神写的文章中的引用。你可以&lt;a href=&quot;https://scotch.io/tutorials/building-interactive-scrolling-websites-with-scrollmagic-js&quot;&gt;点这里&lt;/a&gt;看原文。&lt;/p&gt;
+
+&lt;p&gt;他写的比我写的好很多，我之所以厚脸皮写中文版的，一个是为了加深印象，一个是为了给懒得看英文原文的同学方便。&lt;/p&gt;
+
+&lt;p&gt;从例子中我们可以看到，它先定义了一个scrollMagicController，然后再定义一个scene，然后再载入tween插件，最后加一个演示指标到页面。&lt;/p&gt;
+
+&lt;p&gt;我们来总结一下，一个基础的scrollMagic的用法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.创建一个scrollMagic控制器
+2.创建一个动画对象
+3.创建一个舞台对象
+4.将动画对象加到舞台
+5.将舞台放到控制器内。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一个动画对象是需要插件的，scrollmagic用的是gsap。我原本想去深入学习下的。。看到官网的演示我被吓退了。。。&lt;/p&gt;
+
+&lt;p&gt;不过一个简洁的我们还是可以探讨下的，设置对应ID的动画。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  var tween = TweenMax.to(&#39;#animation&#39;, 0.5, {
+    backgroundColor: &#39;rgb(255, 39, 46)&#39;,
+    scale: 5,
+    rotation: 360
+  });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后是最后几步&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    // Create the Scene and trigger when visible with ScrollMagic
+    var scene = new ScrollScene({
+        triggerElement: &#39;#scene&#39;,
+        offset: 150 /* offset the trigger 150px below #scene&#39;s top */
+    })
+    .setTween(tween)
+    .addTo(scrollMagicController);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们可以看到例子还是很简单的。。。&lt;/p&gt;
+
+&lt;p&gt;我们将动画中的offset改为duration这个属性。&lt;br /&gt;
+这代表这将动画绑定到了scroll上，滚动的距离就是播放对应的帧数。这样你回滚也可以看到动画在回放。两者差别你可以从动画效果中看出。&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/a62Ly4hc/&quot;&gt;click here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这样你是不是觉得非常简单就能做到自己想要的效果，如果想要改变更多属性，你可以直接去看gsap的例子，我这边找到了对应的css插件，你可以从里面挑选想要修改的属性&lt;a href=&quot;http://greensock.com/docs/#/HTML5/GSAP/Plugins/CSSPlugin/&quot;&gt;click here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;tween.to你可以联想到有to就有from，对，它还有个属性叫做from，效果和to是相反的。你可以点这里的例子查看.&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/6e0homcu/&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;如果机智的你发散思维，你会想到，有了to有了from，那么一定有组合的fromto吧。是的，它还有个属性叫做fromto，效果你可以点&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/foagpapz/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;代码在这里：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var tween = TweenMax.fromTo(&#39;#animation&#39;, 0.5,
+    {
+        backgroundColor: &#39;rgb(255, 39, 46)&#39;,
+        scale: 5,
+        left: -400
+    },
+    {
+        scale: 1,
+        left: 400,
+        rotation: 360,
+        repeat: -1, /*无限循环 */
+        yoyo: true /* 是否回转 */
+    }
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;组合&lt;/h3&gt;
+
+&lt;p&gt;单一动画会做后，你该了解下如何将动画组合。&lt;/p&gt;
+
+&lt;p&gt;官网上的写法是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var tween = new TimelineMax()
+			.to(&quot;#animate2&quot;, 1, {top: &quot;-=200&quot;,
+					onStart: function () {$box.html(&quot;This&quot;);},
+					onReverseComplete: function () {$box.html(&quot;Let&#39;s draw!&quot;);}
+				}
+			)
+			.to(&quot;#animate2&quot;, 1, {top: &quot;+=200&quot;, left: &quot;+=200&quot;,
+					onStart: function () {$box.html(&quot;is&quot;);},
+					onReverseComplete: function () {$box.html(&quot;This&quot;);}
+				}
+			)
+			.to(&quot;#animate2&quot;, 1, {top: &quot;-=200&quot;,
+					onStart: function () {$box.html(&quot;the&quot;);},
+					onReverseComplete: function () {$box.html(&quot;is&quot;);}
+				}
+			)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;直接将多个动画写成链式。&lt;/p&gt;
+
+&lt;p&gt;如果是相同动画想要按次序播放你可以这么写：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;col-xs-3&quot;&amp;gt;
+  &amp;lt;div class=&quot;wrap&quot;&amp;gt;  
+    &amp;lt;h2&amp;gt;Magic Happens Here&amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&quot;animation&quot;&amp;gt;&amp;lt;i class=&quot;fa fa-heart&quot;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&quot;col-xs-3&quot;&amp;gt;
+  &amp;lt;div class=&quot;wrap&quot;&amp;gt;  
+    &amp;lt;h2&amp;gt;Magic Happens Here&amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&quot;animation&quot;&amp;gt;&amp;lt;i class=&quot;fa fa-heart&quot;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&quot;col-xs-3&quot;&amp;gt;
+  &amp;lt;div class=&quot;wrap&quot;&amp;gt;  
+    &amp;lt;h2&amp;gt;Magic Happens Here&amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&quot;animation&quot;&amp;gt;&amp;lt;i class=&quot;fa fa-heart&quot;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;div class=&quot;col-xs-3&quot;&amp;gt;
+  &amp;lt;div class=&quot;wrap&quot;&amp;gt;  
+    &amp;lt;h2&amp;gt;Magic Happens Here&amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&quot;animation&quot;&amp;gt;&amp;lt;i class=&quot;fa fa-heart&quot;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+
+var tween = TweenMax.staggerFromTo(&#39;.animation&#39;, 0.5,
+{
+    scale: 1,
+},
+{
+    backgroundColor: &#39;rgb(255, 39, 46)&#39;,
+    scale: 5,
+    rotation: 360
+},
+0.4 /* 间隔的duration */
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你可以点&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/so730Loz/1/&quot;&gt;这里&lt;/a&gt;看效果&lt;/p&gt;
+
+&lt;h3 id=&quot;class&quot;&gt;触发class&lt;/h3&gt;
+
+&lt;p&gt;比如你想让在某个场景出现时触发某些动画，你可以用setClassToggle这个方法。&lt;/p&gt;
+
+&lt;p&gt;举个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;div class=&quot;col-md-6 col-md-offset-3&quot;&amp;gt;
+  &amp;lt;div class=&quot;wrap&quot; id=&quot;scene-1&quot;&amp;gt;  
+    &amp;lt;h2&amp;gt;Magic Happens Here&amp;lt;/h2&amp;gt;
+    &amp;lt;div class=&quot;animation&quot; id=&quot;animation-1&quot;&amp;gt;&amp;lt;i class=&quot;fa fa-heart&quot;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+
+
+
+  var tween1 = TweenMax.to(&#39;#animation-1&#39;, 0.3, {
+      backgroundColor: &#39;rgb(255, 39, 46)&#39;,
+      scale: 10,
+      rotation: 360
+    });
+    var scene1 = new ScrollScene({
+      triggerElement: &#39;#scene-1&#39;,
+      offset: 50
+    })
+    .setClassToggle(&#39;body&#39;, &#39;scene-1-active&#39;)
+    .setTween(tween1)
+    .addTo(scrollMagicController);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;想看具体效果点&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/yLymhbL1/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;移动端&lt;/h3&gt;
+
+&lt;p&gt;在移动端，当scroll停止时它可能都没检测到事件。不过有个解决方法就是将设置每个元素overflow: scroll，这样就能让设备时时刻刻接受到事件。&lt;/p&gt;
+
+&lt;h3 id=&quot;scrollmaic&quot;&gt;子区域使用scrollmaic&lt;/h3&gt;
+
+&lt;p&gt;你可能不想在整个body中使用scroll，因此你可以这么做：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var scrollMagicController = new ScrollMagic({container: &#39;#my-container&#39;});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;移动端也支持这种方式。&lt;/p&gt;
+
+&lt;p&gt;但这个是中hack，因此你可能需要增加一个css3属性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-webkit-overflow-scrolling: touch;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后有个悲剧就是不是所有浏览器都支持这个属性-0-不过你可自己试试对吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;在移动端禁用&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;两种方式：
+如果你加载了Modernizr.js
+    if (!Modernizr.touch) {
+     // Start ScrollMagic code
+     }
+ 如果你没加载
+    if (!is_touch_device()) {
+      // Start ScrollMagic code
+   }
+   function is_touch_device() {
+     return &#39;ontouchstart&#39; in window // works on most browsers 
+         || &#39;onmsgesturechange&#39; in window; // works on ie10
+   };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;结尾&lt;/h2&gt;
+&lt;p&gt;ScrollMagic开辟了一种网页风格，我个人觉得还是很有必要去学习并应用到实践中。&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/20/translate%20three.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/20/translate%20three.html</guid>
+        <pubDate>Thu, 20 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpwwwsitepointcomcreating-autocomplete-datalist-controls&quot;&gt;原文来源:&lt;a href=&quot;http://www.sitepoint.com/creating-autocomplete-datalist-controls/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;aurelio-de-rosa&quot;&gt;作者: Aurelio De Rosa&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;上一篇感觉状态不错，这篇会继续努力的。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;如果之前你在生活中看到了一些不错的网站，你肯定注意到了一些反复出现的小组件。比如搜索框，通讯组件，文本自动完成框组件。文本自动完成是一种使用非常广泛的组件，特别是当网站需要几个可能出现的字段和需要创建完整的新值。很多javascript框架都用他们自己的方式完成它们自己的自动完成组件。&lt;/p&gt;
+
+&lt;p&gt;几年前，并没有这种本地HTML元素来处理这种情况，而且开发者们并没有类似的概念。不过现在这块HTML拼图已经补上了。今天，我们有了一个HTML元素叫做&lt;code&gt;datalist&lt;/code&gt;来为这种情况服务。在本篇文章中，我们将来讨论&lt;code&gt;datalist&lt;/code&gt;是什么以及如何用&lt;code&gt;datalist&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;datalist&quot;&gt;什么是&lt;code&gt;datalist&lt;/code&gt;元素？&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;datalist&lt;/code&gt;元素“代表为其它控件的一组预定义选项内容的元素”。因此这个元素可以被看做是一个包装了一组可能匹配的输入值的。默认的&lt;code&gt;datalist&lt;/code&gt;里的子元素都是隐藏的，所以你在网页中是看不到这些值的。事实上，&lt;code&gt;datalist&lt;/code&gt;必须被其它元素用&lt;code&gt;list&lt;/code&gt;属性来链接。该属性的值必须为&lt;code&gt;datalist&lt;/code&gt;的ID值。&lt;/p&gt;
+
+&lt;p&gt;下面是一个简单的例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;input name=&quot;city&quot; list=&quot;cities&quot; /&amp;gt;
+&amp;lt;datalist id=&quot;cities&quot;&amp;gt;
+ &amp;lt;option value=&quot;Naples&quot; /&amp;gt;
+ &amp;lt;option value=&quot;London&quot; /&amp;gt;
+ &amp;lt;option value=&quot;Berlin&quot; /&amp;gt;
+ &amp;lt;option value=&quot;New York&quot; /&amp;gt;
+ &amp;lt;option value=&quot;Frattamaggiore&quot; /&amp;gt;
+&amp;lt;/datalist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;代码中定义了&lt;code&gt;input&lt;/code&gt;和包含了一些&lt;code&gt;Option&lt;/code&gt;元素的&lt;code&gt;datalist&lt;/code&gt; 。你可以看到，&lt;code&gt;datalist&lt;/code&gt;的ID为&lt;code&gt;cities&lt;/code&gt;，&lt;code&gt;input&lt;/code&gt;的list属性也是这个。&lt;/p&gt;
+
+&lt;p&gt;上面代码的&lt;a href=&quot;http://jsfiddle.net/s8a932s2/&quot;&gt;DEMO&lt;/a&gt;，这次是在jsfiddle里.&lt;/p&gt;
+
+&lt;p&gt;因为&lt;code&gt;datalist&lt;/code&gt; 本身的特性，它很适合和javascript一起使用，举个例子，你可以用ajax请求到服务器来获取值然后来检索用户输入的值。&lt;/p&gt;
+
+&lt;p&gt;下面是一个例子，动态生成了&lt;code&gt;datalist&lt;/code&gt; 里的值。&lt;/p&gt;
+
+&lt;p&gt;你可以点&lt;a href=&quot;http://jsfiddle.net/4gpyekg2/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;到目前为止，我们已经讨论了自动完成组件的构成，但这并不是我们使用&lt;code&gt;datalist&lt;/code&gt;的唯一方式。&lt;/p&gt;
+
+&lt;h3 id=&quot;datalist---input-typecolor&quot;&gt;&lt;code&gt;datalist&lt;/code&gt; 和  &lt;input type=&quot;color&quot; /&gt;&lt;/h3&gt;
+
+&lt;p&gt;之前的例子很棒，但是你可以用&lt;code&gt;datalist&lt;/code&gt; 做更多的事情，比如你想用&lt;input type=&quot;color&quot; /&gt;提供一个颜色给你的用户？在这个例子里，你可以写下以下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&quot;color&quot; list=&quot;colors&quot; /&amp;gt;
+ &amp;lt;datalist id=&quot;colors&quot;&amp;gt;
+    &amp;lt;option value=&quot;#00000&quot;/&amp;gt;
+    &amp;lt;option value=&quot;#478912&quot;/&amp;gt;
+    &amp;lt;option value=&quot;#FFFFFF&quot; /&amp;gt;
+    &amp;lt;option value=&quot;#33FF99&quot; /&amp;gt;
+    &amp;lt;option value=&quot;#5AC6D9&quot; /&amp;gt;
+    &amp;lt;option value=&quot;#573905&quot; /&amp;gt;
+ &amp;lt;/datalist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个例子只在Chrome 37和Opera24中使用。IE11不支持，FireFox32不支持。(不过你可以把它写在自己项目后台里，这个功能是很实用的)&lt;/p&gt;
+
+&lt;p&gt;这是&lt;a href=&quot;http://jsfiddle.net/7rhe5zuw/&quot;&gt;DEMO&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;datalist---input-typerange&quot;&gt;&lt;code&gt;datalist&lt;/code&gt; 和  &lt;input type=&quot;range&quot; /&gt;&lt;/h3&gt;
+
+&lt;p&gt;另一个例子是是配合&lt;code&gt;&amp;lt;input type=&quot;range&quot;&amp;gt;&lt;/code&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&quot;range&quot; value=&quot;0&quot; min=&quot;0&quot; max=&quot;100&quot; list=&quot;numbers&quot; /&amp;gt;
+&amp;lt;datalist id=&quot;numbers&quot;&amp;gt;
+    &amp;lt;option value=&quot;20&quot; /&amp;gt; 
+    &amp;lt;option value=&quot;40&quot; /&amp;gt; 
+    &amp;lt;option value=&quot;60&quot; /&amp;gt; 
+    &amp;lt;option value=&quot;80&quot; /&amp;gt; 
+&amp;lt;/datalist&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所有浏览器都支持这种写法。在这个例子中，范围栏中有四个垂直标志，每个标志都是数据列表中定义的值（PS：你会发现移动这些标志的时候，有一种卡顿会让你停放位置的时候自动对齐标志）&lt;/p&gt;
+
+&lt;p&gt;这是这个例子的&lt;a href=&quot;http://jsfiddle.net/weew16za/&quot;&gt;DEMO&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;浏览器支持&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://caniuse.com/#feat=datalist&quot;&gt;CanIUse&lt;/a&gt;展示了支持&lt;code&gt;datalist&lt;/code&gt;这个属性的浏览器列表。事实上，现在你可以很放心的使用，毕竟没啥浏览器不支持了。（除非你是IE10之前，那就GG了）&lt;/p&gt;
+
+&lt;p&gt;有一些移动端也是支持的，不过你需要仔细看下版本哦。&lt;/p&gt;
+
+&lt;h3 id=&quot;polyfills&quot;&gt;Polyfills&lt;/h3&gt;
+
+&lt;p&gt;如果你想在一些不支持&lt;code&gt;datalist&lt;/code&gt;的浏览器上使用&lt;code&gt;datalist&lt;/code&gt;，你可以用&lt;a href=&quot;https://github.com/CSS-Tricks/Relevant-Dropdowns&quot;&gt;Relevant Dropdowns&lt;/a&gt;或者&lt;a href=&quot;https://github.com/miketaylr/jquery.datalist.js&quot;&gt;jQuery HTML5 datalist plugin&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;但是你要知道，这些只能替代文本的内容，不能够像color和range那种展开使用。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;结尾&lt;/h3&gt;
+
+&lt;p&gt;一堆废话我就不翻译了。。。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/20/translate%20four.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/20/translate%20four.html</guid>
+        <pubDate>Thu, 20 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpwwwsitepointcomresponsive-sprite-animations-imagemagick-greensock&quot;&gt;原文来源:&lt;a href=&quot;http://www.sitepoint.com/responsive-sprite-animations-imagemagick-greensock/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;tom-bennet&quot;&gt;作者: Tom Bennet&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;果然在这种虐单身狗的日子里才有学习的动力。。。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;Css雪碧图并不是一门新的技术，自从&lt;a href=&quot;http://alistapart.com/article/sprites&quot;&gt;A List Apart in 2004&lt;/a&gt;,这项不起眼的技术就被很多Web开发者作为开发工具的必备。但是，虽然雪碧图带来的加快网页加载速度这个好处显而易见，但它们在移动端开发的讨论非常少。它们的原理都是一样的:将多张图合并成一张主图，在需要的地方根据位置来显示。&lt;/p&gt;
+
+&lt;p&gt;在这篇文章中文章中，我们将探索一种简单地方法来创建轻量级的，对移动端更加友好的，甚至有更强互动性的响应式的CSS雪碧图动画。你可以不需要任何特殊的图像软件，仅仅只需要懂一点点css和javascript 。让我们开始吧。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;创建一个雪碧图&lt;/h3&gt;
+
+&lt;p&gt;雪碧图基于一个视频游戏（拳皇=-=）。&lt;/p&gt;
+
+&lt;p&gt;我们需要将一个连续动作的每一帧放进我们的一张图中。这里有数十种工具可以帮助我们完成这项任务，甚至有些还可以买一送一送张样式表给你。。。&lt;a href=&quot;http://compass-style.org/help/tutorials/spriting/&quot;&gt;Compass’s built-in spriting features&lt;/a&gt;是非常强大的一个工具，&lt;a href=&quot;http://wearekiss.com/spritepad&quot;&gt;SpritePad&lt;/a&gt;是一个基于&lt;br /&gt;
+WEB的雪碧图管理工具。然而对于我们的需求而言，一个简单的命令行工具更加适合。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.imagemagick.org/script/index.php&quot;&gt;ImageMagick&lt;/a&gt;，图像处理的瑞士军刀，是一个免费而且开源的图像处理工具，它可以自动化执行那些非常费力的工作，比如合并图像。ImageMagick可以运行在任何一个操作系统。只需要去下载对应的软件就行了。&lt;/p&gt;
+
+&lt;p&gt;保存你动画中相同大小的帧为一系列png文件到一个文件夹。然后打开终端，执行cd跳转到你图像保存的目录，然后执行以下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;convert *.png -append result-sprite.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个命令就是让ImageMagick把所有png文件保存到result-sprite.png一个文件中。这个图像将作为雪碧图，然后通过css改变取值的位置来使其动起来。&lt;/p&gt;
+
+&lt;h3 id=&quot;css&quot;&gt;纯CSS动画&lt;/h3&gt;
+
+&lt;p&gt;我们将开始一个简单的的动画，用css3的&lt;code&gt;keyframe&lt;/code&gt;动画来使我们的雪碧图动起来。 如果你不熟悉这个属性请自行去找资料（=-=虽然原文中有介绍链接-0-）。我们将通过循环从图片中垂直的找到每个帧的位置然后从头到底取值并放到动画中。&lt;/p&gt;
+
+&lt;p&gt;为了让动画能连贯的运行起来，作为默认的行为，我们将需要将雪碧图的每一帧都展现。通过&lt;code&gt;steps()&lt;/code&gt;过程，然而我们还需要控制渲染帧的数量，由于我们的工作原理是通过一个方法来实现以百分比控制背景图的位置（作者有提到原理详解，点&lt;a href=&quot;https://css-tricks.com/i-like-how-percentage-background-position-works/&quot;&gt;这里&lt;/a&gt;），我们需要设定步骤的数量会比我们动画总帧数的少一个。&lt;/p&gt;
+
+&lt;p&gt;这边是一个实现的例子。。。这次又是&lt;a href=&quot;http://codepen.io/SitePoint/pen/MYRKmJ&quot;&gt;codepen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;注意我们精确定义了元素的宽度和高度到每个帧，来避免出现误差。我们设置了动画无限播放和动画帧之间每隔3.5秒，然后我们就能看拳霸中的人物进行一系列的动作。&lt;/p&gt;
+
+&lt;p&gt;到目前为止还是很不错的。尝试改变元素的高度，或者对我们的雪碧图应用&lt;code&gt;backgroud-size&lt;/code&gt;，然后我们的动画效果将会失效，因为它现在还不是响应式的。它是基于像素尺寸的不变的图像。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;使它响应式&lt;/h3&gt;
+
+&lt;p&gt;如果我们希望能够自由的调整雪碧图动画大小，我们有两个选择，这两个选择的关键是我们的雪碧图对高宽比一致的强烈依赖。&lt;br /&gt;
+而不是特定大小。我们必须保留它的比例使它能够正确的缩放。&lt;/p&gt;
+
+&lt;p&gt;第一个选择就是对我们的背景设置&lt;code&gt;background-size&lt;/code&gt; 为雪碧图宽度的100%。然后转换高宽的单位从px转为em。然后再改变基本字体大小。这将满足我们的基本要求。&lt;/p&gt;
+
+&lt;p&gt;第二个选择是用纯css固定纵横比技术(可以点&lt;a href=&quot;http://www.mademyday.de/css-height-equals-width-with-pure-css.html&quot;&gt;这里&lt;/a&gt;)。他利用基于百分比的伪元素，以保持一个真实元素比例的任意大小。&lt;/p&gt;
+
+&lt;p&gt;下面的例子将给我们的雪碧图增加响应式&lt;/p&gt;
+
+&lt;p&gt;点&lt;a href=&quot;http://codepen.io/SitePoint/pen/zxXrzP&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这是一种对移动端很友好的方法。而且支持css3的浏览器也有那么多了，所以一般情况下也不需要考虑兼容了=-=。&lt;/p&gt;
+
+&lt;h2 id=&quot;javascript-&quot;&gt;JavaScript 动画&lt;/h2&gt;
+
+&lt;p&gt;如果我们想更加比Css3的keyframe更加精确的控制我们的动画？举个例子，如果我想用基于滚动条位置来将多个雪碧图组成一个复杂的场景，而且能够结合触发和定时功能来代替单一的雪碧图动画该如何做？&lt;/p&gt;
+
+&lt;p&gt;为了将设想变成可能，我们需要用javascript来控制我们的雪碧图动画。使用 &lt;a href=&quot;http://greensock.com/&quot;&gt;GreenSock&lt;/a&gt;动画平台和&lt;a href=&quot;https://github.com/janpaepke/ScrollMagic&quot;&gt;ScrollMagic&lt;/a&gt;将可以帮助我们实现这些。（不熟悉这些的童鞋可以去学一下。）&lt;/p&gt;
+
+&lt;p&gt;首先，让我们引发一个两秒长的动画在特定的scroll位置。它需要在最后一帧中停止。如果用户回转scroll它需要能够倒播（即使它正播放一半。）&lt;/p&gt;
+
+&lt;p&gt;下面是这个&lt;a href=&quot;http://codepen.io/SitePoint/pen/vEMLJb&quot;&gt;例子&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;注意我们用用的是之前基于em单位的字体方法，尝试改变字体大小然后缩放雪碧图。我们定义了&lt;code&gt;TweenMax.to&lt;/code&gt;，设置了目的值为我们元素垂直背景位置的100%，然后用&lt;code&gt;SteppedEase&lt;/code&gt;方法来达到逐帧动画的效果。&lt;/p&gt;
+
+&lt;p&gt;这一步我们将用滚动条同步我们的动画播放，就像用滚动条来播放一个动画。&lt;/p&gt;
+
+&lt;p&gt;这个例子你可以点&lt;a href=&quot;http://codepen.io/SitePoint/pen/OPGMOL&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个雪碧图在固定位置的动画播放持续时间由用户用滚动条控制代替。为了达到这个效果，我们用了&lt;code&gt;ScrollMagic.Scene&lt;/code&gt;设置&lt;code&gt;duration&lt;/code&gt;为1500px，然后用&lt;code&gt;setPin&lt;/code&gt;方法来固定父元素在整个场景中的位置。如果想了解更多细节，可以去看ScrollMagic的文档。&lt;/p&gt;
+
+&lt;p&gt;JavaScript控制雪碧图动画比纯css更加方便。 ScrollMagic 和 GreenSock 这两个库IE9都支持。。。而且对于移动端来说这更加友好。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;哎呀每次我总结都不想翻译=-=，虽然他说的很有道理。。。不过本篇文章翻译到底才发现只是领了个路，但是作者推荐的技术和库都非常值得去深入研究，因此我打算研究完后再开一章来仔细讲解两个库的使用，而且深入雪碧图的使用也应该会包含其中。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Create Text Filling with Water Effect（创建水波纹效果文字）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/19/translate%20two.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/19/translate%20two.html</guid>
+        <pubDate>Wed, 19 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpsblogsadobecomdreamweaver201508create-a-text-filling-with-water-effecthtml&quot;&gt;原文来源:&lt;a href=&quot;https://blogs.adobe.com/dreamweaver/2015/08/create-a-text-filling-with-water-effect.html&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;by-lucas-bebber&quot;&gt;作者:by Lucas Bebber&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者:临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;吸取第一篇翻译的教训，将在译文中加入自己的东西，可能会扩充来讲。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;在这边文章中，我将向你展示如何制作“文字被水逐渐填满”的效果。它可用于预加载，标题等等。但总的来说，它终归只是一个svg效果的学习。&lt;/p&gt;
+
+&lt;p&gt;具体效果戳&lt;a href=&quot;http://codepen.io/lbebber/pen/RPvxGp&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;在实现效果之前&lt;/h3&gt;
+
+&lt;p&gt;在我们写代码之前，我们先来探讨这个效果实现的流程。首先，我们需要创建一个卷曲的水波纹的效果，这个可以通过波状的图形来实现。（译者PS:比如word里的柱形图拉一拉。）&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-2-1.png&quot; alt=&quot;img1&quot; /&gt;      &lt;/p&gt;
+
+&lt;p&gt;然后将它无缝重叠。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-2-2.png&quot; alt=&quot;img2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;然后让它无限滚动起来。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-2-3.gif&quot; alt=&quot;img3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上图中的红色框框中，你可以看到基本我们将要实现的效果。&lt;/p&gt;
+
+&lt;p&gt;然后我们同时增加它的高度。&lt;/p&gt;
+
+&lt;p&gt;我们将从零实现。基础代码点&lt;a href=&quot;http://codepen.io/lbebber/pen/doadze/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;增加图片的高度，而不是简单的向上移动，这会让细节看起来更加细腻。也可以让水波效果更加真实，因为它在不断填充它的容器。&lt;/p&gt;
+
+&lt;p&gt;最后，我们只需要遮住掉我们的文字动画就大功告成了，&lt;/p&gt;
+
+&lt;p&gt;现在，我们来看看我们代码该如何写。&lt;/p&gt;
+
+&lt;h3 id=&quot;css&quot;&gt;Css&lt;/h3&gt;
+
+&lt;p&gt;这个效果用Css来写更加简单，但是这有个问题：用文字来作为遮罩。我们需要用到 &lt;code&gt;background-clip:text&lt;/code&gt;这个属性，但是不幸的是只有支持Webkit的浏览器支持(PS:也就是IE呵呵哒)。不过我们可以用图像和文本来绕过它。但又带来一个新问题，文字不是可选的，它无法被编辑，它可能很难被辨认。因此，我不打算深入css版本来写，但是你可以看到另一个实现的例子。点&lt;a href=&quot;http://codepen.io/lbebber/pen/xrwja/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;svg&quot;&gt;Svg&lt;/h3&gt;
+
+&lt;p&gt;另一个选择就是Svg，Sara Soueidan写了一篇关于文字效果的很棒的文章，你可以点&lt;a href=&quot;http://blogs.adobe.com/dreamweaver/2015/07/css-vs-svg-graphical-text.html&quot;&gt;这里&lt;/a&gt;.在那篇文章中，她介绍了Svg遮罩和它的工作原理。&lt;/p&gt;
+
+&lt;p&gt;但这里实现的原理不同，与其用图形来遮罩文字，还不如用文字来作为遮罩，来遮罩我们的水波图像。&lt;/p&gt;
+
+&lt;p&gt;这是我们创建的遮罩&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;lt;defs&amp;gt;
+     &amp;lt;text id=&quot;text&quot; font-size=&quot;100&quot;&amp;gt;YOUR TEXT HERE&amp;lt;/text&amp;gt;
+       &amp;lt;mask id=&quot;text-mask&quot;&amp;gt;
+          &amp;lt;use x=&quot;0&quot; y=&quot;0&quot; xlink:href=&quot;#text&quot; fill=&quot;#ffffff&quot;/&amp;gt;
+       &amp;lt;/mask&amp;gt;
+  &amp;lt;/defs&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将文本放在&lt;code&gt;&amp;lt;defs&amp;gt;&lt;/code&gt;标签里面是因为我们需要重复使用，一个作为遮罩，一个作为背景。通过这种实现方式，我们可以做到一次编写，多次引用。&lt;/p&gt;
+
+&lt;p&gt;通过&lt;code&gt;&amp;lt;use&amp;gt;&lt;/code&gt;标签，当我们想用的时候，只要通过&lt;code&gt;xlink:href&lt;/code&gt;属性指向对应&lt;code&gt;ID&lt;/code&gt;就行了。&lt;/p&gt;
+
+&lt;p&gt;注意，当用文字作为遮罩，我们设置&lt;code&gt;fill&lt;/code&gt;属性来使其填充色为白色。这是因为Svg遮罩的原理：白色遮罩使后面的内容可视，黑色使它隐藏。任何深浅之间使其透明对应。&lt;/p&gt;
+
+&lt;p&gt;水波图形需要提前制作，然后反复调整整体，使其看上去更加形似。你可以用Svg的&lt;code&gt;pattern&lt;/code&gt;，因为它可以重复自身并包含任意大小的文字。Svg的&lt;code&gt;pattern&lt;/code&gt;可以模糊，这可以单开一章来说明。但现在我们只需要使用它：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;defs&amp;gt;
+  ...
+
+  &amp;lt;pattern id=&quot;water&quot; width=&quot;.25&quot; height=&quot;1.1&quot; patternContentUnits=&quot;objectBoundingBox&quot;&amp;gt;
+    &amp;lt;path fill=&quot;#fff&quot; d=&quot;...&quot;/&amp;gt;
+  &amp;lt;/pattern&amp;gt;
+&amp;lt;/defs&amp;gt;
+
+&amp;lt;rect class=&quot;water-fill&quot; fill=&quot;url(#water)&quot; mask=&quot;url(#text-mask)&quot; x=&quot;0&quot; y=&quot;0&quot; width=&quot;1600&quot; height=&quot;120&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意&lt;code&gt;&amp;lt;rect&amp;gt;&lt;/code&gt;的&lt;code&gt;fill&lt;/code&gt;属性指向 &lt;code&gt;#water&lt;/code&gt;(这是我们上面提到的),同时要注意到&lt;code&gt;mask&lt;/code&gt;属性指向我们之前提前写好的内容。&lt;/p&gt;
+
+&lt;p&gt;如果你想用其他类型的元素来作为波形图，像&lt;code&gt;path&lt;/code&gt;属性来代替&lt;code&gt;patterns&lt;/code&gt;，你需要自己来设置&lt;code&gt;mask&lt;/code&gt;的属性。&lt;/p&gt;
+
+&lt;p&gt;所以我们现在可以看到实现的效果，点&lt;a href=&quot;http://codepen.io/lbebber/pen/waNyQv&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;到目前为止都很棒，现在我们让它动起来。。。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;动起来&lt;/h3&gt;
+
+&lt;p&gt;再次的，我们原本可以简单的用css来实现，但是当我们运行在浏览器时，很多浏览器并不支持用css改变SVG的一些属性，比如&lt;code&gt;x&lt;/code&gt;和&lt;code&gt;y&lt;/code&gt;.更多的浏览器支持用&lt;code&gt;transform:translate(x,y)&lt;/code&gt;设置SVG元素的位置。然而这并不能在我们的例子中工作，因为它会带动遮罩一起移动。如果你的浏览器支持用css来操作SVG，你可以点&lt;a href=&quot;http://codepen.io/lbebber/pen/doagyV/&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这个Css动画非常简单：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@keyframes wave {
+  0% {
+    x: -400px;
+  }
+  100% {
+    x: 0;
+  }
+}
+
+@keyframes fill-up {
+  0% {
+    height: 0;
+    y: 130px;
+  }
+  100% {
+    height: 160px;
+    y: -30px;
+  }
+}
+
+.water-fill{
+  ...
+  animation: wave 0.7s infinite linear, fill-up 10s infinite ease-out alternate;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们这里同时运行两个动画，一个叫做wave，这让动画效果看起来向右边无限的波动(注意波动的距离只是其中一个波的宽度，循环设置为无限，easing设置为线性。)然后让fill-up不断的增加高度。&lt;/p&gt;
+
+&lt;p&gt;对于浏览器支持问题我们解决的办法是用javascript。如果你想把这个效果用在一个基于进程的预加载，你也不得不使用javascript,不过好消息是我们已经进行到一半了。&lt;/p&gt;
+
+&lt;p&gt;你可以用任意的js动画库作为你的选择，像&lt;a href=&quot;http://ricostacruz.com/jquery.transit/&quot;&gt;Transit&lt;/a&gt; 或者&lt;a href=&quot;http://julian.com/research/velocity/&quot;&gt;Velocity.js&lt;/a&gt;.在这个例子中，我们将用到&lt;a href=&quot;http://greensock.com/gsap&quot;&gt;GSAP&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;gsap&quot;&gt;GSAP动画&lt;/h3&gt;
+
+&lt;p&gt;这是&lt;a href=&quot;http://greensock.com/get-started-js&quot;&gt;GSAP&lt;/a&gt;的简介，为了以防你之前从没用过它。&lt;/p&gt;
+
+&lt;p&gt;我们将把刚刚css的动画写成js版本：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Select the element
+  var fill=document.querySelector(&quot;.water-fill&quot;);
+
+    // &quot;Wave&quot; animation
+    TweenMax.fromTo(fill,0.8,{
+      // Set the &quot;from&quot; position
+      attr:{
+        x:-400
+      }
+    },
+    {
+      // Set the &quot;to&quot; position
+      attr:{
+        x:0,
+      },
+      // Repeat infinitely
+      repeat:-1,
+      // Linear easing
+      ease:Linear.easeNone
+    });
+
+
+    // &quot;Fill up&quot; animation
+    TweenMax.fromTo(fill,10,{
+      // From
+      attr:{
+        y:120,
+        height:0
+      },
+    },{
+      // To
+      attr:{
+        y:-20,
+        height:140
+      },
+      repeat:-1,
+      // Reverse animation on loop
+      yoyo:true,
+      ease:Linear.easeNone
+    });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后，我们可以选择用变暗的文字拷贝来作为背景，来使在被填满之前的效果更清晰。为了达到这个效果，我们可以重复使用我们之前的代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;use x=&quot;0&quot; y=&quot;0&quot; xlink:href=&quot;#text&quot; fill=&quot;#222&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是我们最终的结果，你可以点&lt;a href=&quot;http://codepen.io/lbebber/pen/RPvxGp&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;希望你能感到有趣并觉得有帮助。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;译者言&lt;/h2&gt;
+&lt;p&gt;根据原理调了下参数，然后改成了一个vue组件，只需要在页面加载的时候加载作者提到的TweenMax.min.js就行了。&lt;br /&gt;
+例子如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;template&amp;gt;
+	&amp;lt;svg class=&quot;loading&quot; version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; x=&quot;0px&quot; y=&quot;0px&quot;
+ width=&quot;574.558px&quot; height=&quot;60px&quot; viewBox=&quot;0 0 574.558 120&quot; enable-background=&quot;new 0 0 574.558 120&quot; xml:space=&quot;preserve&quot;&amp;gt;
+  &amp;lt;defs&amp;gt;
+    &amp;lt;pattern id=&quot;water&quot; width=&quot;.25&quot; height=&quot;1.1&quot; patternContentUnits=&quot;objectBoundingBox&quot;&amp;gt;
+      &amp;lt;path fill=&quot;#fff&quot;     d=&quot;M0.25,1H0c0,0,0-0.659,0-0.916c0.083-0.303,0.158,0.334,0.25,0C0.25,0.327,0.25,1,0.25,1z&quot;/&amp;gt;
+    &amp;lt;/pattern&amp;gt;
+
+    &amp;lt;text id=&quot;text&quot; transform=&quot;matrix(1 0 0 1 -8.0684 116.7852)&quot; font-family=&quot;&#39;Cabin Condensed&#39;&quot; font-size=&quot;48&quot;&amp;gt;&amp;lt;/text&amp;gt;
+
+    &amp;lt;mask id=&quot;text-mask&quot;&amp;gt;
+      &amp;lt;use x=&quot;0&quot; y=&quot;0&quot; xlink:href=&quot;#text&quot; opacity=&quot;1&quot; fill=&quot;#ffffff&quot;/&amp;gt;
+    &amp;lt;/mask&amp;gt;
+  &amp;lt;/defs&amp;gt;
+ 
+      &amp;lt;use x=&quot;0&quot; y=&quot;0&quot; xlink:href=&quot;#text&quot; fill=&quot;#222&quot;/&amp;gt;
+  
+  &amp;lt;rect class=&quot;water-fill&quot; mask=&quot;url(#text-mask)&quot; fill=&quot;url(#water)&quot; x=&quot;-400&quot; y=&quot;0&quot; width=&quot;800&quot; height=&quot;10&quot;/&amp;gt;
+
+
+&amp;lt;/template&amp;gt;
+
+
+
+
+&amp;lt;script&amp;gt;
+    module.exports = {
+      created: function () {
+    	document.addEventListener(&quot;DOMContentLoaded&quot;,function(){
+    	  var fill=document.querySelector(&quot;.water-fill&quot;);
+    	  TweenMax.fromTo(fill,0.8,{
+    	    attr:{
+    	      x:-200
+    	    }
+    	  },
+    	  {
+    	    attr:{
+    	      x:0,
+    	    },
+	        repeat:-1,
+	        ease:Linear.easeNone
+	      });
+	  
+	      TweenMax.fromTo(fill,10,{
+	        attr:{
+	          y:120,
+	          height:0
+	        },
+	      },{
+    	    attr:{
+    	      y:60,
+    	      height:140
+    	    },
+	        repeat:-1,
+    	    yoyo:true,
+	        ease:Linear.easeNone
+    	  });
+	  
+	    });
+  },
+  data: function () {
+    return {
+      msg: &#39;这是一个测试&#39; 
+    }
+  }
+
+}
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;希望有所帮助。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Node.js + Express + Vue.js 自动化开发环境部署</title>
+        <link>http://linshuizhaoying.github.io/2015/08/17/nodejs-express-vue.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/17/nodejs-express-vue.html</guid>
+        <pubDate>Mon, 17 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;今天打算用vue.js来做练手项目。之前配置了前端开发的环境，因为我现阶段开发都是基于Node.js+Express4.x的。而且之前用gulp来配置环境，于是想把vue.j的自动化开发配置放在gulp里。&lt;/p&gt;
+
+&lt;p&gt;但是经过查找，发现vue.js的作者是支持用webpack的,我找到了勾股的文章,写的不错,但是坑大！直接套用他的方法是直接报错,而且错误提示很奇怪，找不到一个文件路径。&lt;/p&gt;
+
+&lt;p&gt;后来在github上找，发现基于vue gulp关键词的内容基本上还是很少。捣鼓了几个小时，最后放弃把vue.js的自动化流程写到gulp里。而是采用webpack。&lt;/p&gt;
+
+&lt;p&gt;最后目录结构是这样的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; vue-gulp
+├── Gulpfile.js
+├── app.js
+├── bin
+│   └── www
+├── node_modules
+
+├── package.json
+├── public
+│   ├── images
+│   │   ├── build
+│   │   └── src
+│   ├── javascripts
+│   │   ├── build
+│   │   └── src
+│   │       ├── components
+│   │       │   ├── app.vue
+│   │       │   ├── b.vue
+│   │       │   └── main.js
+│   │       └── jquery.js
+│   └── stylesheets
+│       ├── build
+│       └── src
+├── routes
+│   ├── index.js
+│   └── users.js
+├── views
+│   ├── error.jade
+│   ├── index.jade
+│   └── layout.jade
+└── webpack.config.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gulpfile.js的内容还是老样子，这是普通前端环境自动化。&lt;/p&gt;
+
+&lt;p&gt;webpack.config.js里的内容如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;module.exports = {
+entry: &quot;./public/javascripts/src/components/main.js&quot;,
+output: {
+path: &quot;./public/javascripts/build/&quot;,
+filename: &quot;vueApp.js&quot;
+ },
+module: {
+loaders: [
+  { test: /\.vue$/, loader: &quot;vue&quot; },
+]
+},
+ devtool: &#39;source-map&#39;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;主入口文件为main.js，它来包含所有的组件并加到dom里。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Main.js:
+
+var Vue = require(&#39;vue&#39;)
+var appOptions = require(&#39;./app.vue&#39;)
+var app = new Vue(appOptions).$mount(&#39;#app&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;app.vue相当于一个组件，b.vue是第二个组件，被app所包含。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.vue:
+
+&amp;lt;style&amp;gt;
+  comp-a h2 {
+  color: #f00;
+ }
+&amp;lt;/style&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;h2 class=&quot;red&quot;&amp;gt;&amp;lt;/h2&amp;gt;
+  &amp;lt;comp-b&amp;gt;&amp;lt;/comp-b&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+var MyComponentB = require(&#39;./b.vue&#39;);
+module.exports = {
+  data: function () {
+    return {
+      msg: &#39;Hello from Component A!&#39; 
+    }
+  },
+    components: {
+    &#39;comp-b&#39;: MyComponentB
+  }
+}
+&amp;lt;/script&amp;gt;
+
+b.vue:
+
+&amp;lt;style&amp;gt;
+.t {
+  color: red;
+}
+
+&amp;lt;/style&amp;gt;
+
+&amp;lt;template&amp;gt;
+  &amp;lt;h2 class=&quot;t&quot;&amp;gt;&amp;lt;/h2&amp;gt;
+&amp;lt;/template&amp;gt;
+
+&amp;lt;script&amp;gt;
+module.exports = {
+  data: function () {
+    return {
+      msg: &#39;Hello from Component B!&#39;
+    }
+  }
+}
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后组件是在components/目录下开发，写完后，用main.js包含进来或者用其他vue加载。&lt;/p&gt;
+
+&lt;p&gt;在views/index.jade里面加上#app 就可以确保让组件加到这个ID内。&lt;/p&gt;
+
+&lt;p&gt;在layout.jade里面把vueApp.js加载。&lt;/p&gt;
+
+&lt;p&gt;这样就完成了自动化流程。&lt;/p&gt;
+
+&lt;p&gt;开发开发的时候只要在根目录下 &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; 执行命令
+ gulp 
+ webpack -w 就可以自由的开发了。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我的vue的自动化流程就是通过Main.js入口来加载一些后缀.vue的组件。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Gulp打造前端项目自动化构建流程环境</title>
+        <link>http://linshuizhaoying.github.io/2015/08/17/Gulp-task.md.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/17/Gulp-task.md.html</guid>
+        <pubDate>Mon, 17 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;这两天正在学习sass和gulp,Gulp的学习曲线非常平缓，api一看，例子看懂就能直接上手，sass需要以后继续熟悉。现在先简单的来贴学习结果。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;目的&lt;/h3&gt;
+
+&lt;p&gt;前端的资源大概分3类&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.js文件
+2.css文件(如果是用sass需要把.scss转成css)
+3.图片等其他文件
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其实如果把html算上也是一种，但是我一向用Node.js的express，因此好像没什么需要。因此流程应该是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.将javascripts/src目录下的js文件压缩然后写入javascripts/build目录下
+2.将stylesheets/src目录下的scss文件转成css，然后补全前缀然后再压缩，然后写入stylesheets/build
+3.将images/src目录下的图片都压缩然后写入images/build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;事实上如果需要字体这类，直接放在build目录下即可。&lt;/p&gt;
+
+&lt;h3 id=&quot;cssgulp&quot;&gt;Css的Gulp写法&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;var gulp = require(&#39;gulp&#39;);
+
+var sass = require(&#39;gulp-sass&#39;);
+var sassinput = &#39;./public/stylesheets/src/*.scss&#39;;
+var sassoutput = &#39;./public/stylesheets/build/&#39;;
+
+var sassOptions = {
+ errLogToConsole: true,
+outputStyle: &#39;expanded&#39;
+};
+var minifyCss = require(&#39;gulp-minify-css&#39;);
+var autoprefixer = require(&#39;gulp-autoprefixer&#39;);
+
+gulp.task(&#39;sass&#39;, function () {
+  return gulp
+// Find all `.scss` files from the `stylesheets/` folder
+.src(sassinput)
+// Run Sass on those files
+.pipe(sass())
+.pipe(sass(sassOptions).on(&#39;error&#39;, sass.logError))
+.pipe(minifyCss())  //执行压缩
+.pipe(autoprefixer()) //自动补全前缀
+// Write the resulting CSS in the output folder
+
+.pipe(gulp.dest(sassoutput));
+});
+gulp.task(&#39;sass:watch&#39;, function () {
+  gulp.watch(sassinput, [&#39;sass&#39;]);
+});
+
+
+gulp.task(&#39;default&#39;, [&#39;sass&#39;]);
+gulp.task(&#39;default&#39;, [&#39;sass:watch&#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;jsgulp-&quot;&gt;JS的Gulp 写法&lt;/h3&gt;
+&lt;p&gt;js文件压缩后应该价格.min的后缀，因此需要rename&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var uglify = require(&#39;gulp-uglify&#39;);
+var rename = require(&#39;gulp-rename&#39;);
+var jsinput = &#39;./public/javascripts/src/*.js&#39;;
+var jsoutput = &#39;./public/javascripts/build/&#39;;
+gulp.task(&#39;minifyjs&#39;, function() {
+	 return gulp.src(jsinput)
+    .pipe(rename({suffix: &#39;.min&#39;}))   //rename压缩后的文件名
+    .pipe(uglify())    //压缩
+    .pipe(gulp.dest(jsoutput));  //输出
+});
+gulp.task(&#39;minifyjs:watch&#39;, function () {
+gulp.watch(jsinput, [&#39;minifyjs&#39;]);
+});
+gulp.task(&#39;default&#39;, [&#39;minifyjs&#39;]);
+gulp.task(&#39;default&#39;, [&#39;minifyjs:watch&#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;image&quot;&gt;image的压缩写法&lt;/h3&gt;
+
+&lt;p&gt;看了下gulp的插件，很麻烦的使用方式，还要判断格式，写法在官网的插件有&lt;/p&gt;
+
+&lt;p&gt;因为我用图片要么直接就imageoptim，因此省去大图压缩的方式。&lt;/p&gt;
+
+&lt;p&gt;还有个插件不错适合小图集合的雪碧图插件。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://npmjs.org/package/gulp.spritesmith/&quot;&gt;spritesmith&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;后记&lt;/h2&gt;
+&lt;p&gt;这样整个前端自动化流程就差不多了。之后就是用Bower简单的管理版本依赖。&lt;/p&gt;
+
+&lt;p&gt;因为我用Hbuilder来开发，因此只需要打包然后做成模板，之后就可以随调随用。&lt;br /&gt;
+&lt;a href=&quot;http://www.sitepoint.com/simple-gulpy-workflow-sass/&quot;&gt;参考资料1&lt;/a&gt;&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>译文-React’s diff algorithm（React diff算法）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/16/translate%20one.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/16/translate%20one.html</guid>
+        <pubDate>Sun, 16 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpcalendarperfplanetcom2013diff&quot;&gt;原文来源:&lt;a href=&quot;http://calendar.perfplanet.com/2013/diff/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;christopher-chedeau&quot;&gt;作者:Christopher Chedeau&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者:临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;这是第一篇正式的翻译文=-=，以后会陆续将看到好的文章放上来。毕竟打算做一个前端咨询站，内容包括国外前沿技术，国内优秀文章等等。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;React 是一个Facebook用来构建用户界面开发的javascript库。它是基于高性能而设计的。这篇文章我将阐述它的diff算法和渲染过程来让你优化你的项目。&lt;/p&gt;
+
+&lt;h3 id=&quot;diff-algorithm&quot;&gt;Diff Algorithm&lt;/h3&gt;
+&lt;p&gt;在我阐述细节之前，先预览React是如何工作的非常作用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var MyComponent = React.createClass({ render: function() { if (this.props.first) { return &amp;lt;div className=&quot;first&quot;&amp;gt;&amp;lt;span&amp;gt;A Span&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;; } else { return &amp;lt;div className=&quot;second&quot;&amp;gt;&amp;lt;p&amp;gt;A Paragraph&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;; } } });
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在任何时候，当你描述你所想要的UI界面。理解渲染的结果不是真实的Dom节点这个概念非常重要。这些都是轻便的javascript对象，我们称它们为（virtual DOM）虚拟节点。&lt;/p&gt;
+
+&lt;p&gt;React将用这种方式试图找到从渲染的上一步到下一步之间的最小数目。举个栗子，如果我们想要将&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;MyComponent first={true} /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;MyComponent first={false} /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;来替换，然后移除它。这是Dom操作的过程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;刚开始没有节点
+  开始创建节点 &amp;lt;div className=&quot;first&quot;&amp;gt;&amp;lt;span&amp;gt;A Span&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
+第一步到第二步
+  替换属性：用className=&quot;second&quot; 替换 className=&quot;first&quot; 
+  替换节点：用&amp;lt;p&amp;gt;A Paragraph&amp;lt;/p&amp;gt; 替换 &amp;lt;span&amp;gt;A Span&amp;lt;/span&amp;gt;
+ 第三步
+   移除节点 &amp;lt;div className=&quot;second&quot;&amp;gt;&amp;lt;p&amp;gt;A Paragraph&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;逐级&lt;/h3&gt;
+&lt;p&gt;在两颗任意树(不理解树的童鞋可以看wiki的&lt;a href=&quot;https://en.wikipedia.org/wiki/Tree_(data_structure)&quot;&gt;介绍&lt;/a&gt;)之间找到最小的差异是一个 O(n^3)级别（时间复杂度）的问题。你可以想象一下，这肯定不是我们需要的解决方案。React用了最简单也最实用的方式，这个解决方案近似于O(n)的复杂度。&lt;/p&gt;
+
+&lt;p&gt;React只是试图逐级对比两颗树。这大大降低了解决问题的复杂性而且在Web应用中将一个组件移到其他级的树上它不仅不会造成很大浪费而且会很节约。它们通常只移动子节点。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-1-1.png&quot; alt=&quot;img1&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;列表&lt;/h3&gt;
+&lt;p&gt;让我们来假设我们有个组件它将迭代渲染5个组件并将在下一步中插入一个新的新的组件放到迭代列表中间。这很难知道两个组件列表之间的映射关系。&lt;/p&gt;
+
+&lt;p&gt;默认的，React将上一步的第一个组件作为下一个列表中的第一个。你可以提供&lt;code&gt;key&lt;/code&gt;属性来帮助React找出映射。实践中，这通常很简单的能找到其中列表中拥有唯一key的子组件。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-1-2.png&quot; alt=&quot;img2&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;组件&lt;/h3&gt;
+&lt;p&gt;一个React组件通常由用户自定义的组件构成，最后形成以 &lt;code&gt;div&lt;/code&gt;为主的树。当React匹配相同组件的时候这些额外的信息将被diff算法用来查找具有相同类的组件。&lt;/p&gt;
+
+&lt;p&gt;举个栗子，一个 &lt;code&gt;&amp;lt;Header&amp;gt;&lt;/code&gt;被一个&lt;code&gt;&amp;lt;ExampleBlock&amp;gt;&lt;/code&gt;代替。React将会移除&lt;code&gt;&amp;lt;Header&amp;gt;&lt;/code&gt;并创建新的块。我们不需要花费昂贵的时间试图匹配两个组件因为他们不可能有相同处。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-1-3.png&quot; alt=&quot;img3&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;事件委派&lt;/h3&gt;
+
+&lt;p&gt;对Dom节点附加事件监听是很浪费的行为。React用一种称为“事件委托”的流行的技术来代替。React走的远它实现了基于w3c兼容事件系统。这意味着IE8的事件处理的各种Bug将一去不复返，所有事件名将跨浏览器一致。&lt;/p&gt;
+
+&lt;p&gt;让我来解释如何实现的。一个简单地事件监听是附加在Document下的根节点。当事件发射（fired）时，浏览器会给我们目标Dom节点。为了通过DOM层级传播事件，React并没有在虚拟节点层迭代。&lt;/p&gt;
+
+&lt;p&gt;每一个React组件具有唯一的ID层级编码。我们能用简单地字符串操作来获取所有家长的的ID。通过储存事件监听的hash表，可以发现比将它们附加在虚拟节点表现的更加好。下面是一个将事件委派给虚拟DOM的例子。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// dispatchEvent(&#39;click&#39;, &#39;a.b.c&#39;, event) clickCaptureListeners[&#39;a&#39;](event); 		clickCaptureListeners[&#39;a.b&#39;](event); clickCaptureListeners[&#39;a.b.c&#39;](event); 		clickBubbleListeners[&#39;a.b.c&#39;](event); clickBubbleListeners[&#39;a.b&#39;](event); 		clickBubbleListeners[&#39;a&#39;](event);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;浏览器给每一个时间和监听者都创建一个新的事件对象。这具有很好的特性，你可以保存事件对象的引用，甚至可以修改它。然而，这意味着大量的内存消耗。React在启动时为这些对象分配内存池。当需要一个对象时，它从该池中重复使用，这大大降低了垃圾回收。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;渲染&lt;/h3&gt;
+
+&lt;h4 id=&quot;section-9&quot;&gt;批处理&lt;/h4&gt;
+&lt;p&gt;无论何时你在组件中调用&lt;code&gt;setState&lt;/code&gt;方法，React都将标记它为&lt;code&gt;脏&lt;/code&gt;（dirty）.在事件处理最末，React将会把所有脏标记的组件重新渲染。&lt;/p&gt;
+
+&lt;p&gt;批处理意味着在事件周期中，有DOM被恰好被更新一次。这个属性是编写高质量应用的关键，而且现在很难简单的用javascript来写编写类似功能。而在React，这已经被默认定义了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-1-4.png&quot; alt=&quot;img4&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;子树渲染&lt;/h3&gt;
+&lt;p&gt;当&lt;code&gt;setState&lt;/code&gt;被调用，组件重构子组件的虚拟DOM。如果你在根调用&lt;code&gt;setState&lt;/code&gt;，整个组件将被重新渲染。所有的组件，即使它们没有改变，都会有它们自己的&lt;code&gt;Render&lt;/code&gt;.这听起来很吓人，很低效，但是我们并没有接触真实的DOM。&lt;/p&gt;
+
+&lt;p&gt;首先，我们讨论用户界面的呈现。因为屏幕大小有限，你需要经常同时呈现成千上百个元素。Javascript足够快能够承担业务逻辑使界面为可控的。&lt;/p&gt;
+
+&lt;p&gt;另一个关键点是写React代码，你经常调用setState在根节点改变时。你在组件中调用它然后获得改变事件或者在多个组件之上调用。你很少能够直达到顶端。这意味着变化被定位在用户交互中。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//t-1-5.png&quot; alt=&quot;img5&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;选择子树渲染&lt;/h3&gt;
+
+&lt;p&gt;最后，你可能需要防止某些子树被渲染。如果你执行下面的方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;boolean shouldComponentUpdate(object nextProps, object nextState)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在组件中设定下一个props/state之前，你可以告诉React这个组件将不会变化而且没有必要重新渲染它。当被恰当的实施，它确实可以给你带来巨大的性能提升。&lt;/p&gt;
+
+&lt;p&gt;为了能够使用它，你需要能够比较javascript对象，因为浅拷贝会引起很多问题，你需要深拷贝或者用一直不变的数据结构。&lt;/p&gt;
+
+&lt;p&gt;如果你想要保持这个方法能被在任何时候调用，因此你需要确保计算时间少于渲染时间。即使子渲染不是非常严格的需要。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//1-1-6.png&quot; alt=&quot;img6&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;结论&lt;/h2&gt;
+
+&lt;p&gt;使React变得快的技术并不是最新的。我们都知道长时间接触DOM的代价是昂贵的，你需要批量写入和读取操作，事件委托更快。。。&lt;/p&gt;
+
+&lt;p&gt;人们依然在讨论它们因为在实际中，他们很难去实施常规的Javascript代码，正是这些都在React是默认定义的才使React脱颖而出。这使得它很难搬起石头砸自己的脚让你的应用变慢。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-13&quot;&gt;译者言&lt;/h2&gt;
+
+&lt;p&gt;这是第一次翻译，花了大概半天的时间，把看到的翻译成中文还是蛮困难的，有些东西一看就意会，然后转成语言就很奇怪。这次算是练手，对着原文翻译，这是蛮差劲的。应该是用自己的话表达出来而且加入自己的看法这是我所追求。继续努力吧。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>Node.js + React.js 开发评论插件系统</title>
+        <link>http://linshuizhaoying.github.io/2015/08/16/react-comments.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/16/react-comments.html</guid>
+        <pubDate>Sun, 16 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;p&gt;一开始是因为Jekyll的评论插件如果是放到github还需要分支什么的，后来我用了多说系统，但是它页面每次只加载一次，导致如果页内跳转，转到的页面是没有评论的。因此萌生了自己开发一个评论插件系统，通过跳转将参数传来，事实上只需要在加载的前的js写好，可以达到和多说系统一样的外置功能，但是处理起来比较麻烦，因此我选择了直接传参。其实一开始我像选择用react.js+vue.js来开发的，但是用React写完后发现没vue啥事。。。毕竟同是view层，React用的顺手，因此我打算下一个大项目中用vue.js做前端，react做后台。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;由于本篇并不是在开发中写的，而是一篇总结，因此很多东西我都会跳过不说，只讲重点的，工程我已经放到了github上。有兴趣的可以点&lt;a href=&quot;https://github.com/linshuizhaoying/commets.haoqiao.me&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;首先我们来看下界面&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//test.gif&quot; alt=&quot;gif1&quot; /&gt;&lt;br /&gt;
+因此我们可以先确定要构建的组件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.Content 用来作为包含内容的父组件
+2.Comments 用来作为一个评论组合的容器
+3.Admin 用来作为管理回复
+4.SubmitComment 发布评论
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其实官网是有个评论的例子，但是-0-我之前写的时候不知道。之后查资料的时候发现了=-=，整个人斯巴达，因为很多设计都是类似的。。。不过由于是之前一手设计的，因此我在开发途中大改了好几次。因为一开始是没有总设计稿，因此我的设计步骤是这样的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.设计评论列表静态布局
+2.转为react
+3.添加动态效果
+4.添加测试数据
+5.设计发表评论组件
+6.设计动态效果
+7.后台设计数据库
+8.后台添加代码
+9.前后台沟通
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;代码分析&lt;/h3&gt;
+&lt;p&gt;因为这篇是总结类型，我就挑着讲了。&lt;br /&gt;
+首先从需要渲染的页面index.jade来讲。关键代码如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;span#name.hide #{name}
+span#link.hide #{link}
+span#adminpass.hide #{adminpass}
+span#lock.hide #{lock}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;name和link是传过来的参数，我需要后台route拿到后重新渲染进来，方便其他组件获取这个参数。&lt;/p&gt;
+
+&lt;p&gt;adminpass是一个开启管理员模式的关键，后台会根据获取到的密码来判断。之所以做这个是因为懒得再写个管理页面。&lt;br /&gt;
+lock就是是否开启回复功能，因此游客是不给回复的，组件需要判断是否是管理员，如果是才解锁。&lt;/p&gt;
+
+&lt;p&gt;来看content.jsx&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;loadCommentsFromServer:function() {
+if($(&quot;#adminpass&quot;).text().length !=0){
+$.post(&quot;/getAllData&quot; , {link:$(&quot;#link&quot;).text(),adminpass:$(&quot;#adminpass&quot;).text()}, function(result) {
+  if (this.isMounted()) {
+    this.setState({
+      data:JSON.parse(result)
+    });
+  }
+}.bind(this));
+}else{
+$.post(&quot;/getData&quot; , {link:$(&quot;#link&quot;).text(),title:$(&quot;#name&quot;).text()}, function(result) {
+  var list = result;
+  if (this.isMounted()) {
+    this.setState({
+      data:JSON.parse(result)
+    });
+  }
+}.bind(this));
+}
+},
+componentDidMount: function() {
+  this.loadCommentsFromServer();
+  setInterval(this.loadCommentsFromServer, 2000);
+},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;数据的获取是在组件渲染之前，之后再每隔2秒去获取更新。&lt;br /&gt;
+ 这个更新方法是从官网学来的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; 我们把旧的评论数组替换成从服务器拿到的新的数组，然后UI自动更新。正是有了这种响应式，一个小的改变都会触发实时的更新。这里我们将使用简单的轮询，但是你可以简单地使用WebSockets或者其它技术。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着我们可以看到后台是如何处理参数的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;router.get(&#39;/show/:name/:link&#39;, function(req, res, next) {
+NewsData.findOne({ link:req.body.link,title: req.body.title }, function(err, content) {
+	if(content!=null){
+		console.log(&quot;找到了&quot;); // { name: &#39;Frodo&#39;, inventory: { ringOfPower: 1 }}
+	}else{
+		console.log(&quot;没找到&quot;);
+	}
+});
+ res.render(&#39;index&#39;, {title: &#39;临水照影  评论系统&#39;,lock:&quot;t&quot;,name:req.params.name,li
+ nk:req.params.link});}); 这是对每个网站的每个文章进行分类。数据的获取还是通过getDate这个来获得的。
+
+router.post(&#39;/getData&#39;, function(req, res, next) {
+//	NewsData.find({link:req.body.link}, function(err, content) {
+	NewsData.find({link:req.body.link,title: req.body.title},null,{sort:                           {_id:-1}},function(err, content){  
+	if(content!=null){
+	console.log(&quot;getdate&quot;);
+		res.send(JSON.stringify(content));
+		res.end();
+		//console.log(&quot;找到了content&quot; + JSON.stringify(content)); // { name: &#39;Frodo&#39;, inventory: { ringOfPower: 1 }}
+	}else{
+	  res.send(JSON.stringify(&quot;&quot;));
+	  res.end();
+	}
+});
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里我们可以看到数据先经过排序再通过json格式化再输出的。&lt;/p&gt;
+
+&lt;p&gt;##总结&lt;br /&gt;
+使用方法就是在需要评论的地方加一个跳转。比如我在jekyll的posts.html里面是这么写的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   &amp;lt;button&amp;gt;&amp;lt;a href=&quot;http://comments.haoqiao.me/show/page.title/haoqiao.me&quot;&amp;gt;跳到评论系统&amp;lt;/a&amp;gt;&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后把代码部署到服务器就行了。其实展开讲还是挺多的，但是事情比较多，点到为止。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>React从入门到上手三部曲(3)</title>
+        <link>http://linshuizhaoying.github.io/2015/08/11/react-three.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/11/react-three.html</guid>
+        <pubDate>Tue, 11 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;三部曲想想应该是连贯的，因此承接上期，我们把整个包括Node.js的部分也讲述一下，可能已经不是正常的纯React教程了（似乎第二期就有点偏了。）。不过个人认为项目驱动的教程更适合入门吧。o(≧v≦)o~&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;上期讲到数据的传递，我们提到props和state，如果是组件创建前自己去获取的数据应该放到哪呢？答案是state,因为自动获取的数据是变化的。props应该是一开始就不变的。&lt;br /&gt;
+我们来看正式项目中的newsComponent.jsx和newsitem.jsx里的内容。&lt;br /&gt;
+首先是 newsComponent.jsx里的内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;getInitialState: function() {
+  return {
+     data : [{&quot;title&quot;:&quot;欢迎使用定制版每日资讯&quot;,&quot;href&quot;:&quot;haoqaio.me&quot;},{&quot;title&quot;:&quot;By 临水照		  影&quot;,&quot;href&quot;:&quot;haoqiao.me&quot;}]
+  };
+},
+componentDidMount: function() {
+  $.post(&quot;/getData&quot; , {url:this.props.url}, function(result) {
+  	var list = result;
+  	if (this.isMounted()) {
+  	  this.setState({
+  	    data:JSON.parse(result)
+  	  });
+ 	 }
+   }.bind(this));
+},
+render: function() {
+	var url = this.props.url;
+	var component_style = &quot;portlet box &quot; + this.props.component_style;
+	var item_style = this.props.item_style;
+		console.log(this.state.data);
+    var datas = this.state.data;
+	if(datas){
+		var NewsItems = datas.map(function(Item) {
+        return &amp;lt;NewsItem item_style={item_style} key={Item.id} title={Item.title} href={Item.href}/&amp;gt;
+ });
+ }
+
+return (
+		&amp;lt;div className={component_style}&amp;gt;
+			&amp;lt;div className=&quot;portlet-title&quot;&amp;gt;
+				&amp;lt;div className=&quot;caption&quot;&amp;gt;
+				  &amp;lt;i className=&quot;fa fa-cogs&quot;&amp;gt;&amp;lt;/i&amp;gt;
+				  今日资讯 From {url}
+				&amp;lt;/div&amp;gt;
+				&amp;lt;div class=&quot;tools&quot;&amp;gt;
+					&amp;lt;a href=&quot;javascript:;&quot; data-original-title=&quot;&quot; title=&quot;&quot; class=&quot;expand&quot;&amp;gt;&amp;lt;/a&amp;gt;
+				&amp;lt;/div&amp;gt;
+			&amp;lt;/div&amp;gt;
+			&amp;lt;div className=&quot;portlet-body&quot;&amp;gt;
+				  {NewsItems}
+			&amp;lt;/div&amp;gt;
+		&amp;lt;/div&amp;gt;  
+      );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看到我们可以看到比教程2里的演示这里多了不少东西，我们一一来分析。&lt;br /&gt;
+首先是分析我们设计的思路，我们是想要在props里面传过来url，然后组件在渲染之前自己拿到数据，然后再渲染。这就涉及到组件的生命周期。我一开始的想法是直接在组件的componentDidMount里直接$get拿数据，但是遇到了问题，首先是数据获取异步的问题，如果是$get，我url提交过去了，后台处理中，没等后台处理返回结果它就先返回了。这样的结果就是只渲染了父组件。render的时候调用this.state.data还是是undefined。在chrome里面调试的时候可以发现过了一会state里面才有内容。&lt;br /&gt;
+«««&amp;lt; HEAD&lt;/p&gt;
+
+&lt;h1 id=&quot;img1http7s1saycom1z0glbclouddncomreact11jpgimageview22w500h500q100watermark2textqnkg5li05rc054wn5b2xfont5a6l5l2tfontsize500fillizawrkzgrgdissolve100gravitysoutheastdx10dy10&quot;&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img1&quot; /&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img1&quot; /&gt;&lt;br /&gt;
+»»»&amp;gt; 50e947e626468b25132932e5bef01ba0de58fb7c&lt;/p&gt;
+
+&lt;p&gt;遇到这种之前没接触过react问题，当然先是去群里吼一声，然后先天不聪大神直接给出两种解决方案&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.使用$.ajax的async参数，配置async=false, 这个时候为同步请求，componentWillMount会等待ajax请求完成，你能成功的在componentWillMount中拿到data。后果就是，页面卡在这里，直到你拿到数据。
+2.另外一种方式就是，给data一个默认值，第一次render让它画. 在componentDidMount函数里，$.get拿数据，拿到数据后setState会重新render，页面更新，总共2次render. 对于ajax的异步async设置为false这种方案我尝试无效后（可能是我写法有问题）我选择了第二种，先赋值，再setState。这种方案更加符合React的设计思路。在不同生命周期做不同的事情。首先是在 getInitialState 先赋值。这里提一句，由于我数据返回的是json，因此测试数据应该也是json格式的，虽然我后台拿到数据后生成的是一个数组，但是通过Json转换很容易拿到对应的格式。 在componentDidMount生命周期，也就是组件完成渲染后的周期我们去拿数据，这里我为啥不用get反而用Post呢？原因就是Node.js中，如果我用get，那么我route里面会这么写  /getdata/:url 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是我们url里面当含有需要转义的字符比如  xxx.com/news ，这样我们就无法用req.params.url这种方式提取url，因此使用Post。当post拿到数据后我们发现有一句isMounted()的判断，从官网文档我们可以知道&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; isMounted() returns true if the component is rendered into the DOM, false otherwise. You can use this method to guard asynchronous calls to setState() or forceUpdate().    当组件完成渲染后isMounted()返回true，这样我们setState改变state后自然而然就会重新渲染。细心的读者会发现渲染的时候子组件多了一个props key={Item.id} ，这是为了保证唯一性。如果想测试为什么的同学可以直接在刚开始赋值的时候把数据换成之后后台传过来的数据。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再来看newsitem.jsx，这里面的内容改动不大，只需要把href的值拿过来在render里就行，代码就不给出了，反正在github里我已经把所有源码传上去了。&lt;/p&gt;
+
+&lt;h3 id=&quot;nodejs&quot;&gt;Node.js后台处理&lt;/h3&gt;
+
+&lt;p&gt;对于后台数据的处理我们直接来看关键代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;router.post(&#39;/getdata&#39;, function(req, res) {
+var url = req.body.url;
+console.log(url);
+var data_result = new Array();
+if(url == &quot;toutiao.io&quot;){
+	superagent.get(url)
+	    .end(function (err,response) {
+	    	  if (err) {
+         return next(err);
+        }
+	   
+		 var $ = cheerio.load(response.text);
+		// console.log(cheerio.load(res.text));
+		$(&#39;.daily .posts .post .content .title a&#39;).each(function (idx, element) {
+				    var $element = $(element);
+				    var single = new Object();
+				    
+				    single.title = $element.text();
+				    single.href = $element.attr(&#39;href&#39;);
+				   // console.log(&quot;single.title content:&quot;+single.title);
+						data_result.push(single);
+							//保存数据
+
+		       });
+	         res.send(JSON.stringify(data_result));
+		       res.end();
+ 
+	 });
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;根据不同域名针对不同内容格式进行爬取，这个用到了几个模块，具体细节就不讲了。注意的是.end(function (err,response) 这句，官方给的示例是.end(function (err,res) ,会给后面res.send带来很大的麻烦，我调试了很久才发现这句有问题-0-，最后结果直接JSON.stringify转一下就能返回。&lt;br /&gt;
+### 测试&lt;br /&gt;
+代码写完了，我们可以来看下如何使用，我们直接在app.jsx里面写上&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;React.render(
+	&amp;lt;NewsComponent component_style=&quot;green&quot; item_style=&quot;info&quot; url=&quot;toutiao.io&quot;/&amp;gt;,
+	document.getElementById(&#39;example1&#39;)
+);
+React.render(
+    &amp;lt;NewsComponent component_style=&quot;blue&quot; item_style=&quot;default&quot; url=&quot;news.dbanotes.net/	    newest&quot; /&amp;gt;,
+ document.getElementById(&#39;example2&#39;)
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后我们就可以看到正式运行后的界面。&lt;br /&gt;
+«««&amp;lt; HEAD&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;![img2](http://7s1say.com1.z0.glb.clouddn.com//react12.png?imageView2/2/w/500/h/500/q/100&lt;/td&gt;
+      &lt;td&gt;watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;img3http7s1saycom1z0glbclouddncomreact13pngimageview22w500h500q100watermark2textqnkg5li05rc054wn5b2xfont5a6l5l2tfontsize500fillizawrkzgrgdissolve100gravitysoutheastdx10dy10&quot;&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img3&quot; /&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img2&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img3&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;blockquote&gt;
+      &lt;blockquote&gt;
+        &lt;blockquote&gt;
+          &lt;blockquote&gt;
+            &lt;blockquote&gt;
+              &lt;p&gt;50e947e626468b25132932e5bef01ba0de58fb7c&lt;/p&gt;
+            &lt;/blockquote&gt;
+          &lt;/blockquote&gt;
+        &lt;/blockquote&gt;
+      &lt;/blockquote&gt;
+    &lt;/blockquote&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这样整个系统就算打通了，剩下就是部署了=-=，部署这块我还得继续学习，毕竟一入部署深似海，从此人品是路人。Ok，本次React三部曲也算结束了。有什么问题可以Email或者在博客里留言，不过我用的是社会评论插件，想在某个专题里凭论还需要重新在页面里刷新-0-下一个阶段我就算打算自己写一个外载的评论插件。应该会去学习一下vue.js然后配合React应用到下个项目中。本次项目已经传到了github上，有兴趣可以点 &lt;a href=&quot;https://github.com/linshuizhaoying/news.haoqaio.me&quot;&gt;这里&lt;/a&gt;去fork或者clone。&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>React从入门到上手三部曲(2)</title>
+        <link>http://linshuizhaoying.github.io/2015/08/10/react-two.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/10/react-two.html</guid>
+        <pubDate>Mon, 10 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;本文来打造一个基于Node.js+Express4.x的React组件应用。刚开始我们先设定一下我们需要做的事情。首先这个应用是基于爬虫原理的个人每日资讯。类似今日头条这个应用。我们需要两个组件，一个是父组件，它接受传来的URL并解析爬取内容，一个是子组件，它根据父组件传来的参数进行显示（包括显示颜色，内容）。&lt;br /&gt;
+我们给两个组件命名为NewsComponent 和 NewsItem。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;准备&lt;/h3&gt;
+
+&lt;p&gt;我们直接新建一个开发环境，可以直接clone我github上的开发环境。&lt;br /&gt;
+在根目录运行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;supervisor ./bin/www
+监视文件改动
+gulp
+自动构建 之后在public/javascript/src/下建立两个新文件 一个命名为newsComponent.jsx 一个命名为newItem.jsx 然后我们先来做个组件嵌套的测试。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在newItem.jsx中我们写入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var React = require(&#39;react&#39;);
+module.exports = React.createClass({
+render: function() {
+	return (
+	&amp;lt;h1&amp;gt;这是子项&amp;lt;/h1&amp;gt;
+	)
+}
+}); 在newsComponent.jsx 中写入
+
+var React = require(&#39;react&#39;);
+var NewsItem = require(&#39;./newsItem.jsx&#39;);
+module.exports = React.createClass({
+render: function() {
+	return (
+		&amp;lt;div&amp;gt;
+	 	 &amp;lt;NewsItem/&amp;gt;
+	  	&amp;lt;h1&amp;gt;666 linshuizhaoying!&amp;lt;/h1&amp;gt;
+		&amp;lt;/div&amp;gt;
+	)
+}
+}); 记得如果gulp和supervisor如果因为写的代码有bug崩掉要手动重启。 之后我们访问127.0.0.0:3000就能看到我们的测试结果。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//react01.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img1&quot; /&gt;&lt;br /&gt;
+看示例图中下方显示就是我们要做的组件的大概界面。因此我们需要现在index.jade中写入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  .portlet.box.blue
+    .portlet-title
+      .caption
+        i.fa.fa-cogs
+        | 今日资讯
+      .tools
+        a.collapse(href=&#39;javascript:;&#39;, data-original-title=&#39;&#39;, title=&#39;&#39;)
+    .portlet-body
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title Primary Panel
+        .panel-body
+          span Panel content 然后在layout.jade里引入我们的css文件，我这里引入了Boosstrap.min.css和我模板中的component.css，界面显示的css代码可以去网上抄或者自己写。 分析代码我们可以看出非常简洁明了的能将二者分离并重组。因此我们开始用react来构造这个组件。 ### React组件构造 对于newItem.jsx的改造：
+
+var React = require(&#39;react&#39;);
+
+module.exports = React.createClass({
+render: function() {
+return (
+	&amp;lt;div className=&quot;panel panel-primary&quot;&amp;gt;
+		&amp;lt;div className=&quot;panel-heading&quot;&amp;gt;
+			&amp;lt;h3 className=&quot;panel-title&quot;&amp;gt;这是子项的标题&amp;lt;/h3&amp;gt;
+		&amp;lt;/div&amp;gt;
+		&amp;lt;div className=&quot;panel-body&quot;&amp;gt;
+			&amp;lt;span&amp;gt;这是子项的内容&amp;lt;/span&amp;gt;
+		&amp;lt;/div&amp;gt;
+	&amp;lt;/div&amp;gt;
+   	  )
+}
+}); 对于newsComponent.jsx的改造：
+
+var React = require(&#39;react&#39;);
+var NewsItem = require(&#39;./newsItem.jsx&#39;);
+
+module.exports = React.createClass({
+render: function() {
+return (
+	&amp;lt;div className=&quot;portlet box blue&quot;&amp;gt;
+		&amp;lt;div className=&quot;portlet-title&quot;&amp;gt;
+		&amp;lt;div className=&quot;caption&quot;&amp;gt;
+			&amp;lt;i className=&quot;fa fa-cogs&quot;&amp;gt;&amp;lt;/i&amp;gt;
+			 今日资讯
+			&amp;lt;/div&amp;gt;
+		&amp;lt;/div&amp;gt;
+		&amp;lt;div className=&quot;portlet-body&quot;&amp;gt;
+		   &amp;lt;NewsItem/&amp;gt;
+		&amp;lt;/div&amp;gt;
+	&amp;lt;/div&amp;gt;  
+);
+}
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;此时如果代码无误的话我们刷新浏览器就能看到我们的组合组件。&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//react02.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img2&quot; /&gt;&lt;br /&gt;
+事实上我们在测试前用jade写好效果，然后直接用chrome分析节点复制，然后把class替换为className就可以了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;界面参数的传递&lt;/h3&gt;
+
+&lt;p&gt;我们需要的是一个可复用的组件，因此，界面的style不能写死，而是在初始化的时候赋值调用，首先根据component.css&lt;br /&gt;
+父组件有以下几种颜色：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grey-cascade
+purple
+red
+blue
+green
+yellow 而子组件有以下几种分类
+
+default
+primary
+success
+info
+warning
+danger 属性的赋值应该在初始化赋值给props，因为state是来记录自身变化的。 下面我们来写参数传递的代码，首先在app.jsx里面把render内容换掉
+
+React.render(
+  &amp;lt;NewsComponent component_style=&quot;green&quot; item_style=&quot;info&quot; url=&quot;www.baidu.com&quot;/&amp;gt;,
+  document.getElementById(&#39;example1&#39;)
+);
+React.render(
+  &amp;lt;NewsComponent component_style=&quot;blue&quot; item_style=&quot;danger&quot; url=&quot;www.google.com&quot; /&amp;gt;,
+  document.getElementById(&#39;example2&#39;)
+); 来到newsComponent.jsx
+
+render: function() {
+  	//取得属性值
+	var url = this.props.url;
+	var component_style = &quot;portlet box &quot; + this.props.component_style;
+	var item_style = this.props.item_style;
+return (
+		&amp;lt;div className={component_style}&amp;gt;
+			&amp;lt;div className=&quot;portlet-title&quot;&amp;gt;
+				&amp;lt;div className=&quot;caption&quot;&amp;gt;
+				  &amp;lt;i className=&quot;fa fa-cogs&quot;&amp;gt;&amp;lt;/i&amp;gt;
+				  今日资讯
+				&amp;lt;/div&amp;gt;
+			&amp;lt;/div&amp;gt;
+			&amp;lt;div className=&quot;portlet-body&quot;&amp;gt;
+			    &amp;lt;span&amp;gt;{url}&amp;lt;/span&amp;gt;
+				  &amp;lt;NewsItem item_style={item_style}/&amp;gt;
+			&amp;lt;/div&amp;gt;
+		&amp;lt;/div&amp;gt;  
+);
+} 接着修改newItem.jsx
+
+render: function() {
+  var item_style = &quot;panel panel-&quot;+this.props.item_style;
+return (
+	&amp;lt;div className={item_style}&amp;gt;
+		&amp;lt;div className=&quot;panel-heading&quot;&amp;gt;
+			&amp;lt;h3 className=&quot;panel-title&quot;&amp;gt;这是子项的标题&amp;lt;/h3&amp;gt;
+		&amp;lt;/div&amp;gt;
+		&amp;lt;div className=&quot;panel-body&quot;&amp;gt;
+			&amp;lt;span&amp;gt;这是子项的内容&amp;lt;/span&amp;gt;
+		&amp;lt;/div&amp;gt;
+	&amp;lt;/div&amp;gt;
+)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后我们刷新浏览器，我们能看到如下图&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-10%2003.23.58%20PM.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;img3&quot; /&gt;&lt;br /&gt;
+接下来就是对url这个值进行处理，这已经不是React的范围，因此本章结束。&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>建立Node.js+Express4.x+React+Gulp的开发环境</title>
+        <link>http://linshuizhaoying.github.io/2015/08/09/build-nodejs-react.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/09/build-nodejs-react.html</guid>
+        <pubDate>Sun, 09 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;俗话说，工欲善其事，必先利其器。一个好的开发环境必将带来效率的成本提升。React的开发环境多种多样，配合不同的环境有不同的写法。由于我之前在学Node.js，对Node.js的Web框架Express恋恋不舍，因此google了很久才找到想要的东东。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;开始搭建&lt;/h2&gt;
+&lt;p&gt;开头第一句应该就是很熟悉的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; express env
+ cd env 这样就建立了一个env的目录，并切进去
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于我们已经有了node.js应用，我们就继续添加相应的工具来将jsx脚本编译成标准JavaScript。接下来有两种选择，一种是手动编译，一种是自动化。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;提起自动化，我很久以前就听过这个，但是一直觉得没啥用，因为自己当初水平比较低，写的东西都是静态居多，或者加个jqeury插件就差不多了，但是随着知识的积累，一个效率的开发应该是部署到线上能稳定的运行，并且它所占用的资源应该尽可能少。这需要压缩图片，js,css。以及打包发布等等过程。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;手动编译&lt;/h3&gt;
+
+&lt;p&gt;我们需要安装react-tools这个node包，使用如下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install react-tools --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在我们可以使用这样的命令将jsx脚本编译成标准JavaScript：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./node_modules/react-tools/bin/jsx public/javascripts/src/ public/javascripts/build/
+记得使用-x标志，因为我们使用.jsx作为代码文件扩展名
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样的缺点很明显，每次你写完之后都需要重新编译。&lt;br /&gt;
+### 自动化构建	&lt;br /&gt;
+Gulp是一个非常棒的自动化构建工具，而且它基于Node.js，这样就显得很亲切。而且它的写法非常的优美，简洁明了，加上社区的强大，强有力的插件支持，使得自动化构建非常简洁。对于我们的目标来说我们首先需要这么做：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install --save-dev gulp
+npm install --save-dev react browserify reactify vinyl-source-stream 这两条命令一条安装Gulp，一条安装Gulp插件，记得在执行这两条之前执行
+
+npm install gulp -g 全局安装Gulp    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;browserify是一个工具，可以将node模块编译成浏览器可执行的commonjs模块。&lt;br /&gt;
+为了开发方便，需要在public/javascript/目录下面建立&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/build
+/src 这两个目录，然后在src里建立app.jsx，里面的内容如下:
+
+var React = require(&#39;react&#39;);
+var HelloWorld = require(&#39;./helloworld.jsx&#39;);
+
+React.render(
+	&amp;lt;HelloWorld /&amp;gt;,
+	document.getElementById(&#39;example&#39;)
+); 这就是我们主程序的入口，之后我们删除一些express脚手架建立的多余的内容，比如app.js中users部分，还有routes目录下users.js。 看app.jsx里面的代码，我们可以发现，组件的编写已经继承了Node.js的写法，把组件全部单文件化，这样需要哪个加载哪个。之后我们在src里面建立helloworld.jsx，里面内容如下:
+
+var React = require(&#39;react&#39;);
+
+module.exports = React.createClass({
+ render: function() {
+    return (&amp;lt;h1&amp;gt;Hello, world from a React.js linshuizhaoying!&amp;lt;/h1&amp;gt;)
+    }
+   }); 之后回到根目录，我们可以开始自动化构建了，新建一个gulpfile.js,里面内容如下：
+
+var gulp = require(&#39;gulp&#39;);
+
+var browserify = require(&#39;browserify&#39;);
+var reactify = require(&#39;reactify&#39;);
+var source = require(&#39;vinyl-source-stream&#39;);
+
+gulp.task(&#39;js&#39;, function(){
+browserify(&#39;./public/javascripts/src/app.jsx&#39;)
+    .transform(reactify)
+    .bundle()
+    .pipe(source(&#39;app.js&#39;))
+    .pipe(gulp.dest(&#39;public/javascripts/build/&#39;));
+});
+
+gulp.task(&#39;watch&#39;, function() {
+   gulp.watch(&quot;public/javascripts/src/*.jsx&quot;, [&quot;js&quot;])
+});
+gulp.task(&#39;default&#39;, [&#39;js&#39;]);
+gulp.task(&#39;default&#39;, [&#39;js&#39;, &#39;watch&#39;]);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;先是加载需要的插件。gulp.task建立一个gulp的任务，然后&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;browserify(&#39;./public/javascripts/src/app.jsx&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;传入入口文件的路径。&lt;br /&gt;
+    打包之前有jsx代码，因此我们需要用reactify来翻译因此用到了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.transform(reactify) 然后bundle打包，然后输出app.js到bulid目录下。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面的watch是监视目录下jsx文件的改动，如果有改动，那么就重新打包刷新。&lt;br /&gt;
+其实还可以压缩文件啊什么的，但是由于我们只是示例，这些以后正式部署再提。&lt;br /&gt;
+直接执行 gulp 命令会报错，因为我们之前执行的&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	npm install --save-dev react browserify reactify vinyl-source-stream 它其实是残缺的，还需要我们自己手工把缺失的模块npm install，不过我已经把整个项目打包并上传到github上了，需要的可以直接下载 [下载地址](https://github.com/linshuizhaoying/Node.js-Express4.x-React-Glup) 之后我们可以运行supervisor ./bin/www 来看我们建立的项目已经成功运行了。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That’s all.&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/n2.png?imageView2/2/w/600/h/600/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic1&quot; /&gt;&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>React从入门到上手三部曲</title>
+        <link>http://linshuizhaoying.github.io/2015/08/08/react-one.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/08/react-one.html</guid>
+        <pubDate>Sat, 08 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;最近学习react，总结一些东西，仅仅只是将一些个人认为比较重要的概念配合例子来讲解。有些例子来自阮一峰的学习笔记。其余的来自官网教程和«React-引领未来的用户开发框架»这本书。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;概念&lt;/h2&gt;
+&lt;p&gt;React是UI组件开发思路。配合jsx将组件不在写在html页面而是script中。它可配合Jquery，Backbone等等第三方库来使用,仅仅是将我们平常写的组件开发思路变了一下。曾经我想写一个组件，第一个思路就是写在jq的插件中。但是这种第三方插件的写法效率低下，虽然功能可能都可以实现，但是复杂，尤其是嵌套组件时，那将是个噩梦。React的出现给组件开发带来了革命性的创新。&lt;/p&gt;
+
+&lt;h3 id=&quot;jsx&quot;&gt;Jsx&lt;/h3&gt;
+&lt;p&gt;这种东西的基础学习请参考&lt;a href=&quot;http://facebook.github.io/react/docs/i&quot;&gt;官方教程&lt;/a&gt;.&lt;br /&gt;
+补充点实用的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jsx中class的写法不再是
+&amp;lt;div class=&quot;xxx&quot;&amp;gt; &amp;lt;/div&amp;gt;
+而是
+&amp;lt;div className=&quot;xxx&quot;&amp;gt; &amp;lt;/div&amp;gt;
+
+Style的写法:
+
+var divStyle = { 
+color: &#39;white&#39;,   
+backgroundImage: &#39;url(&#39; + imgUrl + &#39;)&#39;,  
+WebkitTransition: &#39;all&#39;, // note the capital &#39;W&#39; here   msTransition: &#39;all&#39; // &#39;ms&#39; is the only lowercase vendor prefix };
+React.render(&amp;lt;div style={divStyle}&amp;gt;Hello World!&amp;lt;/div&amp;gt;, mountNode);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;jsx-1&quot;&gt;Jsx的条件判断&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;三目  &lt;/li&gt;
+  &lt;li&gt;设置一个变量在属性中引用它&lt;/li&gt;
+  &lt;li&gt;将逻辑转化到函数中&lt;/li&gt;
+  &lt;li&gt;使用&amp;amp;&amp;amp;运算符&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;三目运算符例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;this.state.icComplete?&quot;is-complete&quot;:&#39;none&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用变量例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var isComplete = this.getIsComplete();
+return &amp;lt;div className={isComplete}&amp;gt;...&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用函数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;getIsComplete:function(){
+	if(...) 
+	return true
+}
+
+render:function(){
+  return &amp;lt;div className={this.getIsComplete}&amp;gt;...&amp;lt;/div&amp;gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用&amp;amp;&amp;amp;运算(如果前面为真就使用后面的字符串)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;return &amp;lt;div className={this.state.isComplete &amp;amp;&amp;amp; &quot;is-complete&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;ref&quot;&gt;引用(ref)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;return &amp;lt;div ref=&quot;myInput&quot;&amp;gt; 在组件的任何地方使用 this.refs.myInput获取这个引用，并且通过这个引用，使用 this.refs.myInput.getDOMNode()获得真实的DOM节点
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-2&quot;&gt;事件&lt;/h4&gt;
+&lt;p&gt;在jsx中，事件名被规范化并统一采用驼峰形式表示。change -&amp;gt; onChang , click -&amp;gt; onClick &lt;br /&gt;
+  捕获事件和设置属性一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; return &amp;lt;div onClick={this.handleClick}&amp;gt;...&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;React自动绑定了组件所有方法的作用域，因此不需要手动绑定。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;特殊属性&lt;/h4&gt;
+&lt;p&gt;label的标签添加for属性需要用htmlfor&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;小结&lt;/h3&gt;
+&lt;p&gt;其实react是有不用jsx的写法，但是我个人认为，既然jsx伴随react，而且官方文档里面也采用jsx的写法，如果真的自己想去手写纯react，那就是舍弃轮子的做法，除非自己有更好的轮子，否则还是学习jsx的写法。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;组件的生命周期&lt;/h3&gt;
+&lt;p&gt;组件的生命周期分成三个状态：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Mounting：已插入真实 DOM
+Updating：正在被重新渲染
+Unmounting：已移出真实 DOM React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。
+
+componentWillMount()
+componentDidMount()
+componentWillUpdate(object nextProps, object nextState)
+componentDidUpdate(object prevProps, object prevState)
+componentWillUnmount() 此外，React 还提供两种特殊状态的处理函数。
+
+componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
+shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用 更多组件生命周期可以点这里[React中文文档](http://reactjs.cn/react/docs/component-specs.html),如果英文水平还可以，而且想跟踪最新文档可以点这里[React Docs](http://facebook.github.io/react/docs/component-specs.html) 不过现阶段生命周期应该不会再有所改变。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;数据流&lt;/h3&gt;
+
+&lt;h4 id=&quot;props&quot;&gt;props&lt;/h4&gt;
+&lt;p&gt;props就是properties的简称，根据google翻译来看，它有性能，特性，属性的含义，可以使用它将任意类型的数据传给组件。一般情况下是在加载状态(挂载组件时)来设置它。比如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var survey = [{title:&quot;xxxx&quot;}];
+&amp;lt;ListSurveys survey={survey}/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者调用组件实例的setProps方法（但大多时候不会采取这种方式，因为props一旦设置就不会轻易去改变它。）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var survey = [{title:&quot;xxxx&quot;}];
+var listSurveys = React.render(
+   &amp;lt;ListSurveys/&amp;gt;,
+   document.querySelector(&#39;body&#39;);
+);
+listSurveys.setProps({surveys:surveys}); 可以通过this.props来访问props 但绝对不能通过这种形式改变它，一个组件绝对不可以自己修改自己的props。（于此对应的可修改自身的是state,详情看下文）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以为组件添加getDefaultProps函数来设置属性的默认值。不过，这应该只针对那些非必须属性。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var SurveyTable = React.createClass({
+	getDefaultProps : function(){
+	  return {
+	    surveys:[]
+	  };
+	}
+	//...
+
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;getDefaultProps并不是在组件实例化时被调用，而是在createClass时被调用，返回值会被缓存。也就是说，不能在getDefaultProps中使用任何特定的实例数据。&lt;/p&gt;
+
+&lt;h4 id=&quot;state&quot;&gt;state&lt;/h4&gt;
+&lt;p&gt;每一个组件都能拥有自己的state,state和props的区别在于state只存在于组件的内部。还有一个简单的区分方法是this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。&lt;br /&gt;
+state可以通过setstate来修改，也可以通过getInitialState方法提供一组默认值，写法和props类似。&lt;/p&gt;
+
+&lt;p&gt;千万不能直接修改this.state,永远记得用this.setstate方法修改。&lt;/p&gt;
+
+&lt;p&gt;不要在state里面保存计算的值，应该只保存最简单的数据，比如勾选状态checked。&lt;/p&gt;
+
+&lt;p&gt;不要尝试把props复制到state中，把props当中数据源。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;State 工作原理
+常用的通知 React 数据变化的方法是调用 setState(data, callback)。这个方法会合并（merge） data 到 	this.state，并重新渲染组件。渲染完成后，调用可选的 callback 回调。大部分情况下不需要提供 callback，因为 	React 会负责把界面更新到最新状态。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多state的原理可以点这里&lt;a href=&quot;http://reactjs.cn/react/docs/interactivity-and-dynamic-uis.html&quot;&gt;More State&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;api&quot;&gt;顶层API（必看）&lt;/h3&gt;
+&lt;p&gt;React 是 React 库的入口。如果使用的是预编译包，则 React 是全局的；如果使用 CommonJS 模块系统，则可以用 require() 函数引入 React。&lt;/p&gt;
+
+&lt;p&gt;直接看&lt;a href=&quot;http://facebook.github.io/react/docs/top-level-api.html&quot;&gt;官网的api&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;其他&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt; 在事件回调中调用preventDefault()来避免浏览器默认地提交表单。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;react实现了autoFocus属性，在组件第一次加载时，没有其它表单域聚焦时，react会自动对焦。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;example:
+ //jsx
+ &amp;lt;input type=“text” autoFocus =“true” /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;总结&lt;/h2&gt;
+&lt;p&gt;第一曲大概就是了解一下React，下面两部曲将直接Show you the code.&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>学习资料第一波</title>
+        <link>http://linshuizhaoying.github.io/2015/08/08/language%20learning%20website.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/08/language%20learning%20website.html</guid>
+        <pubDate>Sat, 08 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;推荐一些比较好的，现在看来偏门的学习资料&lt;/p&gt;
+
+&lt;h3 id=&quot;wwwthenewbostoncomhttpswwwthenewbostoncomvideosphp&quot;&gt;&lt;a href=&quot;https://www.thenewboston.com/videos.php&quot;&gt;www.thenewboston.com&lt;/a&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;	这个网站集合好多很新的程序语言=-= 适合新手入门某个领域，我刚刚看了一下Node.js版的，它的express已经更新到4.x了适合学习
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;httpslaracastscomhttpslaracastscom&quot;&gt;&lt;a href=&quot;https://laracasts.com/&quot;&gt;https://laracasts.com/&lt;/a&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;这个站是我从petter的视频中获取到的，非常好的。各种流行视频，英文，可能需要翻墙。作者语速还可以的，没有字幕也是妥妥的能看懂。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;httphaoduoshipincomhttphaoduoshipincom&quot;&gt;&lt;a href=&quot;http://haoduoshipin.com/&quot;&gt;http://haoduoshipin.com/&lt;/a&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Peter的视频站，超级棒，以前跟他学的rails，现在他正在发布Node.js+react系列，走在技术前言的男人。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;httpswwwgitbookcomexplorehttpswwwgitbookcomexplore&quot;&gt;&lt;a href=&quot;https://www.gitbook.com/explore&quot;&gt;https://www.gitbook.com/explore&lt;/a&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;这是GitBook 堪称程序员的简书，很多学习笔记，不只是学习笔记，例子啊什么都在里面，我学习React，从里面学到了开发环境的配置和Gulp的使用。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;2015年8月11日更新&lt;/h2&gt;
+
+&lt;h3 id=&quot;mediumcommediumcom&quot;&gt;&lt;a href=&quot;medium.com&quot;&gt;medium.com&lt;/a&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;这个站里面很多Web相关高质量的文章，需要细心查找，也可以订阅相关专题。。不说了，我要开始学英语了
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+      </item>
+    
+      <item>
+        <title>Node.js 伪部署</title>
+        <link>http://linshuizhaoying.github.io/2015/08/05/bushu.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/05/bushu.html</guid>
+        <pubDate>Wed, 05 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
+&lt;p&gt;前几天写了几个应用，打算在重构某个应用之前先把其他的部署到服务器，可能由于我RP太差，production环境下我总是失败，不过由于需求只是能够在服务器上运行，因此即便nginx下反代理无效，但是我可以通过域名加端口形式访问我的应用就行了。&lt;/p&gt;
+
+&lt;p&gt;##准备工作&lt;br /&gt;
+   * 一台vps   &lt;br /&gt;
+  我选择的是digitalocean.com,五美金一个月，差不多31RMB的样子，比阿里云动辄58RMB便宜好多，而且它一旦注册就送10美金，于是买一个月能用三个月。然后等到圣诞节，嘿嘿。。。&lt;br /&gt;
+   * 一个域名。我的是haoqiao.me 只需要解析二级域名到服务器上就行了&lt;/p&gt;
+
+&lt;p&gt;##开始伪部署&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%2009.10.32%20PM.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;Mou icon&quot; /&gt;&lt;br /&gt;
+    由于是node.js环境，因此直接在选择系统后选择了node.js的环境包。（当然可以选择自己去搭建）&lt;br /&gt;
+    然后就是自己链接上去。因为是新主机，先&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后再搭建mongdb数据库，这个网上有。&lt;br /&gt;
+ 下载安装完后&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mongd
+use gym   这样就完成数据库的初始化。之后把工程传到github上，在服务端运行git clone XXX.git就行了  然后因各种奇怪的原因，恩，我一直部署的都是开发环境，摔！  装上supervisor，反正我用Pm2 或者Node app都是各种奇怪的问题我就懒得去弄了。。。  之后就是把我传了很久的本地数据导出然后传到服务器上。因为mongdb有导出功能，不过直接导出数据库会导出bson这种json二进制格式，反正没导入成功，因此选择把库里的表一张张导出，还好也不多，就两张表。
+ 
+mongoexport -d gym -c trains -o trains.dat   把导出的文件传到git上，然后服务器clone一些。然后在服务器上运行对应导入命令就好了。这样最后
+  
+supervisor ./bin/www
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一下就能看到上帝了。这样伪部署就好了，不过还有个问题，当你断开连接的时候，进程也会断掉，网上后台运行进程的方案很多，但是经过我的尝试，只有新建一个screen来运行命令才不会断=-=。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	screen -dmS Urumchi
+	screen -list
+    screen -r Urumchi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok，一个伪部署就结束了。接下来就是继续重构开发然后试着正式部署了。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>个人健身系统从零开始(Node.js开发)</title>
+        <link>http://linshuizhaoying.github.io/2015/08/03/Fitness.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/03/Fitness.html</guid>
+        <pubDate>Mon, 03 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;description&quot;&gt;Description&lt;/h2&gt;
+
+&lt;p&gt;截止今日8月3日，个人健身管理系统第一版本已经开发好了，本地数据已经上传成功。来几张图欣赏一下。&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_11.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic1&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_12.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic2&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_13.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic3&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_14.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic4&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_15.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic5&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_16.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic6&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_17.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic7&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;正式简介&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;该管理系统是由我写完node.js爬虫后第一个练手的项目，起因是因为被人嘲讽瘦弱于是奋起锻炼，然后跟«囚徒健身»对上了眼，因此打算写一个能够管理自己健身的一个应用，正好又打算写一个管理系统，因此我就顺势而动了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;准备工作&lt;/h2&gt;
+&lt;p&gt;因为打算现在网上各种教程都比较零零碎碎，好像正式的详细的写一个从思路到成果的教程没几个，为了以后回忆方便以及方便后来人，我打算将工具，当时的想法等等一并写进来。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;环境准备&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Mac一台&lt;/li&gt;
+  &lt;li&gt;Node.js环境 mongo数据库环境(这个要一直开着，按照完成后运行命令mongod)&lt;/li&gt;
+  &lt;li&gt;npm&lt;/li&gt;
+  &lt;li&gt;express最新版本4.13.1(我用supervisor运行)&lt;/li&gt;
+  &lt;li&gt;能上国外网站的环境（我之前是红杏，但是它出问题的情况太多，因此我又买了枫叶主机的shadowssocks包年套餐）&lt;/li&gt;
+  &lt;li&gt;前端模板 bootstrap 以及二次开发模板，因为我比较注重功能的实现，界面设计不怎么在行，因此我选择了sublime和Metronic这两套模板（注意：这些模板在&lt;a href=&quot;http://themeforest.net/&quot;&gt;http://themeforest.net/&lt;/a&gt;有购买，海淘步骤比较繁琐，不过一个Paypal可以解决）&lt;/li&gt;
+  &lt;li&gt;高质量图片搜集工具zoommy(现在是4美金，作者常年在线=0=)，这是搜集网上高质量以及无版权的图片，用起来舒心又放心，一张好的背景图效果加成很多！&lt;/li&gt;
+  &lt;li&gt;monghub 以及robomongo （可视化的mongo数据库工具，前者界面看起来不错，后者功能很完全，我前期是用monghub，后期调试用robomongo）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;思路整理&lt;/h3&gt;
+&lt;p&gt;首先我一向是先设计界面，然后再设计数据库，最后开始功能的开发，因为我觉得只要设计稿有了，功能的思路就会很清晰，然后功能的开发一般不会偏离到哪里去-0-,一开始设计的是主页和注册登录页面以及用户管理页面。这类顺便提一句，开发是以node.js为核心，因此最好先去熟悉一下Node.js。推荐书籍«Node.js实战»«Node.js开发指南»，顺便把官网和国内学习node.js的基础文章都扫一遍就差不多了，具体文章我就不给出了，一搜一大把。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;开发流程&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;界面设计&lt;/h3&gt;
+&lt;p&gt;界面设计我是用hbuilder为编辑器，然后直接套用模板的一些界面，因为我是用express4.x版本开发，因此我选择了Jade为Html模板。ejs我当初用在爬虫上感觉不是很方便，jade的资料本来想共享的-0-但是印象笔记关闭了共享功能，这次项目开发我积累了不少资料，需要的同学可以发邮件给我，我用印象笔记的邮箱共享分享给你。jade的写法很简洁，但是我们是抄模板，如果抄一个比较复杂的组件可能就比较麻烦，本来想自己写一个转换工具的，但是后来发现有人写了。html2jade&lt;a href=&quot;http://html2jade.org/&quot;&gt;http://html2jade.org/&lt;/a&gt;,这个工具有个很漂亮的实现，以后再去研究。然后背景图用zoommy搜索了一些健身相关的图片。静态页面也差不多了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;动态效果开发&lt;/h3&gt;
+&lt;p&gt;有一个管理每日健身的选项需要勾选的时候添加删除线，然后标记已完成。这个功能直接用jq来实现，只是动态的添加class而已。&lt;br /&gt;
+  还有一个是管理页面的菜单选择，只要把其他选项先hide，然后选择哪个show哪个就行了。具体代码都可以参考github上的。&lt;br /&gt;
+  还有几个动态效果是模板自带的，只要自己把该加载的js加载就行了。后面我会提到什么时候用Layout模板的加载，什么时候自己写加载。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;路由&lt;/h3&gt;
+&lt;p&gt;node.js的路由写法分三种，然后express自己建立的脚手架一开始就帮助写好了几个，因此只需要按照它的样子继续写所需要的就行了。我们分为4个路由，登录，注册，首页，用户管理。先来看看我们的加载。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var express = require(&#39;express&#39;);  
+var path = require(&#39;path&#39;);
+var favicon = require(&#39;serve-favicon&#39;);
+var logger = require(&#39;morgan&#39;);
+var cookieParser = require(&#39;cookie-parser&#39;);
+var bodyParser = require(&#39;body-parser&#39;);
+var session = require(&#39;express-session&#39;);
+var connect = require(&#39;connect&#39;);
+var multiparty = require(&#39;multiparty&#39;);
+var http = require(&#39;http&#39;);
+var util = require(&#39;util&#39;);
+var fs = require(&#39;fs&#39;);
+var SessionStore = require(&quot;session-mongoose&quot;)(connect);
+var store = new SessionStore({
+url:&quot;mongodb://localhost/session&quot;,
+  interval: 120000
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;因为用户管理系统需要session,而且我用mongoose来处理数据，因此我采用网上一种session的写法，用session-mongoose这个模块。图片上传用到了connetc这个模块以及后面几个常规模块&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;));
+app.set(&#39;view engine&#39;, &#39;jade&#39;);
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, &#39;public&#39;, &#39;favicon.ico&#39;)));
+app.use(logger(&#39;dev&#39;));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, &#39;public&#39;)));
+
+app.use(&#39;/&#39;, routes);
+app.get(&#39;/logout&#39;, routes);
+app.get(&#39;/linshui&#39;, routes);
+app.post(&#39;/addnewtrain&#39;, routes);
+app.get(&#39;/deletetrain/:id&#39;, routes);
+app.get(&#39;/show/:id&#39;,routes);
+app.use(&#39;/user&#39;, users);
+app.post(&#39;/addusertrain&#39;, users);
+app.get(&#39;/deletemytrain/:week/:train&#39;, users);
+app.use(&#39;/signin&#39;, sign_in);
+app.get(&#39;/signin/:name/:pass&#39;,sign_in);
+app.use(&#39;/signup&#39;, sign_up);
+app.get(&#39;/signup/:regname/:regpass/:regemail&#39;,sign_up);
+
+app.use(function(req, res, next) {
+  res.locals.user = req.session.user || null;
+    next();
+}); 路由写法experss得先写use，如果遇到特殊情况比如post或者get，都要写到对应use的下面。如：
+
+app.use(&#39;/&#39;, routes);
+app.get(&#39;/logout&#39;, routes);
+app.get(&#39;/linshui&#39;, routes);
+app.post(&#39;/addnewtrain&#39;, routes);
+app.get(&#39;/deletetrain/:id&#39;, routes);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中/linshui我写在默认的routes里面，这里面包含一些列管理后台中用到的路由&lt;br /&gt;
+之后来看数据库这块。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var mongoose = require(&quot;mongoose&quot;);
+
+// 连接字符串格式为mongodb://主机/数据库名
+mongoose.connect(&#39;mongodb://localhost/gym&#39;);
+
+// 数据库连接后，可以对open和error事件指定监听函数。
+var db = mongoose.connection;
+db.on(&#39;error&#39;, console.error);
+db.once(&#39;open&#39;, function() {
+    console.log(&#39;连接成功&#39;)
+	    //在这里创建你的模式和模型
+});
+
+var Schema1 = mongoose.Schema;
+var gymuserSchema = new Schema1({
+    name : String,
+    pass : String,
+    email : String,
+    avatar : String,
+    mytrain:[]
+});
+
+
+var User = mongoose.model(&#39;User&#39;, gymuserSchema);
+//倒出模型
+module.exports = User 每个用户都有一个mytrain的数组，用来存放他们的健身项目。当初查文档的时候看到这种写法也是惊呆了,搭配上Mongoose的方便操作，数据库的ISUD四种操作都有官方文档的支持。数据库不设置密码，用户权限验证操作直接在route里面写。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;功能实现&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;注册登录&lt;/h3&gt;
+&lt;p&gt;来看这段代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var express = require(&#39;express&#39;);
+var router = express.Router();
+//数据操作对象
+var User = require(&#39;../database/user&#39;);
+/* GET home page. */
+router.get(&#39;/&#39;, function(req, res, next) {
+res.render(&#39;signup&#39;);
+});
+router.get(&#39;/signup&#39;, function(req, res, next) {
+res.render(&#39;signup&#39;);
+});
+router.get(&#39;/signup/:regname/:regpass/:regemail&#39;, function(req, res,next) {
+var regname = req.params.regname;
+var regpass = req.params.regpass;
+var regemail = req.params.regemail;
+console.log(regname + regpass + &quot;email:&quot; + regemail);
+
+User.findOne({ name: regname }, function(err, content) {
+	console.log(content);
+	if(content!=null){
+		res.end(&quot;用户名已存在！&quot;);
+    }else{
+		var newuser = new User(User);
+		newuser.name = regname;
+		newuser.pass = regpass;
+		newuser.email = regemail;
+		console.log(newuser.name + newuser.pass + &quot;email:&quot; + newuser.email);
+		newuser.save(function(err) {
+			if (err) {
+				console.log(&#39;保存失败&#39;);
+			}
+			  req.session.user = regname;
+			  console.log(regname);
+			  console.log(&#39;数据保存成功&#39;);
+				
+				res.write(&quot;done&quot;);
+				res.end();
+			});
+}
+});
+});
+router.get(&#39;/signup.html&#39;, function(req, res, next) {
+res.render(&#39;signup&#39;);
+});
+module.exports = router;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;每一个route必须先在app.js里面注册,否则会报错。参数的传递是用jq里面get提交方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    $.get(&quot;/signup/&quot; + regname + &quot;/&quot; + regpass + &quot;/&quot; + regemail,function(data){       
+        if(data == &#39;done&#39;)          
+        {
+           window.location.href=&quot;/signin&quot;;
+        }else{
+				    var $alert = $(&quot;&amp;lt;div class=&#39;alert alert-danger&#39; &amp;gt; &quot;).text(data);
+				    $(&#39;.alerterror&#39;).append($alert);
+          setTimeout(window.location.href=&quot;/signup&quot;,3000);
+        }
+    });   每个route处理数据都要记得调用end()，否则会一直等到服务器处理，最后超时报错。   登录模块类似，但是登录之后还有一句代码。
+  
+req.session.user = req.params.name;  这段是把session储存，之后在各个需要身份验证的地方都能方便的调用。其实身份验证还可以用cookie，在前端页面里面写验证也是可以的。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-10&quot;&gt;健身项目的管理&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;普通用户的操作&lt;/h3&gt;
+&lt;p&gt;查看自己的每日健身项目。遍历自己的健身项目，并且查看标准。增加删除健身项目。&lt;br /&gt;
+  这些功能是基于已经后台添加了健身项目的前提下。因此我们需要先把数据库建立起来。&lt;br /&gt;
+  train.js包含了所需的基本内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var mongoose = require(&quot;mongoose&quot;);
+
+// 连接字符串格式为mongodb://主机/数据库名
+mongoose.connect(&#39;mongodb://localhost/gym&#39;);
+
+// 数据库连接后，可以对open和error事件指定监听函数。
+var db = mongoose.connection;
+db.on(&#39;error&#39;, console.error);
+db.once(&#39;open&#39;, function() {
+console.log(&#39;连接成功&#39;)
+	//在这里创建你的模式和模型
+});
+
+
+/*
+ * 训练单项包括：
+ * 1、名称 2、具体描述 3、初级量标准 4 中级量标准 5、进阶量标准 6、演示图片
+ * 
+ */
+var Schema2 = mongoose.Schema;
+var trainSchema = new Schema2({
+    name : String,
+    content : String,
+    junior_num : Number,
+    junior_rate : Number,
+    middle_num :Number,
+    middle_rate : Number,
+    advanced_num : Number,
+    advanced_rate: Number,
+    pic_array :[]
+})
+
+var Train = mongoose.model(&#39;Train&#39;, trainSchema);
+//倒出模型
+module.exports = Train
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当初我把train和user写在一个文件里导出，但是出错，之后我就把两个数据schema分离并且分别导出。&lt;/p&gt;
+
+&lt;p&gt;之后我先完成了后台增加健身项目这个功能。&lt;br /&gt;
+  这其中就包括了图片上传，图片上传我现实在npmjs&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;https://www.npmjs.com/&lt;/a&gt;里面查找上传模块，测试了几个都不怎么理想。然后google了一下，好像是说express自带上传模块，后来经过测试，发现高版本的express已经不支持自带了，因此又查找，最后在多个模块测试后选择了multiparty这个模块。我选择在app.js写上传功能，因为我怕后面各个地方都需要用到，因此放在公共的地方。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.post(&#39;/upload&#39;, function(req, res, next){  
+ var form = new multiparty.Form({uploadDir: &#39;./public/images/&#39;});
+  //下载后处理
+    form.parse(req, function(err, fields, files) {
+      var filesTmp = JSON.stringify(files,null,2);
+  
+     if(err){
+     console.log(&#39;parse error: &#39; + err);
+      } else {
+        console.log(&#39;parse files: &#39; + filesTmp);
+        var inputFile = files.inputFile[0];
+        var uploadedPath = inputFile.path;
+        var dstPath = &#39;./public/files/&#39; + inputFile.originalFilename;
+		console.log(&quot;上传成功:&quot; + uploadedPath);
+        res.writeHead(200, {&#39;content-type&#39;: &#39;text/plain;charset=utf-8&#39;});
+        res.end(uploadedPath);
+  }
+ });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后在后台Linshui.jade里面写上传页面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;form(method=&#39;post&#39;, enctype=&#39;multipart/form-data&#39;, action=&#39;/upload&#39;,style=&quot;margin-top:15px&quot;)#frmUploadFile1
+  .col-md-3.col-md-offset-3
+    input(name=&#39;inputFile&#39;, type=&#39;file&#39;, multiple=&#39;mutiple&#39;).form-control
+  .col-md-3
+    input#imgurl1.alert.alert-success
+  .col-md-2
+    i.fa.fa-upload
+  .btn.btn-primary.uploadMe1 上传
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;因为提交表单还需要上传后的地址，因此我在表单里面加了一个Input来放置上传后的url。上传图片我用jq的ajax提交。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$(&quot;.uploadMe1&quot;).click(function(){
+	var formData = new FormData($(&quot;#frmUploadFile1&quot;)[0]);
+	  $.ajax({
+	    url: &#39;/upload&#39;,
+	    type: &#39;POST&#39;,
+	    data: formData,
+	    async: false,
+	    cache: false,
+	    contentType: false,
+	    processData: false,
+	    success: function(data){
+	      if(data) {
+	        alert(&quot;上传成功&quot;);
+		      $(&quot;#imgurl1&quot;).val(data.slice(14,data.length));
+	      } else {
+	        alert(&quot;上传失败&quot;);
+	      }
+
+	    },
+	    error: function(){
+	      alert(&quot;与服务器通信发生错误&quot;);
+	    }
+	  });
+	
+	});   因为上传模块最后返回的是绝对地址，因此需要进行处理,因为返回的内容是固定的，因此直接slice分割一些就行了。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;图片搞定后就是添加健身项目表单的提交。这里提一句，如果是get提交，那么在后台取是根据url里面的参数来取，因此写route的时候要把参数写对，不能多也不能少。get是以req.params.xxx来获取参数。post是以req.body.xxx来获取。如果参数不多，还是建议get来提交。当然如果为了安全性，Post提交当然更好。&lt;br /&gt;
+  提交添加健身项目表单 后台处理代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;router.post(&#39;/addnewtrain&#39;, function(req, res, next) {
+   if(req.session.user == &quot;admin&quot;){
+
+Train.findOne({ name: req.body.title }, function(err, content) {
+	console.log(content);
+	if(content!=null){
+		res.end(&quot;用户名已存在！&quot;);
+}else{
+		var newtrain = new Train(Train);
+		newtrain.name = req.body.title;
+		newtrain.content = req.body.desc;
+		newtrain.junior_num = req.body.junior_num;
+		newtrain.junior_rate = req.body.junior_rate;
+		newtrain.middle_num = req.body.middle_num;
+		newtrain.middle_rate = req.body.middle_rate;
+		newtrain.advanced_num = req.body.advanced_num;
+		newtrain.advanced_rate= req.body.advanced_rate;
+		if(req.body.img1){
+			newtrain.pic_array.push(req.body.img1);
+		}
+		if(req.body.img2){
+			newtrain.pic_array.push(req.body.img2);
+		}
+		if(req.body.img3){
+			newtrain.pic_array.push(req.body.img3);
+		}
+		newtrain.save(function(err) {
+			if (err) {
+				console.log(&#39;保存失败&#39;);
+			}
+			  console.log(&#39;数据保存成功&#39;);
+			  res.write(&quot;done&quot;);
+				res.end();
+			});
+}
+});
+	
+}else{
+	res.redirect(&#39;/&#39;);
+}
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;前台处理代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; $(&quot;.addnewtrain&quot;).click(function(){
+   var title = $(&quot;#traintitle&quot;).val();
+   var desc = $(&quot;#traindesc&quot;).val();
+   var junior_num = $(&quot;#trainjunior_num&quot;).val();
+   var junior_rate = $(&quot;#trainjunior_rate&quot;).val();
+   var middle_num = $(&quot;#trainmiddle_num&quot;).val();
+   var middle_rate = $(&quot;#trainmiddle_rate&quot;).val();
+   var advanced_num = $(&quot;#trainadvanced_num&quot;).val();
+   var advanced_rate = $(&quot;#trainadvanced_rate&quot;).val();
+   var img1 = $(&quot;#imgurl1&quot;).val();
+   var img2 = $(&quot;#imgurl2&quot;).val();
+   var img3 = $(&quot;#imgurl3&quot;).val();
+   
+   $.post(&quot;/addnewtrain&quot;,{
+   
+    title:title,
+    。。。
+  	},
+  	  function(result){
+      console.log(result);
+      if(result==&quot;done&quot;){
+      	  window.location.href=&quot;/linshui&quot;;
+      }
+    });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后的用户添加健身项目就是直接从数据库里面获取。&lt;br /&gt;
+  这里是关键代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Train.find(function(err,trains) {  
+User.find({name: req.session.user
+}, function(err,contents) {
+if (err) {
+console.log(err)
+  return
+}
+var mytrains = contents[0].mytrain;
+  res.render(&#39;user&#39;{user:req.session.user,trains:trains,mytrains:mytrains,todaytrains:todaytrains,myalltrains:myalltrains});
+});   删除健身项目代码，mongoose里面已经有很完美的处理方案，我们只需根据文档来操作就行了。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-12&quot;&gt;结尾&lt;/h2&gt;
+&lt;p&gt;事实上还有几个功能还没加进来，比如用户资料，比如健身日记，比如每日签到，比如提交训练结果后根据锻炼时间长短分析提示应该进行下一个阶段的训练等等。不过对于我来说，这个系统已经够用了。而且今天写博客的中途去完成了今日的任务列表。人已经虚了=-=就先写到这里。后续功能将一步步完善，所有的代码我都放在了github&lt;a href=&quot;https://github.com/linshuizhaoying/gym&quot;&gt;https://github.com/linshuizhaoying/gym&lt;/a&gt; 有什么建议还有问题可以email我，因为现在还没对博客添加评论插件，一切回复都用左下角的邮箱来。&lt;/p&gt;
+
+</description>
+      </item>
+    
+  </channel>
+</rss>

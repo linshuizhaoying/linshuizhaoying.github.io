@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>译文-React’s diff algorithm（React diff算法） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150816">译文-React’s diff algorithm（React diff算法）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpcalendarperfplanetcom2013diff">原文来源:<a href="http://calendar.perfplanet.com/2013/diff/">这里</a></h3>
+
+<h3 id="christopher-chedeau">作者:Christopher Chedeau</h3>
+
+<h3 id="section-1">译者:临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+
+<p>这是第一篇正式的翻译文=-=，以后会陆续将看到好的文章放上来。毕竟打算做一个前端咨询站，内容包括国外前沿技术，国内优秀文章等等。</p>
+
+<h2 id="section-3">正文</h2>
+
+<p>React 是一个Facebook用来构建用户界面开发的javascript库。它是基于高性能而设计的。这篇文章我将阐述它的diff算法和渲染过程来让你优化你的项目。</p>
+
+<h3 id="diff-algorithm">Diff Algorithm</h3>
+<p>在我阐述细节之前，先预览React是如何工作的非常作用。</p>
+
+<pre><code>var MyComponent = React.createClass({ render: function() { if (this.props.first) { return &lt;div className="first"&gt;&lt;span&gt;A Span&lt;/span&gt;&lt;/div&gt;; } else { return &lt;div className="second"&gt;&lt;p&gt;A Paragraph&lt;/p&gt;&lt;/div&gt;; } } });
+</code></pre>
+
+<p>在任何时候，当你描述你所想要的UI界面。理解渲染的结果不是真实的Dom节点这个概念非常重要。这些都是轻便的javascript对象，我们称它们为（virtual DOM）虚拟节点。</p>
+
+<p>React将用这种方式试图找到从渲染的上一步到下一步之间的最小数目。举个栗子，如果我们想要将</p>
+
+<pre><code> &lt;MyComponent first={true} /&gt;
+</code></pre>
+
+<p>用  </p>
+
+<pre><code> &lt;MyComponent first={false} /&gt;
+</code></pre>
+
+<p>来替换，然后移除它。这是Dom操作的过程：</p>
+
+<pre><code>刚开始没有节点
+  开始创建节点 &lt;div className="first"&gt;&lt;span&gt;A Span&lt;/span&gt;&lt;/div&gt;
+第一步到第二步
+  替换属性：用className="second" 替换 className="first" 
+  替换节点：用&lt;p&gt;A Paragraph&lt;/p&gt; 替换 &lt;span&gt;A Span&lt;/span&gt;
+ 第三步
+   移除节点 &lt;div className="second"&gt;&lt;p&gt;A Paragraph&lt;/p&gt;&lt;/div&gt;
+</code></pre>
+
+<h3 id="section-4">逐级</h3>
+<p>在两颗任意树(不理解树的童鞋可以看wiki的<a href="https://en.wikipedia.org/wiki/Tree_(data_structure)">介绍</a>)之间找到最小的差异是一个 O(n^3)级别（时间复杂度）的问题。你可以想象一下，这肯定不是我们需要的解决方案。React用了最简单也最实用的方式，这个解决方案近似于O(n)的复杂度。</p>
+
+<p>React只是试图逐级对比两颗树。这大大降低了解决问题的复杂性而且在Web应用中将一个组件移到其他级的树上它不仅不会造成很大浪费而且会很节约。它们通常只移动子节点。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-1-1.png" alt="img1" /></p>
+
+<h3 id="section-5">列表</h3>
+<p>让我们来假设我们有个组件它将迭代渲染5个组件并将在下一步中插入一个新的新的组件放到迭代列表中间。这很难知道两个组件列表之间的映射关系。</p>
+
+<p>默认的，React将上一步的第一个组件作为下一个列表中的第一个。你可以提供<code>key</code>属性来帮助React找出映射。实践中，这通常很简单的能找到其中列表中拥有唯一key的子组件。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-1-2.png" alt="img2" /></p>
+
+<h3 id="section-6">组件</h3>
+<p>一个React组件通常由用户自定义的组件构成，最后形成以 <code>div</code>为主的树。当React匹配相同组件的时候这些额外的信息将被diff算法用来查找具有相同类的组件。</p>
+
+<p>举个栗子，一个 <code>&lt;Header&gt;</code>被一个<code>&lt;ExampleBlock&gt;</code>代替。React将会移除<code>&lt;Header&gt;</code>并创建新的块。我们不需要花费昂贵的时间试图匹配两个组件因为他们不可能有相同处。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-1-3.png" alt="img3" /></p>
+
+<h3 id="section-7">事件委派</h3>
+
+<p>对Dom节点附加事件监听是很浪费的行为。React用一种称为“事件委托”的流行的技术来代替。React走的远它实现了基于w3c兼容事件系统。这意味着IE8的事件处理的各种Bug将一去不复返，所有事件名将跨浏览器一致。</p>
+
+<p>让我来解释如何实现的。一个简单地事件监听是附加在Document下的根节点。当事件发射（fired）时，浏览器会给我们目标Dom节点。为了通过DOM层级传播事件，React并没有在虚拟节点层迭代。</p>
+
+<p>每一个React组件具有唯一的ID层级编码。我们能用简单地字符串操作来获取所有家长的的ID。通过储存事件监听的hash表，可以发现比将它们附加在虚拟节点表现的更加好。下面是一个将事件委派给虚拟DOM的例子。</p>
+
+<pre><code>// dispatchEvent('click', 'a.b.c', event) clickCaptureListeners['a'](event); 		clickCaptureListeners['a.b'](event); clickCaptureListeners['a.b.c'](event); 		clickBubbleListeners['a.b.c'](event); clickBubbleListeners['a.b'](event); 		clickBubbleListeners['a'](event);
+</code></pre>
+
+<p>浏览器给每一个时间和监听者都创建一个新的事件对象。这具有很好的特性，你可以保存事件对象的引用，甚至可以修改它。然而，这意味着大量的内存消耗。React在启动时为这些对象分配内存池。当需要一个对象时，它从该池中重复使用，这大大降低了垃圾回收。</p>
+
+<h3 id="section-8">渲染</h3>
+
+<h4 id="section-9">批处理</h4>
+<p>无论何时你在组件中调用<code>setState</code>方法，React都将标记它为<code>脏</code>（dirty）.在事件处理最末，React将会把所有脏标记的组件重新渲染。</p>
+
+<p>批处理意味着在事件周期中，有DOM被恰好被更新一次。这个属性是编写高质量应用的关键，而且现在很难简单的用javascript来写编写类似功能。而在React，这已经被默认定义了。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-1-4.png" alt="img4" /></p>
+
+<h3 id="section-10">子树渲染</h3>
+<p>当<code>setState</code>被调用，组件重构子组件的虚拟DOM。如果你在根调用<code>setState</code>，整个组件将被重新渲染。所有的组件，即使它们没有改变，都会有它们自己的<code>Render</code>.这听起来很吓人，很低效，但是我们并没有接触真实的DOM。</p>
+
+<p>首先，我们讨论用户界面的呈现。因为屏幕大小有限，你需要经常同时呈现成千上百个元素。Javascript足够快能够承担业务逻辑使界面为可控的。</p>
+
+<p>另一个关键点是写React代码，你经常调用setState在根节点改变时。你在组件中调用它然后获得改变事件或者在多个组件之上调用。你很少能够直达到顶端。这意味着变化被定位在用户交互中。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//t-1-5.png" alt="img5" /></p>
+
+<h3 id="section-11">选择子树渲染</h3>
+
+<p>最后，你可能需要防止某些子树被渲染。如果你执行下面的方法：</p>
+
+<pre><code>boolean shouldComponentUpdate(object nextProps, object nextState)
+</code></pre>
+
+<p>在组件中设定下一个props/state之前，你可以告诉React这个组件将不会变化而且没有必要重新渲染它。当被恰当的实施，它确实可以给你带来巨大的性能提升。</p>
+
+<p>为了能够使用它，你需要能够比较javascript对象，因为浅拷贝会引起很多问题，你需要深拷贝或者用一直不变的数据结构。</p>
+
+<p>如果你想要保持这个方法能被在任何时候调用，因此你需要确保计算时间少于渲染时间。即使子渲染不是非常严格的需要。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//1-1-6.png" alt="img6" /></p>
+
+<h2 id="section-12">结论</h2>
+
+<p>使React变得快的技术并不是最新的。我们都知道长时间接触DOM的代价是昂贵的，你需要批量写入和读取操作，事件委托更快。。。</p>
+
+<p>人们依然在讨论它们因为在实际中，他们很难去实施常规的Javascript代码，正是这些都在React是默认定义的才使React脱颖而出。这使得它很难搬起石头砸自己的脚让你的应用变慢。</p>
+
+<h2 id="section-13">译者言</h2>
+
+<p>这是第一次翻译，花了大概半天的时间，把看到的翻译成中文还是蛮困难的，有些东西一看就意会，然后转成语言就很奇怪。这次算是练手，对着原文翻译，这是蛮差劲的。应该是用自己的话表达出来而且加入自己的看法这是我所追求。继续努力吧。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/译文-React’s diff algorithm（React diff算法）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/16/translate%20one.html&text=译文-React’s diff algorithm（React diff算法）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/16/translate%20one.html&title=译文-React’s diff algorithm（React diff算法）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

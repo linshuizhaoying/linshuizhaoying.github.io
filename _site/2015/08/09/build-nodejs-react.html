@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>建立Node.js+Express4.x+React+Gulp的开发环境 | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="开发环境搭建">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150809">建立Node.js+Express4.x+React+Gulp的开发环境</h1>
+  <h2 id="section">正文</h2>
+<p>俗话说，工欲善其事，必先利其器。一个好的开发环境必将带来效率的成本提升。React的开发环境多种多样，配合不同的环境有不同的写法。由于我之前在学Node.js，对Node.js的Web框架Express恋恋不舍，因此google了很久才找到想要的东东。</p>
+
+<h2 id="section-1">开始搭建</h2>
+<p>开头第一句应该就是很熟悉的</p>
+
+<pre><code> express env
+ cd env 这样就建立了一个env的目录，并切进去
+</code></pre>
+
+<p>由于我们已经有了node.js应用，我们就继续添加相应的工具来将jsx脚本编译成标准JavaScript。接下来有两种选择，一种是手动编译，一种是自动化。</p>
+
+<pre><code>提起自动化，我很久以前就听过这个，但是一直觉得没啥用，因为自己当初水平比较低，写的东西都是静态居多，或者加个jqeury插件就差不多了，但是随着知识的积累，一个效率的开发应该是部署到线上能稳定的运行，并且它所占用的资源应该尽可能少。这需要压缩图片，js,css。以及打包发布等等过程。
+</code></pre>
+
+<h3 id="section-2">手动编译</h3>
+
+<p>我们需要安装react-tools这个node包，使用如下命令：</p>
+
+<pre><code>$ npm install react-tools --save-dev
+</code></pre>
+
+<p>现在我们可以使用这样的命令将jsx脚本编译成标准JavaScript：</p>
+
+<pre><code>$ ./node_modules/react-tools/bin/jsx public/javascripts/src/ public/javascripts/build/
+记得使用-x标志，因为我们使用.jsx作为代码文件扩展名
+</code></pre>
+
+<p>这样的缺点很明显，每次你写完之后都需要重新编译。<br />
+### 自动化构建	<br />
+Gulp是一个非常棒的自动化构建工具，而且它基于Node.js，这样就显得很亲切。而且它的写法非常的优美，简洁明了，加上社区的强大，强有力的插件支持，使得自动化构建非常简洁。对于我们的目标来说我们首先需要这么做：</p>
+
+<pre><code>npm install --save-dev gulp
+npm install --save-dev react browserify reactify vinyl-source-stream 这两条命令一条安装Gulp，一条安装Gulp插件，记得在执行这两条之前执行
+
+npm install gulp -g 全局安装Gulp    
+</code></pre>
+
+<p>browserify是一个工具，可以将node模块编译成浏览器可执行的commonjs模块。<br />
+为了开发方便，需要在public/javascript/目录下面建立</p>
+
+<pre><code>/build
+/src 这两个目录，然后在src里建立app.jsx，里面的内容如下:
+
+var React = require('react');
+var HelloWorld = require('./helloworld.jsx');
+
+React.render(
+	&lt;HelloWorld /&gt;,
+	document.getElementById('example')
+); 这就是我们主程序的入口，之后我们删除一些express脚手架建立的多余的内容，比如app.js中users部分，还有routes目录下users.js。 看app.jsx里面的代码，我们可以发现，组件的编写已经继承了Node.js的写法，把组件全部单文件化，这样需要哪个加载哪个。之后我们在src里面建立helloworld.jsx，里面内容如下:
+
+var React = require('react');
+
+module.exports = React.createClass({
+ render: function() {
+    return (&lt;h1&gt;Hello, world from a React.js linshuizhaoying!&lt;/h1&gt;)
+    }
+   }); 之后回到根目录，我们可以开始自动化构建了，新建一个gulpfile.js,里面内容如下：
+
+var gulp = require('gulp');
+
+var browserify = require('browserify');
+var reactify = require('reactify');
+var source = require('vinyl-source-stream');
+
+gulp.task('js', function(){
+browserify('./public/javascripts/src/app.jsx')
+    .transform(reactify)
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('public/javascripts/build/'));
+});
+
+gulp.task('watch', function() {
+   gulp.watch("public/javascripts/src/*.jsx", ["js"])
+});
+gulp.task('default', ['js']);
+gulp.task('default', ['js', 'watch']);
+</code></pre>
+
+<p>先是加载需要的插件。gulp.task建立一个gulp的任务，然后</p>
+
+<pre><code>browserify('./public/javascripts/src/app.jsx')
+</code></pre>
+
+<p>传入入口文件的路径。<br />
+    打包之前有jsx代码，因此我们需要用reactify来翻译因此用到了</p>
+
+<pre><code>.transform(reactify) 然后bundle打包，然后输出app.js到bulid目录下。
+</code></pre>
+
+<p>下面的watch是监视目录下jsx文件的改动，如果有改动，那么就重新打包刷新。<br />
+其实还可以压缩文件啊什么的，但是由于我们只是示例，这些以后正式部署再提。<br />
+直接执行 gulp 命令会报错，因为我们之前执行的</p>
+
+<pre><code>	npm install --save-dev react browserify reactify vinyl-source-stream 它其实是残缺的，还需要我们自己手工把缺失的模块npm install，不过我已经把整个项目打包并上传到github上了，需要的可以直接下载 [下载地址](https://github.com/linshuizhaoying/Node.js-Express4.x-React-Glup) 之后我们可以运行supervisor ./bin/www 来看我们建立的项目已经成功运行了。
+</code></pre>
+
+<p>That’s all.<br />
+<img src="http://7s1say.com1.z0.glb.clouddn.com/n2.png?imageView2/2/w/600/h/600/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="pic1" /></p>
+
+   <button><a href="http://comments.haoqiao.me/show/建立Node.js+Express4.x+React+Gulp的开发环境/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/09/build-nodejs-react.html&text=建立Node.js+Express4.x+React+Gulp的开发环境" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/09/build-nodejs-react.html&title=建立Node.js+Express4.x+React+Gulp的开发环境" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>
