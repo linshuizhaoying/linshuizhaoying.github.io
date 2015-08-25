@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/25/translate%20nine.html"><span class="pl__circle"></span><span class="pl__title">A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/25/base-bind.html"><span class="pl__circle"></span><span class="pl__title">对javascript中apply和call的一点探索</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150825">A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpwwwsitepointcomcontent-switching-component-built-three-ways">原文来源:<a href="http://www.sitepoint.com/content-switching-component-built-three-ways/">这里</a></h3>
+
+<h3 id="scott-ohara">作者: Scott O`Hara</h3>
+
+<h3 id="section-1">译者: 临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+
+<p>此文相当于基础巩固文。我只是好奇css的版本应该怎么写-0-</p>
+
+<h2 id="section-3">正文</h2>
+
+<p>不久前，我的一个朋友通过<code>&lt;select&gt;</code>元素制作了一个切换页面的UI组件。她的代码正常运行，但现在她想用用jqeury来制作，因此她向我求助能够帮她优化。</p>
+
+<p>虽然不是完整的代码，我创建了一个她试图想要完成的例子：</p>
+
+<pre><code>&lt;div class="select-area"&gt;
+  &lt;select name="choose" id="choose" class="input-select"&gt;
+    &lt;option value="nul" selected&gt;Make a Selection&lt;/option&gt;
+    &lt;option value="opt1"&gt;Option 1&lt;/option&gt;
+    &lt;option value="opt2"&gt;Option 2&lt;/option&gt;
+    &lt;option value="opt3"&gt;Option 3&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;section class="jqueryOptions opt1"&gt;
+  &lt;div class="content"&gt;
+    &lt;h2&gt;Option 1 Content&lt;/h2&gt;
+    &lt;p&gt;
+      ...
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="jqueryOptions opt2"&gt;
+  &lt;div class="content"&gt;
+    &lt;h2&gt;Option 2 Content&lt;/h2&gt;
+    &lt;p&gt;
+      ...
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;section class="jqueryOptions opt3"&gt;
+  &lt;div class="content"&gt;
+    &lt;h2&gt;Option 3 Content&lt;/h2&gt;
+    &lt;p&gt;
+      ...
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>在优化之后，这是我们用toggle来展示选择内容块状态的Jquery代码：</p>
+
+<pre><code>$(function() {
+  $('.jqueryOptions').hide();
+
+  $('#choose').change(function() {
+    $('.jqueryOptions').slideUp();
+    $('.jqueryOptions').removeClass('current-opt');
+    $("." + $(this).val()).slideDown();
+    $("." + $(this).val()).addClass('current-opt');
+  });
+});
+</code></pre>
+
+<h2 id="section-4">这是怎么回事？</h2>
+<p>默认的，整个jquery函数查找样式名为<code>jqueryOptions</code>的内容块，然后隐藏它们。</p>
+
+<p>当用户改变<code>select</code>输入框的选择选项时，这个函数先用Jquery的<code>slideUp()</code>将潜在打开内容块的关闭然后用<code>slideDown</code>将选择的选项指向的内容打开。</p>
+
+<p>所以</p>
+
+<pre><code>&lt;option value="opt1"&gt;Option 1&lt;/option&gt;
+</code></pre>
+
+<p>匹配</p>
+
+<pre><code>&lt;section class="options opt1"&gt;
+  ...
+&lt;/section&gt;
+</code></pre>
+
+<p><a href="http://jsfiddle.net/linshuizhaoying/9xk9zv8q/">Demo Click Here</a></p>
+
+<h2 id="jquery">为什么不离开Jquery？</h2>
+
+<p>Jquery的解决方案有个问题就是我们为这么一个小功能需要包含Jquery库（98kb）。我们可以做的更好</p>
+
+<p>不改变原来的标记内容，让我们来用javascript和css来达到同样的效果。</p>
+
+<p>首先我们需要想想该怎么样来完成这个效果：</p>
+
+<pre><code>内容块需要被默认隐藏
+当被选择时，选中块显示
+我们在新的选项被选中时需要隐藏任何打开的内容块
+</code></pre>
+
+<p>在代码中可能有一些附加片段，但是这是我们需要牢记在心的三个要点。当然，默认隐藏内容块我们可以用css来设置。隐藏我们只需要完成剩下的两个。</p>
+
+<h2 id="javascript">创建纯javascript版本</h2>
+
+<p>开始，让我们创建一些让我们接下来工作更加轻松的变量</p>
+
+<pre><code>var selectInput = document.getElementById('choose'),
+panels = document.querySelectorAll('.options'),
+currentSelect,
+i;
+</code></pre>
+
+<p>现在我们有了一个能更加方便访问输入框的<code>selectInput</code>变量。代表不同内容的面板panels，代表当前选择状态的currentSelect，和一个迭代变量。</p>
+
+<p>接下来我们需要写些帮助我们关注从项目列表中取得子项的方法。</p>
+
+<p>首先我们需要一个能够当新选项被选择时候隐藏其他内容的方法：</p>
+
+<pre><code>function clearShow() {
+  for ( i = 0; i &lt; panels.length; i++ ) {
+    panels[i].classList.remove('show');
+  }
+}
+</code></pre>
+
+<p><code>clearShow()</code> 这个方法就是做这些事情的。首先，从我们的<code> panels</code> 变量中取得内容并循环迭代删除<code> show</code> 这个样式。</p>
+
+<p><code> show</code> 这个样式让我们的内容在页面中可见。</p>
+
+<p>现在我们需要让我们选择的面板显示：</p>
+
+<pre><code>function addShow(showThis) {
+  var el = document.getElementsByClassName(showThis);
+  for ( i = 0; i &lt; el.length; i++ ) {
+     el[i].classList.add('show');
+   }
+} 
+</code></pre>
+
+<p><code>addShow</code>方法接受一个<code>showThis</code>参数然后添加<code>show</code>样式到这个节点。现在我们依旧需要一些方法将<code>showThis</code>的值传给<code>addShow（）</code></p>
+
+<pre><code>function vUpdate() {
+  currentSelect = selectInput.value;
+
+  clearShow();
+  addShow(currentSelect);
+}
+
+selectInput.addEventListener('change', vUpdate);
+</code></pre>
+
+<p><code>vUpdate()</code>方法在任何选择输入框被更新的时候执行。所以，当<code>vUpdate()</code>方法运行时，它执行以下操作：</p>
+
+<pre><code>获取selectInput的值然后储存到currentSelect的变量
+执行clearShow方法
+执行addShow方法
+</code></pre>
+
+<p>这是这个<a href="http://jsfiddle.net/linshuizhaoying/9xk9zv8q/1/">Demo</a></p>
+
+<p>在我们继续进行之前，如果你选择了一个选项然后刷新整个页面，这个值可能会留在input但是面板不会显示。</p>
+
+<p>我们可以用下面的代码来修补：</p>
+
+<pre><code>if (selectInput.value !== 'nul') {
+  currentSelect = selectInput.value;
+  addShow(currentSelect);
+}
+</code></pre>
+
+<p>最后，如果你想要支持ie9或者更低版本，我们不能用<code>classList()</code>，可以用下面的代替。</p>
+
+<pre><code>function addClass(elm, newClass) {
+    elm.className += ' ' + newClass;
+}
+
+function removeClass(elm, deleteClass) {
+  elm.className = elm.className.replace(new RegExp("\\b" + deleteClass + "\\b", 'g'), '    ').trim();
+  /* the RegExp here makes sure that only
+ the class we want to delete, and not
+ any other potentially matching strings 
+ get deleted.
+  */
+}
+</code></pre>
+
+<h2 id="css">能只用CSS来实现吗？</h2>
+
+<p>我做了很多组件，我喜欢尝试用纯css来实现它们。然而Jquery和javascript可以基于同样的布局，但是css需要修改。</p>
+
+<p>与之前的版本相比最大也是最重要的就是<code>select</code>需要被完全代替。</p>
+
+<p>我们将用<code>box/radio button</code>的hack来重建<code>select</code></p>
+
+<p>这是我们的新<code>select</code>元素：</p>
+
+<pre><code>&lt;input type='checkbox' class="invis" id="open_close" /&gt;
+&lt;input type='radio' name='opts' class="invis" id="opt1" /&gt;
+&lt;input type='radio' name='opts' class="invis" id="opt2" /&gt;
+&lt;input type='radio' name='opts' class="invis" id="opt3" /&gt;
+
+&lt;header class="header-base"&gt;
+  &lt;div class="content"&gt;
+    &lt;p&gt;
+      Choose an Option
+    &lt;/p&gt;
+
+&lt;div class="select-area"&gt;
+  &lt;label for="open_close" class="input-select"&gt;
+    ...
+  &lt;/label&gt;
+
+  &lt;ul class="select-options"&gt;
+    &lt;li&gt;
+      &lt;label for="opt1"&gt;Option 1&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;label for="opt2"&gt;Option 2&lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;label for="opt3"&gt;Option 3&lt;/label&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre>
+
+<p>ul无序列表将作为我们新的<code>select</code>元素</p>
+
+<p><code>opt1</code>、<code>opt2</code>、<code>opt3</code>标签通过相应的ID改变<code>radio buttons</code>的选择状态，在CSS中，根据哪个<code>radio buttons</code>被选择，对应的面板将被显示：</p>
+
+<pre><code>#opt1:checked ~ main .opt1,
+#opt2:checked ~ main .opt2,
+#opt3:checked ~ main .opt3 {
+  display: block;
+  height: 100%;
+  overflow: visible;
+  visibility: visible;
+}
+</code></pre>
+
+<p>这里用到了很多css细节，你看在<a href="http://www.sitepoint.com/you-can-do-that-with-css/">这里</a>或者<a href="http://www.scottohara.me/article/morph-button-updated.html">这里</a>了解更多信息。</p>
+
+<p>我们想要页面在选项被按下时能快速更新。但是这里有一个问题，<code>select</code>元素和内容块都基于相同的<code>radio buttons</code>，点击<code>select</code>会让内容消失。不仅如此，如果<code>select</code>选项被打开，我们点击其中一个。选项会消失，内容会显示。</p>
+
+<p>为了解决这个UX缺陷，我增加了</p>
+
+<pre><code>&lt;input type="checkbox" class="invis" id="open_close" /&gt;。
+</code></pre>
+
+<p>现在<code>select</code>元素和当前内容可以在同时被打开。但这里有一个问题就是点击选项时，选择不关机，除非再点一次。但我觉得这是一个更好的体验，为了帮助提高选择元素需要被再次点击关闭的注意力，我改变了点击时候显示向下箭头为X：</p>
+
+<pre><code>#open_close:checked ~ .header-base .select-area .select-options {
+  opacity: 1;
+  visibility: visible;
+}
+
+#open_close:checked ~ .header-base .select-area:after {
+  border: none;
+  content: 'X';
+  top: -24px;
+}
+</code></pre>
+
+<p>另一个我想重写<code>select</code>的特性是当一个新的选项被选择，主<code>select</code>元素的内容更改为对应选项。用<code>:before</code>能帮助我们实现这一点。</p>
+
+<pre><code>.input-select:before {
+  content: 'Make a Selection';
+}
+
+#opt1:checked ~ .header-base .input-select:before {
+  content: 'Option 1';
+}
+
+#opt2:checked ~ .header-base .input-select:before {
+  content: 'Option 2';
+}
+
+#opt3:checked ~ .header-base .input-select:before {
+  content: 'Option 3';
+}
+</code></pre>
+
+<p>这是<a href="http://jsfiddle.net/linshuizhaoying/9xk9zv8q/2/">纯css Demo</a></p>
+
+<h2 id="section-5">总结</h2>
+
+<p>对于你选择哪一个方案都要注意权衡各项优点和缺点，致力于提供最佳的用户体验。</p>
+
+<h2 id="section-6">译者</h2>
+
+<p>javascript和jquery内容平平，css这块的确学到了，然后就是作者在css那块提供的学习资料很值得学习。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/25/translate%20nine.html&text=A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/25/translate%20nine.html&title=A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

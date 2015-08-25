@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
 
-<title>学习资料第一波 | 临水照影的博客</title>
+<title>对javascript中apply和call的一点探索 | 临水照影的博客</title>
 <meta name="author" content="临水照影的博客">
 
-  <meta name="keywords" content="学习资料，程序语言">
+  <meta name="keywords" content="学习资料,前端,javascript">
 
 
 
@@ -101,46 +101,40 @@
       <div id="pjax">
         <article id="post__content">
  
-  <h1 id="post__title" data-identifier="20150808">学习资料第一波</h1>
-  <h2 id="section">正文</h2>
-<p>推荐一些比较好的，现在看来偏门的学习资料</p>
+  <h1 id="post__title" data-identifier="20150825">对javascript中apply和call的一点探索</h1>
+  <h2 id="section">写在前面</h2>
 
-<h3 id="wwwthenewbostoncomhttpswwwthenewbostoncomvideosphp"><a href="https://www.thenewboston.com/videos.php">www.thenewboston.com</a></h3>
+<h2 id="section-1">正文</h2>
 
-<pre><code>	这个网站集合好多很新的程序语言=-= 适合新手入门某个领域，我刚刚看了一下Node.js版的，它的express已经更新到4.x了适合学习
-</code></pre>
+<p>Function.prototype.bind = function(){<br />
+	var self = this;//保存函数<br />
+	context = [].shift().call(arguments),//需要绑定的this上下文<br />
+	args = [].this.call(arguments);//剩余的参数转为数组<br />
+	return function(){<br />
+		return self.apply(context.[].concat.call(args,[].slice.call(arguments)));<br />
+	}</p>
 
-<h3 id="httpslaracastscomhttpslaracastscom"><a href="https://laracasts.com/">https://laracasts.com/</a></h3>
+<p>};<br />
+var obj = {<br />
+	name = “Linshui”;<br />
+}</p>
 
-<pre><code>这个站是我从petter的视频中获取到的，非常好的。各种流行视频，英文，可能需要翻墙。作者语速还可以的，没有字幕也是妥妥的能看懂。
-</code></pre>
+<p>var func = function(a,b,c,d){<br />
+	alert(this.name);<br />
+	alert([a,b,c,d]);<br />
+}.bind(obj,”x”,”y”);</p>
 
-<h3 id="httphaoduoshipincomhttphaoduoshipincom"><a href="http://haoduoshipin.com/">http://haoduoshipin.com/</a></h3>
+<p>func(“xyt”,”zhaoying”);</p>
 
-<pre><code>Peter的视频站，超级棒，以前跟他学的rails，现在他正在发布Node.js+react系列，走在技术前言的男人。
-</code></pre>
-
-<h3 id="httpswwwgitbookcomexplorehttpswwwgitbookcomexplore"><a href="https://www.gitbook.com/explore">https://www.gitbook.com/explore</a></h3>
-
-<pre><code>这是GitBook 堪称程序员的简书，很多学习笔记，不只是学习笔记，例子啊什么都在里面，我学习React，从里面学到了开发环境的配置和Gulp的使用。
-</code></pre>
-
-<h2 id="section-1">2015年8月11日更新</h2>
-
-<h3 id="mediumcommediumcom"><a href="medium.com">medium.com</a></h3>
-
-<pre><code>这个站里面很多Web相关高质量的文章，需要细心查找，也可以订阅相关专题。。不说了，我要开始学英语了
-</code></pre>
-
-   <button><a href="http://comments.haoqiao.me/show/学习资料第一波/haoqiao.me">跳到评论系统</a></button>
+   <button><a href="http://comments.haoqiao.me/show/对javascript中apply和call的一点探索/haoqiao.me">跳到评论系统</a></button>
 
 
 </article> <!-- end #post__content -->
 
 <div id="post__share">
-  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/08/language%20learning%20website.html&text=学习资料第一波" target="_blank"></a>
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/25/base-bind.html&text=对javascript中apply和call的一点探索" target="_blank"></a>
   <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
-  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/08/language%20learning%20website.html&title=学习资料第一波" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/25/base-bind.html&title=对javascript中apply和call的一点探索" target="_blank"></a>
 </div> <!-- end #post__share -->
 
 

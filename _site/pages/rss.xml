@@ -6,6 +6,341 @@
     <description>临水照影的博客</description>
     
       <item>
+        <title>A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/25/translate%20nine.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/25/translate%20nine.html</guid>
+        <pubDate>Tue, 25 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpwwwsitepointcomcontent-switching-component-built-three-ways&quot;&gt;原文来源:&lt;a href=&quot;http://www.sitepoint.com/content-switching-component-built-three-ways/&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;scott-ohara&quot;&gt;作者: Scott O`Hara&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;此文相当于基础巩固文。我只是好奇css的版本应该怎么写-0-&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;不久前，我的一个朋友通过&lt;code&gt;&amp;lt;select&amp;gt;&lt;/code&gt;元素制作了一个切换页面的UI组件。她的代码正常运行，但现在她想用用jqeury来制作，因此她向我求助能够帮她优化。&lt;/p&gt;
+
+&lt;p&gt;虽然不是完整的代码，我创建了一个她试图想要完成的例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;select-area&quot;&amp;gt;
+  &amp;lt;select name=&quot;choose&quot; id=&quot;choose&quot; class=&quot;input-select&quot;&amp;gt;
+    &amp;lt;option value=&quot;nul&quot; selected&amp;gt;Make a Selection&amp;lt;/option&amp;gt;
+    &amp;lt;option value=&quot;opt1&quot;&amp;gt;Option 1&amp;lt;/option&amp;gt;
+    &amp;lt;option value=&quot;opt2&quot;&amp;gt;Option 2&amp;lt;/option&amp;gt;
+    &amp;lt;option value=&quot;opt3&quot;&amp;gt;Option 3&amp;lt;/option&amp;gt;
+  &amp;lt;/select&amp;gt;
+&amp;lt;/div&amp;gt;
+
+&amp;lt;section class=&quot;jqueryOptions opt1&quot;&amp;gt;
+  &amp;lt;div class=&quot;content&quot;&amp;gt;
+    &amp;lt;h2&amp;gt;Option 1 Content&amp;lt;/h2&amp;gt;
+    &amp;lt;p&amp;gt;
+      ...
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/section&amp;gt;
+
+&amp;lt;section class=&quot;jqueryOptions opt2&quot;&amp;gt;
+  &amp;lt;div class=&quot;content&quot;&amp;gt;
+    &amp;lt;h2&amp;gt;Option 2 Content&amp;lt;/h2&amp;gt;
+    &amp;lt;p&amp;gt;
+      ...
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/section&amp;gt;
+
+&amp;lt;section class=&quot;jqueryOptions opt3&quot;&amp;gt;
+  &amp;lt;div class=&quot;content&quot;&amp;gt;
+    &amp;lt;h2&amp;gt;Option 3 Content&amp;lt;/h2&amp;gt;
+    &amp;lt;p&amp;gt;
+      ...
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/section&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在优化之后，这是我们用toggle来展示选择内容块状态的Jquery代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$(function() {
+  $(&#39;.jqueryOptions&#39;).hide();
+
+  $(&#39;#choose&#39;).change(function() {
+    $(&#39;.jqueryOptions&#39;).slideUp();
+    $(&#39;.jqueryOptions&#39;).removeClass(&#39;current-opt&#39;);
+    $(&quot;.&quot; + $(this).val()).slideDown();
+    $(&quot;.&quot; + $(this).val()).addClass(&#39;current-opt&#39;);
+  });
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;这是怎么回事？&lt;/h2&gt;
+&lt;p&gt;默认的，整个jquery函数查找样式名为&lt;code&gt;jqueryOptions&lt;/code&gt;的内容块，然后隐藏它们。&lt;/p&gt;
+
+&lt;p&gt;当用户改变&lt;code&gt;select&lt;/code&gt;输入框的选择选项时，这个函数先用Jquery的&lt;code&gt;slideUp()&lt;/code&gt;将潜在打开内容块的关闭然后用&lt;code&gt;slideDown&lt;/code&gt;将选择的选项指向的内容打开。&lt;/p&gt;
+
+&lt;p&gt;所以&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;option value=&quot;opt1&quot;&amp;gt;Option 1&amp;lt;/option&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;section class=&quot;options opt1&quot;&amp;gt;
+  ...
+&amp;lt;/section&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/9xk9zv8q/&quot;&gt;Demo Click Here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;jquery&quot;&gt;为什么不离开Jquery？&lt;/h2&gt;
+
+&lt;p&gt;Jquery的解决方案有个问题就是我们为这么一个小功能需要包含Jquery库（98kb）。我们可以做的更好&lt;/p&gt;
+
+&lt;p&gt;不改变原来的标记内容，让我们来用javascript和css来达到同样的效果。&lt;/p&gt;
+
+&lt;p&gt;首先我们需要想想该怎么样来完成这个效果：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;内容块需要被默认隐藏
+当被选择时，选中块显示
+我们在新的选项被选中时需要隐藏任何打开的内容块
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在代码中可能有一些附加片段，但是这是我们需要牢记在心的三个要点。当然，默认隐藏内容块我们可以用css来设置。隐藏我们只需要完成剩下的两个。&lt;/p&gt;
+
+&lt;h2 id=&quot;javascript&quot;&gt;创建纯javascript版本&lt;/h2&gt;
+
+&lt;p&gt;开始，让我们创建一些让我们接下来工作更加轻松的变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var selectInput = document.getElementById(&#39;choose&#39;),
+panels = document.querySelectorAll(&#39;.options&#39;),
+currentSelect,
+i;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在我们有了一个能更加方便访问输入框的&lt;code&gt;selectInput&lt;/code&gt;变量。代表不同内容的面板panels，代表当前选择状态的currentSelect，和一个迭代变量。&lt;/p&gt;
+
+&lt;p&gt;接下来我们需要写些帮助我们关注从项目列表中取得子项的方法。&lt;/p&gt;
+
+&lt;p&gt;首先我们需要一个能够当新选项被选择时候隐藏其他内容的方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function clearShow() {
+  for ( i = 0; i &amp;lt; panels.length; i++ ) {
+    panels[i].classList.remove(&#39;show&#39;);
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;clearShow()&lt;/code&gt; 这个方法就是做这些事情的。首先，从我们的&lt;code&gt; panels&lt;/code&gt; 变量中取得内容并循环迭代删除&lt;code&gt; show&lt;/code&gt; 这个样式。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt; show&lt;/code&gt; 这个样式让我们的内容在页面中可见。&lt;/p&gt;
+
+&lt;p&gt;现在我们需要让我们选择的面板显示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function addShow(showThis) {
+  var el = document.getElementsByClassName(showThis);
+  for ( i = 0; i &amp;lt; el.length; i++ ) {
+     el[i].classList.add(&#39;show&#39;);
+   }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;addShow&lt;/code&gt;方法接受一个&lt;code&gt;showThis&lt;/code&gt;参数然后添加&lt;code&gt;show&lt;/code&gt;样式到这个节点。现在我们依旧需要一些方法将&lt;code&gt;showThis&lt;/code&gt;的值传给&lt;code&gt;addShow（）&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function vUpdate() {
+  currentSelect = selectInput.value;
+
+  clearShow();
+  addShow(currentSelect);
+}
+
+selectInput.addEventListener(&#39;change&#39;, vUpdate);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;vUpdate()&lt;/code&gt;方法在任何选择输入框被更新的时候执行。所以，当&lt;code&gt;vUpdate()&lt;/code&gt;方法运行时，它执行以下操作：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;获取selectInput的值然后储存到currentSelect的变量
+执行clearShow方法
+执行addShow方法
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是这个&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/9xk9zv8q/1/&quot;&gt;Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;在我们继续进行之前，如果你选择了一个选项然后刷新整个页面，这个值可能会留在input但是面板不会显示。&lt;/p&gt;
+
+&lt;p&gt;我们可以用下面的代码来修补：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (selectInput.value !== &#39;nul&#39;) {
+  currentSelect = selectInput.value;
+  addShow(currentSelect);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后，如果你想要支持ie9或者更低版本，我们不能用&lt;code&gt;classList()&lt;/code&gt;，可以用下面的代替。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;function addClass(elm, newClass) {
+    elm.className += &#39; &#39; + newClass;
+}
+
+function removeClass(elm, deleteClass) {
+  elm.className = elm.className.replace(new RegExp(&quot;\\b&quot; + deleteClass + &quot;\\b&quot;, &#39;g&#39;), &#39;    &#39;).trim();
+  /* the RegExp here makes sure that only
+ the class we want to delete, and not
+ any other potentially matching strings 
+ get deleted.
+  */
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;css&quot;&gt;能只用CSS来实现吗？&lt;/h2&gt;
+
+&lt;p&gt;我做了很多组件，我喜欢尝试用纯css来实现它们。然而Jquery和javascript可以基于同样的布局，但是css需要修改。&lt;/p&gt;
+
+&lt;p&gt;与之前的版本相比最大也是最重要的就是&lt;code&gt;select&lt;/code&gt;需要被完全代替。&lt;/p&gt;
+
+&lt;p&gt;我们将用&lt;code&gt;box/radio button&lt;/code&gt;的hack来重建&lt;code&gt;select&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;这是我们的新&lt;code&gt;select&lt;/code&gt;元素：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&#39;checkbox&#39; class=&quot;invis&quot; id=&quot;open_close&quot; /&amp;gt;
+&amp;lt;input type=&#39;radio&#39; name=&#39;opts&#39; class=&quot;invis&quot; id=&quot;opt1&quot; /&amp;gt;
+&amp;lt;input type=&#39;radio&#39; name=&#39;opts&#39; class=&quot;invis&quot; id=&quot;opt2&quot; /&amp;gt;
+&amp;lt;input type=&#39;radio&#39; name=&#39;opts&#39; class=&quot;invis&quot; id=&quot;opt3&quot; /&amp;gt;
+
+&amp;lt;header class=&quot;header-base&quot;&amp;gt;
+  &amp;lt;div class=&quot;content&quot;&amp;gt;
+    &amp;lt;p&amp;gt;
+      Choose an Option
+    &amp;lt;/p&amp;gt;
+
+&amp;lt;div class=&quot;select-area&quot;&amp;gt;
+  &amp;lt;label for=&quot;open_close&quot; class=&quot;input-select&quot;&amp;gt;
+    ...
+  &amp;lt;/label&amp;gt;
+
+  &amp;lt;ul class=&quot;select-options&quot;&amp;gt;
+    &amp;lt;li&amp;gt;
+      &amp;lt;label for=&quot;opt1&quot;&amp;gt;Option 1&amp;lt;/label&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;
+      &amp;lt;label for=&quot;opt2&quot;&amp;gt;Option 2&amp;lt;/label&amp;gt;
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;
+      &amp;lt;label for=&quot;opt3&quot;&amp;gt;Option 3&amp;lt;/label&amp;gt;
+    &amp;lt;/li&amp;gt;
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+
+  &amp;lt;/div&amp;gt;
+&amp;lt;/header&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ul无序列表将作为我们新的&lt;code&gt;select&lt;/code&gt;元素&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;opt1&lt;/code&gt;、&lt;code&gt;opt2&lt;/code&gt;、&lt;code&gt;opt3&lt;/code&gt;标签通过相应的ID改变&lt;code&gt;radio buttons&lt;/code&gt;的选择状态，在CSS中，根据哪个&lt;code&gt;radio buttons&lt;/code&gt;被选择，对应的面板将被显示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#opt1:checked ~ main .opt1,
+#opt2:checked ~ main .opt2,
+#opt3:checked ~ main .opt3 {
+  display: block;
+  height: 100%;
+  overflow: visible;
+  visibility: visible;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里用到了很多css细节，你看在&lt;a href=&quot;http://www.sitepoint.com/you-can-do-that-with-css/&quot;&gt;这里&lt;/a&gt;或者&lt;a href=&quot;http://www.scottohara.me/article/morph-button-updated.html&quot;&gt;这里&lt;/a&gt;了解更多信息。&lt;/p&gt;
+
+&lt;p&gt;我们想要页面在选项被按下时能快速更新。但是这里有一个问题，&lt;code&gt;select&lt;/code&gt;元素和内容块都基于相同的&lt;code&gt;radio buttons&lt;/code&gt;，点击&lt;code&gt;select&lt;/code&gt;会让内容消失。不仅如此，如果&lt;code&gt;select&lt;/code&gt;选项被打开，我们点击其中一个。选项会消失，内容会显示。&lt;/p&gt;
+
+&lt;p&gt;为了解决这个UX缺陷，我增加了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;input type=&quot;checkbox&quot; class=&quot;invis&quot; id=&quot;open_close&quot; /&amp;gt;。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在&lt;code&gt;select&lt;/code&gt;元素和当前内容可以在同时被打开。但这里有一个问题就是点击选项时，选择不关机，除非再点一次。但我觉得这是一个更好的体验，为了帮助提高选择元素需要被再次点击关闭的注意力，我改变了点击时候显示向下箭头为X：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#open_close:checked ~ .header-base .select-area .select-options {
+  opacity: 1;
+  visibility: visible;
+}
+
+#open_close:checked ~ .header-base .select-area:after {
+  border: none;
+  content: &#39;X&#39;;
+  top: -24px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另一个我想重写&lt;code&gt;select&lt;/code&gt;的特性是当一个新的选项被选择，主&lt;code&gt;select&lt;/code&gt;元素的内容更改为对应选项。用&lt;code&gt;:before&lt;/code&gt;能帮助我们实现这一点。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.input-select:before {
+  content: &#39;Make a Selection&#39;;
+}
+
+#opt1:checked ~ .header-base .input-select:before {
+  content: &#39;Option 1&#39;;
+}
+
+#opt2:checked ~ .header-base .input-select:before {
+  content: &#39;Option 2&#39;;
+}
+
+#opt3:checked ~ .header-base .input-select:before {
+  content: &#39;Option 3&#39;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/9xk9zv8q/2/&quot;&gt;纯css Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;总结&lt;/h2&gt;
+
+&lt;p&gt;对于你选择哪一个方案都要注意权衡各项优点和缺点，致力于提供最佳的用户体验。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;译者&lt;/h2&gt;
+
+&lt;p&gt;javascript和jquery内容平平，css这块的确学到了，然后就是作者在css那块提供的学习资料很值得学习。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
+        <title>对javascript中apply和call的一点探索</title>
+        <link>http://linshuizhaoying.github.io/2015/08/25/base-bind.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/25/base-bind.html</guid>
+        <pubDate>Tue, 25 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;写在前面&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;Function.prototype.bind = function(){&lt;br /&gt;
+	var self = this;//保存函数&lt;br /&gt;
+	context = [].shift().call(arguments),//需要绑定的this上下文&lt;br /&gt;
+	args = [].this.call(arguments);//剩余的参数转为数组&lt;br /&gt;
+	return function(){&lt;br /&gt;
+		return self.apply(context.[].concat.call(args,[].slice.call(arguments)));&lt;br /&gt;
+	}&lt;/p&gt;
+
+&lt;p&gt;};&lt;br /&gt;
+var obj = {&lt;br /&gt;
+	name = “Linshui”;&lt;br /&gt;
+}&lt;/p&gt;
+
+&lt;p&gt;var func = function(a,b,c,d){&lt;br /&gt;
+	alert(this.name);&lt;br /&gt;
+	alert([a,b,c,d]);&lt;br /&gt;
+}.bind(obj,”x”,”y”);&lt;/p&gt;
+
+&lt;p&gt;func(“xyt”,”zhaoying”);&lt;/p&gt;
+</description>
+      </item>
+    
+      <item>
         <title>Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</title>
         <link>http://linshuizhaoying.github.io/2015/08/24/translate%20eight.html</link>
         <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/24/translate%20eight.html</guid>
@@ -3190,473 +3525,6 @@ state可以通过setstate来修改，也可以通过getInitialState方法提供�
 
 &lt;pre&gt;&lt;code&gt;这个站里面很多Web相关高质量的文章，需要细心查找，也可以订阅相关专题。。不说了，我要开始学英语了
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-      </item>
-    
-      <item>
-        <title>Node.js 伪部署</title>
-        <link>http://linshuizhaoying.github.io/2015/08/05/bushu.html</link>
-        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/05/bushu.html</guid>
-        <pubDate>Wed, 05 Aug 2015 00:00:00 +0800</pubDate>
-        <description>&lt;h2 id=&quot;section&quot;&gt;正文&lt;/h2&gt;
-&lt;p&gt;前几天写了几个应用，打算在重构某个应用之前先把其他的部署到服务器，可能由于我RP太差，production环境下我总是失败，不过由于需求只是能够在服务器上运行，因此即便nginx下反代理无效，但是我可以通过域名加端口形式访问我的应用就行了。&lt;/p&gt;
-
-&lt;p&gt;##准备工作&lt;br /&gt;
-   * 一台vps   &lt;br /&gt;
-  我选择的是digitalocean.com,五美金一个月，差不多31RMB的样子，比阿里云动辄58RMB便宜好多，而且它一旦注册就送10美金，于是买一个月能用三个月。然后等到圣诞节，嘿嘿。。。&lt;br /&gt;
-   * 一个域名。我的是haoqiao.me 只需要解析二级域名到服务器上就行了&lt;/p&gt;
-
-&lt;p&gt;##开始伪部署&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-05%2009.10.32%20PM.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;Mou icon&quot; /&gt;&lt;br /&gt;
-    由于是node.js环境，因此直接在选择系统后选择了node.js的环境包。（当然可以选择自己去搭建）&lt;br /&gt;
-    然后就是自己链接上去。因为是新主机，先&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get upgrade
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;再&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get update 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后再搭建mongdb数据库，这个网上有。&lt;br /&gt;
- 下载安装完后&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mongd
-use gym   这样就完成数据库的初始化。之后把工程传到github上，在服务端运行git clone XXX.git就行了  然后因各种奇怪的原因，恩，我一直部署的都是开发环境，摔！  装上supervisor，反正我用Pm2 或者Node app都是各种奇怪的问题我就懒得去弄了。。。  之后就是把我传了很久的本地数据导出然后传到服务器上。因为mongdb有导出功能，不过直接导出数据库会导出bson这种json二进制格式，反正没导入成功，因此选择把库里的表一张张导出，还好也不多，就两张表。
- 
-mongoexport -d gym -c trains -o trains.dat   把导出的文件传到git上，然后服务器clone一些。然后在服务器上运行对应导入命令就好了。这样最后
-  
-supervisor ./bin/www
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一下就能看到上帝了。这样伪部署就好了，不过还有个问题，当你断开连接的时候，进程也会断掉，网上后台运行进程的方案很多，但是经过我的尝试，只有新建一个screen来运行命令才不会断=-=。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;	screen -dmS Urumchi
-	screen -list
-    screen -r Urumchi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Ok，一个伪部署就结束了。接下来就是继续重构开发然后试着正式部署了。&lt;/p&gt;
-
-</description>
-      </item>
-    
-      <item>
-        <title>个人健身系统从零开始(Node.js开发)</title>
-        <link>http://linshuizhaoying.github.io/2015/08/03/Fitness.html</link>
-        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/03/Fitness.html</guid>
-        <pubDate>Mon, 03 Aug 2015 00:00:00 +0800</pubDate>
-        <description>&lt;h2 id=&quot;description&quot;&gt;Description&lt;/h2&gt;
-
-&lt;p&gt;截止今日8月3日，个人健身管理系统第一版本已经开发好了，本地数据已经上传成功。来几张图欣赏一下。&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_11.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic1&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_12.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic2&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_13.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic3&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_14.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic4&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_15.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic5&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_16.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic6&quot; /&gt;&lt;br /&gt;
-&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com/blog_17.png?imageView2/2/w/500/h/500/q/75%7Cwatermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5qW35L2T/fontsize/500/fill/IzBCQzlGRg==/dissolve/77/gravity/SouthEast/dx/10/dy/10&quot; alt=&quot;pic7&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;正式简介&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;该管理系统是由我写完node.js爬虫后第一个练手的项目，起因是因为被人嘲讽瘦弱于是奋起锻炼，然后跟«囚徒健身»对上了眼，因此打算写一个能够管理自己健身的一个应用，正好又打算写一个管理系统，因此我就顺势而动了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;准备工作&lt;/h2&gt;
-&lt;p&gt;因为打算现在网上各种教程都比较零零碎碎，好像正式的详细的写一个从思路到成果的教程没几个，为了以后回忆方便以及方便后来人，我打算将工具，当时的想法等等一并写进来。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;环境准备&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Mac一台&lt;/li&gt;
-  &lt;li&gt;Node.js环境 mongo数据库环境(这个要一直开着，按照完成后运行命令mongod)&lt;/li&gt;
-  &lt;li&gt;npm&lt;/li&gt;
-  &lt;li&gt;express最新版本4.13.1(我用supervisor运行)&lt;/li&gt;
-  &lt;li&gt;能上国外网站的环境（我之前是红杏，但是它出问题的情况太多，因此我又买了枫叶主机的shadowssocks包年套餐）&lt;/li&gt;
-  &lt;li&gt;前端模板 bootstrap 以及二次开发模板，因为我比较注重功能的实现，界面设计不怎么在行，因此我选择了sublime和Metronic这两套模板（注意：这些模板在&lt;a href=&quot;http://themeforest.net/&quot;&gt;http://themeforest.net/&lt;/a&gt;有购买，海淘步骤比较繁琐，不过一个Paypal可以解决）&lt;/li&gt;
-  &lt;li&gt;高质量图片搜集工具zoommy(现在是4美金，作者常年在线=0=)，这是搜集网上高质量以及无版权的图片，用起来舒心又放心，一张好的背景图效果加成很多！&lt;/li&gt;
-  &lt;li&gt;monghub 以及robomongo （可视化的mongo数据库工具，前者界面看起来不错，后者功能很完全，我前期是用monghub，后期调试用robomongo）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;思路整理&lt;/h3&gt;
-&lt;p&gt;首先我一向是先设计界面，然后再设计数据库，最后开始功能的开发，因为我觉得只要设计稿有了，功能的思路就会很清晰，然后功能的开发一般不会偏离到哪里去-0-,一开始设计的是主页和注册登录页面以及用户管理页面。这类顺便提一句，开发是以node.js为核心，因此最好先去熟悉一下Node.js。推荐书籍«Node.js实战»«Node.js开发指南»，顺便把官网和国内学习node.js的基础文章都扫一遍就差不多了，具体文章我就不给出了，一搜一大把。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;开发流程&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;界面设计&lt;/h3&gt;
-&lt;p&gt;界面设计我是用hbuilder为编辑器，然后直接套用模板的一些界面，因为我是用express4.x版本开发，因此我选择了Jade为Html模板。ejs我当初用在爬虫上感觉不是很方便，jade的资料本来想共享的-0-但是印象笔记关闭了共享功能，这次项目开发我积累了不少资料，需要的同学可以发邮件给我，我用印象笔记的邮箱共享分享给你。jade的写法很简洁，但是我们是抄模板，如果抄一个比较复杂的组件可能就比较麻烦，本来想自己写一个转换工具的，但是后来发现有人写了。html2jade&lt;a href=&quot;http://html2jade.org/&quot;&gt;http://html2jade.org/&lt;/a&gt;,这个工具有个很漂亮的实现，以后再去研究。然后背景图用zoommy搜索了一些健身相关的图片。静态页面也差不多了。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;动态效果开发&lt;/h3&gt;
-&lt;p&gt;有一个管理每日健身的选项需要勾选的时候添加删除线，然后标记已完成。这个功能直接用jq来实现，只是动态的添加class而已。&lt;br /&gt;
-  还有一个是管理页面的菜单选择，只要把其他选项先hide，然后选择哪个show哪个就行了。具体代码都可以参考github上的。&lt;br /&gt;
-  还有几个动态效果是模板自带的，只要自己把该加载的js加载就行了。后面我会提到什么时候用Layout模板的加载，什么时候自己写加载。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-7&quot;&gt;路由&lt;/h3&gt;
-&lt;p&gt;node.js的路由写法分三种，然后express自己建立的脚手架一开始就帮助写好了几个，因此只需要按照它的样子继续写所需要的就行了。我们分为4个路由，登录，注册，首页，用户管理。先来看看我们的加载。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var express = require(&#39;express&#39;);  
-var path = require(&#39;path&#39;);
-var favicon = require(&#39;serve-favicon&#39;);
-var logger = require(&#39;morgan&#39;);
-var cookieParser = require(&#39;cookie-parser&#39;);
-var bodyParser = require(&#39;body-parser&#39;);
-var session = require(&#39;express-session&#39;);
-var connect = require(&#39;connect&#39;);
-var multiparty = require(&#39;multiparty&#39;);
-var http = require(&#39;http&#39;);
-var util = require(&#39;util&#39;);
-var fs = require(&#39;fs&#39;);
-var SessionStore = require(&quot;session-mongoose&quot;)(connect);
-var store = new SessionStore({
-url:&quot;mongodb://localhost/session&quot;,
-  interval: 120000
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;因为用户管理系统需要session,而且我用mongoose来处理数据，因此我采用网上一种session的写法，用session-mongoose这个模块。图片上传用到了connetc这个模块以及后面几个常规模块&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;));
-app.set(&#39;view engine&#39;, &#39;jade&#39;);
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, &#39;public&#39;, &#39;favicon.ico&#39;)));
-app.use(logger(&#39;dev&#39;));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, &#39;public&#39;)));
-
-app.use(&#39;/&#39;, routes);
-app.get(&#39;/logout&#39;, routes);
-app.get(&#39;/linshui&#39;, routes);
-app.post(&#39;/addnewtrain&#39;, routes);
-app.get(&#39;/deletetrain/:id&#39;, routes);
-app.get(&#39;/show/:id&#39;,routes);
-app.use(&#39;/user&#39;, users);
-app.post(&#39;/addusertrain&#39;, users);
-app.get(&#39;/deletemytrain/:week/:train&#39;, users);
-app.use(&#39;/signin&#39;, sign_in);
-app.get(&#39;/signin/:name/:pass&#39;,sign_in);
-app.use(&#39;/signup&#39;, sign_up);
-app.get(&#39;/signup/:regname/:regpass/:regemail&#39;,sign_up);
-
-app.use(function(req, res, next) {
-  res.locals.user = req.session.user || null;
-    next();
-}); 路由写法experss得先写use，如果遇到特殊情况比如post或者get，都要写到对应use的下面。如：
-
-app.use(&#39;/&#39;, routes);
-app.get(&#39;/logout&#39;, routes);
-app.get(&#39;/linshui&#39;, routes);
-app.post(&#39;/addnewtrain&#39;, routes);
-app.get(&#39;/deletetrain/:id&#39;, routes);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;其中/linshui我写在默认的routes里面，这里面包含一些列管理后台中用到的路由&lt;br /&gt;
-之后来看数据库这块。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var mongoose = require(&quot;mongoose&quot;);
-
-// 连接字符串格式为mongodb://主机/数据库名
-mongoose.connect(&#39;mongodb://localhost/gym&#39;);
-
-// 数据库连接后，可以对open和error事件指定监听函数。
-var db = mongoose.connection;
-db.on(&#39;error&#39;, console.error);
-db.once(&#39;open&#39;, function() {
-    console.log(&#39;连接成功&#39;)
-	    //在这里创建你的模式和模型
-});
-
-var Schema1 = mongoose.Schema;
-var gymuserSchema = new Schema1({
-    name : String,
-    pass : String,
-    email : String,
-    avatar : String,
-    mytrain:[]
-});
-
-
-var User = mongoose.model(&#39;User&#39;, gymuserSchema);
-//倒出模型
-module.exports = User 每个用户都有一个mytrain的数组，用来存放他们的健身项目。当初查文档的时候看到这种写法也是惊呆了,搭配上Mongoose的方便操作，数据库的ISUD四种操作都有官方文档的支持。数据库不设置密码，用户权限验证操作直接在route里面写。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-8&quot;&gt;功能实现&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-9&quot;&gt;注册登录&lt;/h3&gt;
-&lt;p&gt;来看这段代码&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var express = require(&#39;express&#39;);
-var router = express.Router();
-//数据操作对象
-var User = require(&#39;../database/user&#39;);
-/* GET home page. */
-router.get(&#39;/&#39;, function(req, res, next) {
-res.render(&#39;signup&#39;);
-});
-router.get(&#39;/signup&#39;, function(req, res, next) {
-res.render(&#39;signup&#39;);
-});
-router.get(&#39;/signup/:regname/:regpass/:regemail&#39;, function(req, res,next) {
-var regname = req.params.regname;
-var regpass = req.params.regpass;
-var regemail = req.params.regemail;
-console.log(regname + regpass + &quot;email:&quot; + regemail);
-
-User.findOne({ name: regname }, function(err, content) {
-	console.log(content);
-	if(content!=null){
-		res.end(&quot;用户名已存在！&quot;);
-    }else{
-		var newuser = new User(User);
-		newuser.name = regname;
-		newuser.pass = regpass;
-		newuser.email = regemail;
-		console.log(newuser.name + newuser.pass + &quot;email:&quot; + newuser.email);
-		newuser.save(function(err) {
-			if (err) {
-				console.log(&#39;保存失败&#39;);
-			}
-			  req.session.user = regname;
-			  console.log(regname);
-			  console.log(&#39;数据保存成功&#39;);
-				
-				res.write(&quot;done&quot;);
-				res.end();
-			});
-}
-});
-});
-router.get(&#39;/signup.html&#39;, function(req, res, next) {
-res.render(&#39;signup&#39;);
-});
-module.exports = router;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;每一个route必须先在app.js里面注册,否则会报错。参数的传递是用jq里面get提交方式&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    $.get(&quot;/signup/&quot; + regname + &quot;/&quot; + regpass + &quot;/&quot; + regemail,function(data){       
-        if(data == &#39;done&#39;)          
-        {
-           window.location.href=&quot;/signin&quot;;
-        }else{
-				    var $alert = $(&quot;&amp;lt;div class=&#39;alert alert-danger&#39; &amp;gt; &quot;).text(data);
-				    $(&#39;.alerterror&#39;).append($alert);
-          setTimeout(window.location.href=&quot;/signup&quot;,3000);
-        }
-    });   每个route处理数据都要记得调用end()，否则会一直等到服务器处理，最后超时报错。   登录模块类似，但是登录之后还有一句代码。
-  
-req.session.user = req.params.name;  这段是把session储存，之后在各个需要身份验证的地方都能方便的调用。其实身份验证还可以用cookie，在前端页面里面写验证也是可以的。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-10&quot;&gt;健身项目的管理&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-11&quot;&gt;普通用户的操作&lt;/h3&gt;
-&lt;p&gt;查看自己的每日健身项目。遍历自己的健身项目，并且查看标准。增加删除健身项目。&lt;br /&gt;
-  这些功能是基于已经后台添加了健身项目的前提下。因此我们需要先把数据库建立起来。&lt;br /&gt;
-  train.js包含了所需的基本内容&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var mongoose = require(&quot;mongoose&quot;);
-
-// 连接字符串格式为mongodb://主机/数据库名
-mongoose.connect(&#39;mongodb://localhost/gym&#39;);
-
-// 数据库连接后，可以对open和error事件指定监听函数。
-var db = mongoose.connection;
-db.on(&#39;error&#39;, console.error);
-db.once(&#39;open&#39;, function() {
-console.log(&#39;连接成功&#39;)
-	//在这里创建你的模式和模型
-});
-
-
-/*
- * 训练单项包括：
- * 1、名称 2、具体描述 3、初级量标准 4 中级量标准 5、进阶量标准 6、演示图片
- * 
- */
-var Schema2 = mongoose.Schema;
-var trainSchema = new Schema2({
-    name : String,
-    content : String,
-    junior_num : Number,
-    junior_rate : Number,
-    middle_num :Number,
-    middle_rate : Number,
-    advanced_num : Number,
-    advanced_rate: Number,
-    pic_array :[]
-})
-
-var Train = mongoose.model(&#39;Train&#39;, trainSchema);
-//倒出模型
-module.exports = Train
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当初我把train和user写在一个文件里导出，但是出错，之后我就把两个数据schema分离并且分别导出。&lt;/p&gt;
-
-&lt;p&gt;之后我先完成了后台增加健身项目这个功能。&lt;br /&gt;
-  这其中就包括了图片上传，图片上传我现实在npmjs&lt;a href=&quot;https://www.npmjs.com/&quot;&gt;https://www.npmjs.com/&lt;/a&gt;里面查找上传模块，测试了几个都不怎么理想。然后google了一下，好像是说express自带上传模块，后来经过测试，发现高版本的express已经不支持自带了，因此又查找，最后在多个模块测试后选择了multiparty这个模块。我选择在app.js写上传功能，因为我怕后面各个地方都需要用到，因此放在公共的地方。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;app.post(&#39;/upload&#39;, function(req, res, next){  
- var form = new multiparty.Form({uploadDir: &#39;./public/images/&#39;});
-  //下载后处理
-    form.parse(req, function(err, fields, files) {
-      var filesTmp = JSON.stringify(files,null,2);
-  
-     if(err){
-     console.log(&#39;parse error: &#39; + err);
-      } else {
-        console.log(&#39;parse files: &#39; + filesTmp);
-        var inputFile = files.inputFile[0];
-        var uploadedPath = inputFile.path;
-        var dstPath = &#39;./public/files/&#39; + inputFile.originalFilename;
-		console.log(&quot;上传成功:&quot; + uploadedPath);
-        res.writeHead(200, {&#39;content-type&#39;: &#39;text/plain;charset=utf-8&#39;});
-        res.end(uploadedPath);
-  }
- });
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;之后在后台Linshui.jade里面写上传页面&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;form(method=&#39;post&#39;, enctype=&#39;multipart/form-data&#39;, action=&#39;/upload&#39;,style=&quot;margin-top:15px&quot;)#frmUploadFile1
-  .col-md-3.col-md-offset-3
-    input(name=&#39;inputFile&#39;, type=&#39;file&#39;, multiple=&#39;mutiple&#39;).form-control
-  .col-md-3
-    input#imgurl1.alert.alert-success
-  .col-md-2
-    i.fa.fa-upload
-  .btn.btn-primary.uploadMe1 上传
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;因为提交表单还需要上传后的地址，因此我在表单里面加了一个Input来放置上传后的url。上传图片我用jq的ajax提交。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$(&quot;.uploadMe1&quot;).click(function(){
-	var formData = new FormData($(&quot;#frmUploadFile1&quot;)[0]);
-	  $.ajax({
-	    url: &#39;/upload&#39;,
-	    type: &#39;POST&#39;,
-	    data: formData,
-	    async: false,
-	    cache: false,
-	    contentType: false,
-	    processData: false,
-	    success: function(data){
-	      if(data) {
-	        alert(&quot;上传成功&quot;);
-		      $(&quot;#imgurl1&quot;).val(data.slice(14,data.length));
-	      } else {
-	        alert(&quot;上传失败&quot;);
-	      }
-
-	    },
-	    error: function(){
-	      alert(&quot;与服务器通信发生错误&quot;);
-	    }
-	  });
-	
-	});   因为上传模块最后返回的是绝对地址，因此需要进行处理,因为返回的内容是固定的，因此直接slice分割一些就行了。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;图片搞定后就是添加健身项目表单的提交。这里提一句，如果是get提交，那么在后台取是根据url里面的参数来取，因此写route的时候要把参数写对，不能多也不能少。get是以req.params.xxx来获取参数。post是以req.body.xxx来获取。如果参数不多，还是建议get来提交。当然如果为了安全性，Post提交当然更好。&lt;br /&gt;
-  提交添加健身项目表单 后台处理代码&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;router.post(&#39;/addnewtrain&#39;, function(req, res, next) {
-   if(req.session.user == &quot;admin&quot;){
-
-Train.findOne({ name: req.body.title }, function(err, content) {
-	console.log(content);
-	if(content!=null){
-		res.end(&quot;用户名已存在！&quot;);
-}else{
-		var newtrain = new Train(Train);
-		newtrain.name = req.body.title;
-		newtrain.content = req.body.desc;
-		newtrain.junior_num = req.body.junior_num;
-		newtrain.junior_rate = req.body.junior_rate;
-		newtrain.middle_num = req.body.middle_num;
-		newtrain.middle_rate = req.body.middle_rate;
-		newtrain.advanced_num = req.body.advanced_num;
-		newtrain.advanced_rate= req.body.advanced_rate;
-		if(req.body.img1){
-			newtrain.pic_array.push(req.body.img1);
-		}
-		if(req.body.img2){
-			newtrain.pic_array.push(req.body.img2);
-		}
-		if(req.body.img3){
-			newtrain.pic_array.push(req.body.img3);
-		}
-		newtrain.save(function(err) {
-			if (err) {
-				console.log(&#39;保存失败&#39;);
-			}
-			  console.log(&#39;数据保存成功&#39;);
-			  res.write(&quot;done&quot;);
-				res.end();
-			});
-}
-});
-	
-}else{
-	res.redirect(&#39;/&#39;);
-}
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;前台处理代码&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; $(&quot;.addnewtrain&quot;).click(function(){
-   var title = $(&quot;#traintitle&quot;).val();
-   var desc = $(&quot;#traindesc&quot;).val();
-   var junior_num = $(&quot;#trainjunior_num&quot;).val();
-   var junior_rate = $(&quot;#trainjunior_rate&quot;).val();
-   var middle_num = $(&quot;#trainmiddle_num&quot;).val();
-   var middle_rate = $(&quot;#trainmiddle_rate&quot;).val();
-   var advanced_num = $(&quot;#trainadvanced_num&quot;).val();
-   var advanced_rate = $(&quot;#trainadvanced_rate&quot;).val();
-   var img1 = $(&quot;#imgurl1&quot;).val();
-   var img2 = $(&quot;#imgurl2&quot;).val();
-   var img3 = $(&quot;#imgurl3&quot;).val();
-   
-   $.post(&quot;/addnewtrain&quot;,{
-   
-    title:title,
-    。。。
-  	},
-  	  function(result){
-      console.log(result);
-      if(result==&quot;done&quot;){
-      	  window.location.href=&quot;/linshui&quot;;
-      }
-    });
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;之后的用户添加健身项目就是直接从数据库里面获取。&lt;br /&gt;
-  这里是关键代码&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Train.find(function(err,trains) {  
-User.find({name: req.session.user
-}, function(err,contents) {
-if (err) {
-console.log(err)
-  return
-}
-var mytrains = contents[0].mytrain;
-  res.render(&#39;user&#39;{user:req.session.user,trains:trains,mytrains:mytrains,todaytrains:todaytrains,myalltrains:myalltrains});
-});   删除健身项目代码，mongoose里面已经有很完美的处理方案，我们只需根据文档来操作就行了。
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;section-12&quot;&gt;结尾&lt;/h2&gt;
-&lt;p&gt;事实上还有几个功能还没加进来，比如用户资料，比如健身日记，比如每日签到，比如提交训练结果后根据锻炼时间长短分析提示应该进行下一个阶段的训练等等。不过对于我来说，这个系统已经够用了。而且今天写博客的中途去完成了今日的任务列表。人已经虚了=-=就先写到这里。后续功能将一步步完善，所有的代码我都放在了github&lt;a href=&quot;https://github.com/linshuizhaoying/gym&quot;&gt;https://github.com/linshuizhaoying/gym&lt;/a&gt; 有什么建议还有问题可以email我，因为现在还没对博客添加评论插件，一切回复都用左下角的邮箱来。&lt;/p&gt;
-
 </description>
       </item>
     
