@@ -6,6 +6,234 @@
     <description>临水照影的博客</description>
     
       <item>
+        <title>Graphical Text Effects (CSS VS SVG:图像文字效果）</title>
+        <link>http://linshuizhaoying.github.io/2015/08/26/translate%20eleven.html</link>
+        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/26/translate%20eleven.html</guid>
+        <pubDate>Wed, 26 Aug 2015 00:00:00 +0800</pubDate>
+        <description>&lt;h2 id=&quot;section&quot;&gt;前言&lt;/h2&gt;
+
+&lt;h3 id=&quot;httpblogsadobecomdreamweaver201507css-vs-svg-graphical-texthtml&quot;&gt;原文来源:&lt;a href=&quot;http://blogs.adobe.com/dreamweaver/2015/07/css-vs-svg-graphical-text.html#&quot;&gt;这里&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;sara-soueidan&quot;&gt;作者: Sara Soueidan&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;译者: 临水照影&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;正文之前&lt;/h2&gt;
+
+&lt;p&gt;午睡睡得昏昏沉沉，翻译一下sara女神的文章学点东西并提提神。译文有删减-0-，有些东西我懒得翻译。觉得有影响的可以去看原文-0-&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;正文&lt;/h2&gt;
+
+&lt;p&gt;这篇文章是一系列技术探索文章中的第一篇，文中的例子可以同时用css和svg来实现。然后我们将进行对比。由于我偏好于svg，而且这篇文章真的证明了svg在解决某些WEB设计问题上比css更棒，因为它是图像和文档的结合格式。但为了保持一个客观的角度，我们会权衡每种技术的优点和缺点，并找出CSS和SVG可以更好的为设计服务的一面。&lt;/p&gt;
+
+&lt;p&gt;在这篇文章中，我们将用CSS和SVG创建一些图形文字效果。&lt;/p&gt;
+
+&lt;h2 id=&quot;css&quot;&gt;用CSS来创建图形文字效果&lt;/h2&gt;
+
+&lt;h3 id=&quot;css-1&quot;&gt;老的CSS方法&lt;/h3&gt;
+
+&lt;p&gt;假设你有一个&lt;code&gt;H1&lt;/code&gt;标题而且你希望用令人印象深刻的图形效果来代替文本，这是你将用的CSS：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;h1.hide-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-image: url(…);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;文本缩进确保内容超过了自身的边界并溢出它们。然后隐藏溢出的内容确保超出边界的内容。因此，你最终会得到一个没有文本内容的矩形的区域。&lt;/p&gt;
+
+&lt;p&gt;然后这个区域被背景图片填满，你可以用PS来完成吸引人的文本的图片。&lt;/p&gt;
+
+&lt;p&gt;用漂亮的图片来代替文本就是你要做的。&lt;/p&gt;
+
+&lt;h3 id=&quot;css-2&quot;&gt;新的css方法&lt;/h3&gt;
+
+&lt;p&gt;最常见的文字效果就是文字内部填充背景。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;纹理填充文字&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//svgcss1.png&quot; alt=&quot;img1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;利用css的&lt;code&gt;background-clip&lt;/code&gt;属性，我们能够用图片填充文本。这个属性决定一个元素的背景绘图区。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;background-clip&lt;/code&gt;属性在webkit内核的浏览器下有第四个属性 &lt;a href=&quot;https://www.webkit.org/blog/164/background-clip-text/&quot;&gt;&lt;code&gt;text&lt;/code&gt;&lt;/a&gt;,它可以裁剪背景图片到前景文字。然后，通过用&lt;code&gt;-webkit-text-fill-color&lt;/code&gt;给文本一个透明色，这个背景图片将贯穿整个文字，完成裁剪效果。&lt;/p&gt;
+
+&lt;p&gt;举个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.clippedElement {
+  /* background image that will serve as text fill */
+  background: url(path/to/your/image.jpg) no-repeat center center;
+    /* -webkit-background-clip clips the background of the element to the text */
+    -webkit-text-fill-color: transparent; /* overrides the white text color in webkit browsers */
+    -webkit-background-clip: text;
+
+  /* general styles */
+    background-size: 100% auto;
+    color: #fff;
+    text-align: center;
+    padding: 2em;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但不幸的是，这些效果无法在IE和Firefox上显示。&lt;/p&gt;
+
+&lt;p&gt;所以，如果我们给之前的H1应用这个类，它不会显示纹理效果。但如果用一个&lt;code&gt;DIV&lt;/code&gt;来包含它，并给这个&lt;code&gt;DIV&lt;/code&gt;的背景图片应用样式。它会显示对应效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/s7gnvgm6/&quot;&gt;Demo Click Here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你想用在非webkit内核的浏览器上展现这种效果，你可以用图片来代替。&lt;/p&gt;
+
+&lt;p&gt;注意，这里的图像可以是任何图像，甚至是CSS的&lt;a href=&quot;http://tympanus.net/codrops/css_reference/gradient/&quot;&gt;梯度&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;纹理文本(带背景混合)&lt;/h2&gt;
+
+&lt;p&gt;接下来，我们将用css 遮罩来制作下面的效果&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//css-mask2.png&quot; alt=&quot;img2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当用css遮罩时，我们让文本来采取其遮罩图片的形状，而不是让遮罩图片采取文字的形状。&lt;/p&gt;
+
+&lt;p&gt;这个效果用的遮罩图片来自是我之前写的一篇&lt;a href=&quot;http://tympanus.net/codrops/2013/12/02/techniques-for-creating-textured-text/&quot;&gt;文章&lt;/a&gt;.图片用来当做遮罩来遮住文本区域并让它背后的背景通过遮罩显示。如果你选择了合适的纹理和背景，你将获得无缝融合的效果。我们采用的是一张飞溅墨点图，为了简单起见，我们没用任何混合，只是应用这个飞溅图。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//splatter-mask1.png&quot; alt=&quot;img3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当你应用css遮罩到你的文本，这个文本需要在黑色区域中可见，遮罩图像的部分的文本必须是透明的。因为遮罩图像在CSS默认是透明遮罩，而不是亮度遮罩。当我们提供透明遮罩，黑色区域将被定义用来绘制文本。&lt;/p&gt;
+
+&lt;p&gt;我们将应用&lt;code&gt;mask-image&lt;/code&gt;属性&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;h1 {
+    /* the line that applies the splatter effect */
+    mask-image: url(../img/splatter-mask_1.png); 
+
+/* any general styles go here like font family, alignment, etc. */
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Firefox只支持svg遮罩，webkit浏览器要求webkit前缀而且只支持特殊的两个属性。这是&lt;a href=&quot;http://caniuse.com/#feat=css-masks&quot;&gt;浏览器支持表&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/s7gnvgm6/1/&quot;&gt;这是DEMO&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;如果你想用梯度遮罩，可以用下面的代码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mask-image: linear-gradient(black, transparent);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用svg，事情好像变得更加好了&lt;/p&gt;
+
+&lt;h2 id=&quot;svg&quot;&gt;图形文字与SVG&lt;/h2&gt;
+
+&lt;p&gt;Svg超级棒（我不得不说）。现在，为了简单起见，我们将深入代码并解释它。&lt;/p&gt;
+
+&lt;p&gt;在SVG中工作时，无论是文本还是其它我们都将在&lt;code&gt;&amp;lt;svg&amp;gt;&lt;/code&gt;元素中定义。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;文本纹理填充&lt;/h2&gt;
+
+&lt;p&gt;为了用纹理填充文本，我们需要定纹理，这里我们给svg文本填充颜色。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//gradient-text1.png&quot; alt=&quot;img4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;代码如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;svg xmlns=“http://www.w3.org/2000/svg”  viewBox=“0 0 1250 400” width=“1250” height=“400”&amp;gt; 
+    &amp;lt;title&amp;gt;Gradient-filled Text&amp;lt;/title&amp;gt;
+    &amp;lt;!— Source: http://lea.verou.me/2012/05/text-masking-the-standards-way/ —&amp;gt;
+    &amp;lt;defs&amp;gt;
+       &amp;lt;linearGradient id=“filler” x=“0%” y=“100%”&amp;gt;
+           &amp;lt;stop stop-color=“gold” offset=“0%”&amp;gt;&amp;lt;/stop&amp;gt;
+             &amp;lt;stop stop-color=“purple” offset=“20%”&amp;gt;&amp;lt;/stop&amp;gt;
+           &amp;lt;stop stop-color=“deepPink” offset=“40%”&amp;gt;&amp;lt;/stop&amp;gt;
+           &amp;lt;stop stop-color=“orange” offset=“60%”&amp;gt;&amp;lt;/stop&amp;gt;
+           &amp;lt;stop stop-color=“yellow” offset=“80%”&amp;gt;&amp;lt;/stop&amp;gt;
+           &amp;lt;stop stop-color=“skyblue” offset=“100%”&amp;gt;&amp;lt;/stop&amp;gt;
+      &amp;lt;/linearGradient&amp;gt;
+    &amp;lt;/defs&amp;gt;
+    &amp;lt;text x=“100” y=“70%” font-size=“205” fill=“url(#filler)”&amp;gt; Radiant Text&amp;lt;/text&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：我们需要给svg元素定义高度和宽度，但为了让svg能够响应式，我们需要用css百分比覆盖默认尺寸。你可以在这里看到&lt;a href=&quot;http://tympanus.net/codrops/2014/08/19/making-svgs-responsive-with-css/&quot;&gt;相关资料&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;defs&amp;gt;&lt;/code&gt;中定义我们的纹理为线性填充。&lt;/p&gt;
+
+&lt;p&gt;这是&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/s7gnvgm6/2/&quot;&gt;demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;这里的纹理也可以是任何图片或者梯度。甚至可以是一个svg图案。&lt;/p&gt;
+
+&lt;p&gt;因为svg是一个图形，确保给它一个title让它能被屏幕阅读器识别。title对于svg就像alt属性对于在html页面中的img元素。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;文本应用纹理（与背景混合）&lt;/h2&gt;
+
+&lt;p&gt;与之前的技术类似，混合遮罩和背景。&lt;/p&gt;
+
+&lt;p&gt;这是我们想要完成的效果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//svg-mask-demo2.png&quot; alt=&quot;img5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这像文字被咬了好几口。&lt;/p&gt;
+
+&lt;p&gt;首先我们在图形编辑器中绘制创建一些咬痕遮罩。&lt;/p&gt;
+
+&lt;p&gt;之后我们导出为它们为svg形状，并放在&lt;code&gt;&amp;lt;defs&amp;gt;&lt;/code&gt;中，像这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;svg viewBox=“0 0 900 400”&amp;gt;
+  &amp;lt;defs&amp;gt;
+    &amp;lt;mask id=“mask”&amp;gt;
+      &amp;lt;rect x=“0” y=“0” width=“100%” height=“100%” fill=“#fff”&amp;gt;&amp;lt;/rect&amp;gt;
+            &amp;lt;path fill=“#000” d=“…”&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…”&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…”&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…”&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…”&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…”&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…“&amp;gt;&amp;lt;/path&amp;gt;
+            &amp;lt;path fill=“#000” d=“…“&amp;gt;&amp;lt;/path&amp;gt;
+    &amp;lt;/mask&amp;gt;
+  &amp;lt;/defs&amp;gt;
+
+  &amp;lt;text font-size=“230” fill=“#FF481E” mask=“url(#mask)”&amp;gt;
+    &amp;lt;tspan x=“0” y=“150”&amp;gt;nom&amp;lt;/tspan&amp;gt;
+    &amp;lt;tspan y=“280” x=“150”&amp;gt;nom&amp;lt;tspan&amp;gt;
+    &amp;lt;tspan y=“400” x=“350”&amp;gt;nom&amp;lt;tspan&amp;gt;
+  &amp;lt;/text&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是一个很重要的知识点：在SVG中，不像CSS，元素会被默认的在白色区域中绘制，在黑色区域中不绘制。任何在黑白之间的值都会被渲染为半透明，越接近白色，遮罩越不透明，越接近黑色，遮罩越透明。&lt;/p&gt;
+
+&lt;p&gt;所以，在示例中，我给咬痕形状黑色填充。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jsfiddle.net/linshuizhaoying/s7gnvgm6/3/&quot;&gt;DEMO CLICK HERE&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;然后你在这个SVG应用任何纹理，因为在&lt;code&gt;&amp;lt;defs&amp;gt;&lt;/code&gt;有很多元素选择，你可以创建动态纹理来填充。&lt;/p&gt;
+
+&lt;h2 id=&quot;svg-1&quot;&gt;SVG中动态文本填充&lt;/h2&gt;
+
+&lt;p&gt;Svg不仅能够让我们更好的支持模块化，SVG代码更能自然的动画化。&lt;/p&gt;
+
+&lt;p&gt;当你在&lt;code&gt;&amp;lt;defs&amp;gt;&lt;/code&gt;中填充一个元素，你还可让它动起来。像下面这样：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://7s1say.com1.z0.glb.clouddn.com//animated-fills.gif&quot; alt=&quot;img6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;作为一个简单的例子，你可以用gif动画来填充。&lt;/p&gt;
+
+&lt;p&gt;以上的图片中例子都可在&lt;a href=&quot;http://tympanus.net/codrops/2015/02/16/create-animated-text-fills/&quot;&gt;这里&lt;/a&gt;找到。&lt;/p&gt;
+
+&lt;p&gt;注意观察浏览器支持情况。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;结尾&lt;/h2&gt;
+
+&lt;p&gt;Svg比css更适合制作文本特效。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-9&quot;&gt;译者&lt;/h2&gt;
+
+&lt;p&gt;Sara女神的每篇文章都很值得学习，而且干货满满。这篇文章因为太长了，我就精简了一下-0-，觉得不放心可以去看原文。&lt;/p&gt;
+
+</description>
+      </item>
+    
+      <item>
         <title>A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</title>
         <link>http://linshuizhaoying.github.io/2015/08/25/translate%20nine.html</link>
         <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/25/translate%20nine.html</guid>
@@ -306,37 +534,6 @@ function removeClass(elm, deleteClass) {
 
 &lt;p&gt;javascript和jquery内容平平，css这块的确学到了，然后就是作者在css那块提供的学习资料很值得学习。&lt;/p&gt;
 
-</description>
-      </item>
-    
-      <item>
-        <title>对javascript中apply和call的一点探索</title>
-        <link>http://linshuizhaoying.github.io/2015/08/25/base-bind.html</link>
-        <guid isPermaLink="true">http://linshuizhaoying.github.io/2015/08/25/base-bind.html</guid>
-        <pubDate>Tue, 25 Aug 2015 00:00:00 +0800</pubDate>
-        <description>&lt;h2 id=&quot;section&quot;&gt;写在前面&lt;/h2&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;正文&lt;/h2&gt;
-
-&lt;p&gt;Function.prototype.bind = function(){&lt;br /&gt;
-	var self = this;//保存函数&lt;br /&gt;
-	context = [].shift().call(arguments),//需要绑定的this上下文&lt;br /&gt;
-	args = [].this.call(arguments);//剩余的参数转为数组&lt;br /&gt;
-	return function(){&lt;br /&gt;
-		return self.apply(context.[].concat.call(args,[].slice.call(arguments)));&lt;br /&gt;
-	}&lt;/p&gt;
-
-&lt;p&gt;};&lt;br /&gt;
-var obj = {&lt;br /&gt;
-	name = “Linshui”;&lt;br /&gt;
-}&lt;/p&gt;
-
-&lt;p&gt;var func = function(a,b,c,d){&lt;br /&gt;
-	alert(this.name);&lt;br /&gt;
-	alert([a,b,c,d]);&lt;br /&gt;
-}.bind(obj,”x”,”y”);&lt;/p&gt;
-
-&lt;p&gt;func(“xyt”,”zhaoying”);&lt;/p&gt;
 </description>
       </item>
     
