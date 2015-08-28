@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
 
-<title>Creating Autocomplete datalist Controls (创建自动完成的DataList控件） | 临水照影的博客</title>
+<title>CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果） | 临水照影的博客</title>
 <meta name="author" content="临水照影的博客">
 
   <meta name="keywords" content="学习，资料，程序，前端">
@@ -105,115 +105,362 @@
       <div id="pjax">
         <article id="post__content">
  
-  <h1 id="post__title" data-identifier="20150820">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</h1>
+  <h1 id="post__title" data-identifier="20150828">CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）</h1>
   <h2 id="section">前言</h2>
 
-<h3 id="httpwwwsitepointcomcreating-autocomplete-datalist-controls">原文来源:<a href="http://www.sitepoint.com/creating-autocomplete-datalist-controls/">这里</a></h3>
+<h3 id="httpsblogsadobecomdreamweaver201506css-only-raindrops-on-window-effecthtml">原文来源:<a href="https://blogs.adobe.com/dreamweaver/2015/06/css-only-raindrops-on-window-effect.html">这里</a></h3>
 
-<h3 id="aurelio-de-rosa">作者: Aurelio De Rosa</h3>
+<h3 id="lucas-bebber">作者: Lucas Bebber</h3>
 
 <h3 id="section-1">译者: 临水照影</h3>
 
 <h2 id="section-2">正文之前</h2>
 
-<p>上一篇感觉状态不错，这篇会继续努力的。</p>
+<p>事实上这个效果很久之前就出现了，但是并没有去好好研究，这次翻译顺便学习下。</p>
 
 <h2 id="section-3">正文</h2>
 
-<p>如果之前你在生活中看到了一些不错的网站，你肯定注意到了一些反复出现的小组件。比如搜索框，通讯组件，文本自动完成框组件。文本自动完成是一种使用非常广泛的组件，特别是当网站需要几个可能出现的字段和需要创建完整的新值。很多javascript框架都用他们自己的方式完成它们自己的自动完成组件。</p>
+<p>单单制作一个特效演示可能是没有什么意义的，但是这是一个探索css特性的好机会。尝试新的工具，在规定的限制中练习。今天我们将用haml和sass了来制造一个雨滴在窗口的效果。</p>
 
-<p>几年前，并没有这种本地HTML元素来处理这种情况，而且开发者们并没有类似的概念。不过现在这块HTML拼图已经补上了。今天，我们有了一个HTML元素叫做<code>datalist</code>来为这种情况服务。在本篇文章中，我们将来讨论<code>datalist</code>是什么以及如何用<code>datalist</code>。</p>
+<p><a href="http://codepen.io/lbebber/pen/ZGGNvZ">Demo click Here</a></p>
 
-<h3 id="datalist">什么是<code>datalist</code>元素？</h3>
+<h2 id="section-4">前期准备</h2>
 
-<p><code>datalist</code>元素“代表为其它控件的一组预定义选项内容的元素”。因此这个元素可以被看做是一个包装了一组可能匹配的输入值的。默认的<code>datalist</code>里的子元素都是隐藏的，所以你在网页中是看不到这些值的。事实上，<code>datalist</code>必须被其它元素用<code>list</code>属性来链接。该属性的值必须为<code>datalist</code>的ID值。</p>
+<p>首先，我用haml/sass代替html/css,因为这些工具非常有用，尤其是它们能让我们从制作上百个雨滴中解脱出来。</p>
 
-<p>下面是一个简单的例子：</p>
+<h2 id="section-5">窗口</h2>
 
-<pre><code>&lt;input name="city" list="cities" /&gt;
-&lt;datalist id="cities"&gt;
- &lt;option value="Naples" /&gt;
- &lt;option value="London" /&gt;
- &lt;option value="Berlin" /&gt;
- &lt;option value="New York" /&gt;
- &lt;option value="Frattamaggiore" /&gt;
-&lt;/datalist&gt;
+<p>首先展示窗口</p>
+
+<pre><code>.container
+  .window
 </code></pre>
 
-<p>代码中定义了<code>input</code>和包含了一些<code>Option</code>元素的<code>datalist</code> 。你可以看到，<code>datalist</code>的ID为<code>cities</code>，<code>input</code>的list属性也是这个。</p>
+<p>sass</p>
 
-<p>上面代码的<a href="http://jsfiddle.net/s8a932s2/">DEMO</a>，这次是在jsfiddle里.</p>
+<pre><code>// Our background image.
+// Will be used for the window as well as
+// for the raindrops themselves
+$image: 'http://i.imgur.com/xQdYC7x.jpg';
 
-<p>因为<code>datalist</code> 本身的特性，它很适合和javascript一起使用，举个例子，你可以用ajax请求到服务器来获取值然后来检索用户输入的值。</p>
+// container width and height.
+// 100vw/vh so it fills the entire window
+$width:100vw;
+$height:100vh;
 
-<p>下面是一个例子，动态生成了<code>datalist</code> 里的值。</p>
-
-<p>你可以点<a href="http://jsfiddle.net/4gpyekg2/">这里</a></p>
-
-<p>到目前为止，我们已经讨论了自动完成组件的构成，但这并不是我们使用<code>datalist</code>的唯一方式。</p>
-
-<h3 id="datalist---input-typecolor"><code>datalist</code> 和  <input type="color" /></h3>
-
-<p>之前的例子很棒，但是你可以用<code>datalist</code> 做更多的事情，比如你想用<input type="color" />提供一个颜色给你的用户？在这个例子里，你可以写下以下代码：</p>
-
-<pre><code>&lt;input type="color" list="colors" /&gt;
- &lt;datalist id="colors"&gt;
-    &lt;option value="#00000"/&gt;
-    &lt;option value="#478912"/&gt;
-    &lt;option value="#FFFFFF" /&gt;
-    &lt;option value="#33FF99" /&gt;
-    &lt;option value="#5AC6D9" /&gt;
-    &lt;option value="#573905" /&gt;
- &lt;/datalist&gt;
+.container{
+  position:relative;
+  width:$width;
+  height:$height;
+  overflow:hidden;
+}
+.window{
+  position:absolute;
+  width:$width;
+  height:$height;
+  background:url($image);
+  background-size:cover;
+  background-position:50%;
+  filter:blur(10px);
+}
 </code></pre>
 
-<p>这个例子只在Chrome 37和Opera24中使用。IE11不支持，FireFox32不支持。(不过你可以把它写在自己项目后台里，这个功能是很实用的)</p>
+<p>效果如下</p>
 
-<p>这是<a href="http://jsfiddle.net/7rhe5zuw/">DEMO</a></p>
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//window-optimized-700x375.png" alt="img" /></p>
 
-<h3 id="datalist---input-typerange"><code>datalist</code> 和  <input type="range" /></h3>
+<p>我们画了一个有背景图片的div作为窗口，并应用了模糊效果。</p>
 
-<p>另一个例子是是配合<code>&lt;input type="range"&gt;</code>：</p>
+<p>注意我们把图片存到了一个$image变量中，之所以这么做是因为我们在后面需要用到对雨滴用同样的图片。</p>
 
-<pre><code>&lt;input type="range" value="0" min="0" max="100" list="numbers" /&gt;
-&lt;datalist id="numbers"&gt;
-    &lt;option value="20" /&gt; 
-    &lt;option value="40" /&gt; 
-    &lt;option value="60" /&gt; 
-    &lt;option value="80" /&gt; 
-&lt;/datalist&gt;
+<h2 id="section-6">真实生活</h2>
+
+<p>在我们继续之前，先看看真实生活中的雨滴。</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//real-700x375.jpg" alt="img2" /></p>
+
+<p>由于光线折射，雨滴中含翻转图像。它的形状更像一个半球体，并配上黑色边框</p>
+
+<h2 id="section-7">雨滴</h2>
+<p>基于我们所见，来创建一个简单的雨滴</p>
+
+<pre><code>.container
+  .window
+  .raindrop
 </code></pre>
 
-<p>所有浏览器都支持这种写法。在这个例子中，范围栏中有四个垂直标志，每个标志都是数据列表中定义的值（PS：你会发现移动这些标志的时候，有一种卡顿会让你停放位置的时候自动对齐标志）</p>
+<p>sass</p>
 
-<p>这是这个例子的<a href="http://jsfiddle.net/weew16za/">DEMO</a></p>
+<pre><code>$drop-width:15px;
 
-<h3 id="section-4">浏览器支持</h3>
+// our raindrops are not going to be perfectly round, so we will stretch them a bit
+// (not using transform:scale so our background doesn't get stretched)
+$drop-stretch:1.1;
+$drop-height:$drop-width*$drop-stretch;
 
-<p><a href="http://caniuse.com/#feat=datalist">CanIUse</a>展示了支持<code>datalist</code>这个属性的浏览器列表。事实上，现在你可以很放心的使用，毕竟没啥浏览器不支持了。（除非你是IE10之前，那就GG了）</p>
+.raindrop{
+    position:absolute;
+    top:$height/2;
+    left:$width/2;
 
-<p>有一些移动端也是支持的，不过你需要仔细看下版本哦。</p>
+    width:$drop-width;
+    height:$drop-height;
 
-<h3 id="polyfills">Polyfills</h3>
+    // border radius 100% instead of 100px, so the raindrop is elliptical rather than a capsule-shaped
+    border-radius:100%;
+    background-image:url($image);
+    background-size:$width*0.05 $height*0.05;
+    transform:rotate(180deg);
+}
+</code></pre>
 
-<p>如果你想在一些不支持<code>datalist</code>的浏览器上使用<code>datalist</code>，你可以用<a href="https://github.com/CSS-Tricks/Relevant-Dropdowns">Relevant Dropdowns</a>或者<a href="https://github.com/miketaylr/jquery.datalist.js">jQuery HTML5 datalist plugin</a></p>
+<p>这个效果非常简单，画一个椭圆的div,用之前的背景图片来填充它，缩放背景，然后颠倒。效果如下</p>
 
-<p>但是你要知道，这些只能替代文本的内容，不能够像color和range那种展开使用。</p>
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//borderless-optimized-700x374.png" alt="img3" /></p>
 
-<h3 id="section-5">结尾</h3>
+<p>现在我们将增加一个边框，让雨滴看起来更加蓬松</p>
 
-<p>一堆废话我就不翻译了。。。</p>
+<pre><code> ...
+.border
+.raindrop
+</code></pre>
+
+<p>sass</p>
+
+<pre><code>...
+
+.border{
+    position:absolute;
+    top:$height/2;
+    left:$width/2;
+
+    margin-left:2px; 
+    margin-top:1px;
+
+    width:$drop-width - 4;
+    height:$drop-height;
+
+    border-radius:100%;
+
+    box-shadow:0 0 0 2px rgba(0,0,0,0.6);
+}
+</code></pre>
+
+<p>注意我们并没有直接在雨滴中直接增加一个边框，我们创建一个新的div并移动它，让它看起来更加自然</p>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//bordered-optimized-700x374.png" alt="img4" /></p>
+
+<p>现在雨滴看起来更加棒，让我们创建上百个雨滴。</p>
+
+<pre><code>.raindrops
+    .borders
+        - (1..100).each do
+            .border
+    .drops
+        - (1..100).each do
+            .raindrop
+</code></pre>
+
+<p>对于haml我们直接加循环，但对于sass比较棘手，我们一步步来实现它</p>
+
+<p>首先，我们需要创建循环选中每个独立的元素</p>
+
+<pre><code>@for $i from 1 through 100{
+
+  // using the $i variable with the CSS nth-child pseudo-class
+  .raindrop:nth-child(#{$i}){
+
+   }
+
+  .border:nth-child(#{$i}){
+
+   }
+}
+</code></pre>
+
+<p>现在我们将生成随机位置和大小来让雨滴分散</p>
+
+<pre><code>@for $i from 1 through 200{
+
+// generates a random number from 0 to 1, for the positioning
+    $x:random();
+      $y:random();
+
+  // Random raindrop size and stretching.
+  // Since each raindrop has different sizes, we'll do our sizing
+  // calculations here instead of on the main .raindrop selector
+     $drop-width:5px+random(11);
+     $drop-stretch:0.7+(random()*0.5);
+    $drop-height:$drop-width*$drop-stretch;
+
+    .raindrop:nth-child(#{$i}){
+        // multiply the random position value by the container's size
+        left:$x * $width;
+        top:$x * $height;
+
+        width:$drop-width;
+        height:$drop-height;
+    }
+
+    .border:nth-child(#{$i}){
+        // we'll do the same positioning for the drop's border
+        left:$x * $width;
+        top:$x * $height;
+
+        width:$drop-width - 4;
+        height:$drop-height;
+    }
+}
+</code></pre>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//raindrops-nopos-optimized-700x370.png" alt="img7" /></p>
+
+<p>最后，我们需要把改变每个雨滴中背景的位置，让它看起来更加自然</p>
+
+<pre><code>...
+
+.raindrop:nth-child(#{$i}){
+    ...
+
+    background-position:percentage($x) percentage($y);
+}
+...
+</code></pre>
+
+<p><img src="http://7s1say.com1.z0.glb.clouddn.com//raindrops-nofilter-optimized-700x370.png" alt="img8" />    </p>
+
+<p>这就是整个过程，希望你能享受它。</p>
+
+<h2 id="section-8">译者</h2>
+
+<p>改了一下haml，换成jade格式</p>
+
+<pre><code>&lt;template lang="jade"&gt;
+.container
+  .window
+  .raindrops
+    .borders
+      - for (var i = 0; i &lt; 100; i++) {
+          div(class='border')
+        - }
+    .drops
+      - for (var i = 0; i &lt; 100; i++) {
+          div(class='raindrop')
+        - }
+&lt;/template&gt;
+</code></pre>
+
+<p>然后加载一下sass,只要把关键部分替换了，就能写出一个自定义的vue组件</p>
+
+<pre><code>    // our background image.
+    // will be used for the window as well as
+    // the raindthemselves
+    $image: 'http://i.imgur.com/xQdYC7x.jpg';
+    
+    // container width and height.
+    // 100vw/vh so it fills the entire window
+    $width:100vw;
+    $height:100vh;
+    
+    //number of raindrops
+    $raindrops:100;
+    
+    body{
+      background:#222;
+    }
+    .container{
+      position:relative;
+      width:$width;
+      height:$height;
+      overflow:hidden;
+    }
+    .window{
+      position:absolute;
+      width:$width;
+      height:$height;
+      background:url($image);
+      background-size:cover;
+      background-position:50%;
+      filter:blur(10px);
+    }
+    // set all the containers to
+    // position:absolute, since 
+    // they will overlap
+    .raindrops,
+    .borders,
+    .drops{
+      position:absolute;
+    }
+    
+    // little brightness filter so our raindrops look shiny
+    .drops{
+      filter:brightness(1.2);
+    }
+    
+    // general settings for all the 
+    // raindrops and borders
+    .raindrop{
+        position:absolute;
+      border-radius:100%;
+        background-image:url($image);
+        background-size:$width*0.05 $height*0.05;
+      background-position:50%;
+        transform:rotate(180deg) rotateY(0);
+    }
+    .border{
+        position:absolute;
+        margin-left:2px; 
+        margin-top:1px;
+        border-radius:100%;
+        box-shadow:0 0 0 2px rgba(0,0,0,0.5);
+      transform:rotateY(0);
+    }
+    
+    // looping through each one of them
+    @for $i from 1 through $raindrops{
+    
+      // generates a random number from 0 to 1, for the positioning
+      $x:random();
+      $y:random();
+    
+      // Random raindrop size and stretching.
+      // Since each raindrop has different sizes, we'll do our sizing calculations here instead of on the main .raindrop selector
+        $drop-width:5px+random(11);
+        $drop-stretch:0.7+(random()*0.5);
+        $drop-height:$drop-width*$drop-stretch;
+        .raindrop:nth-child(#{$i}){
+            // multiply the random position value by the container's size
+            left:$x * $width;
+            top:$y * $height;
+        
+            width:$drop-width;
+            height:$drop-height;
+        background-position:percentage($x) percentage($y);
+        }
+    
+        .border:nth-child(#{$i}){
+            // we'll do the same positioning for the drop's border
+            left:$x * $width;
+            top:$y * $height;
+    
+            width:$drop-width - 4;
+            height:$drop-height;
+        }
+    }
+</code></pre>
+
+<p>就这样。希望有所帮助。</p>
 
 
-   <button><a href="http://comments.haoqiao.me/show/Creating Autocomplete datalist Controls (创建自动完成的DataList控件）/haoqiao.me">跳到评论系统</a></button>
+   <button><a href="http://comments.haoqiao.me/show/CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）/haoqiao.me">跳到评论系统</a></button>
 
 
 </article> <!-- end #post__content -->
 
 <div id="post__share">
-  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/20/translate%20three.html&text=Creating Autocomplete datalist Controls (创建自动完成的DataList控件）" target="_blank"></a>
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/28/translate%20thirteen.html&text=CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）" target="_blank"></a>
   <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
-  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/20/translate%20three.html&title=Creating Autocomplete datalist Controls (创建自动完成的DataList控件）" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/28/translate%20thirteen.html&title=CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）" target="_blank"></a>
 </div> <!-- end #post__share -->
 
 
