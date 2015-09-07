@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Sprite动画与ScrollMagic的使用
+title: 最近在干的事情小结
 tags: [Css3,Gsap,gitbook]
 keywords: 学习资料,前端,Css3,GSAP
 description: 
