@@ -51,7 +51,7 @@ description:
 
 自从有了知乎，我的知识面扩大了很多，因此我会第一时间先用知乎找找别人有没有提过这个问题。如下：
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//howtlearn1.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![imgn](http://7s1say.com1.z0.glb.clouddn.com//howtlearn1.png)
 
 先找到Node.js这个话题，然后直接找精华，你看直接就有了，你还虚什么？
 
@@ -59,7 +59,7 @@ description:
 
 对于Node.js，你还可以用quora来进行深层次的提高。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//howtlearn2.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![imgn](http://7s1say.com1.z0.glb.clouddn.com//howtlearn2.png)
 
 于是你掌握第一步，之后你需要做的就是在实战中google。(别问我如何翻墙，详情可看[learn.haoqiao.me](http://learn.haoqiao.me))
 
