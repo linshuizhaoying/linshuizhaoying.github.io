@@ -27,7 +27,7 @@ description:
 9.ajax异步请求以及扩展学习
 ```
 
-##正文
+## 正文
 今天是学习jquery的each的实现。
 
 首先先去[官方文档](http://api.jquery.com/each/)看下each的api，看下each具体能做什么(事实上我一直用for-0-).
@@ -195,7 +195,7 @@ underscore的写法和jquery有些不同。
 ```
 1.它先判断能不能用宿主环境自带的foreach来实现。
 
-2.jquery是用略显长的方法对是否传入参数判断写了两种，可以考虑合并但是合并后需要返回判断isobj因此jquery用略显长的形式来避免性能下降。
+2.jquery是用略显长的方法对是否传入参数判断写了两种，可以考虑合并但是合并后需要反复判断isobj因此jquery用略显长的形式来避免性能下降。
 
 而underscore没有考虑参数的传入而是直接对数组/对象进行迭代。
 
