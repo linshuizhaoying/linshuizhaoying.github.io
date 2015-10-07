@@ -6,6 +6,7 @@ tags: [Jquery，Jquery学习,项目小结,前端学习,前端总结，javascript
 keywords: 前端,资料,学习
 description: 
 --- 
+
 ## 前言
 
 ```
@@ -28,6 +29,7 @@ description:
 9.ajax异步请求以及扩展学习 √
 
 ```
+
 ## 先从XMLHttpRequest谈起
 
 提到ajax我们肯定得先提XMLHttpRequest，jquery的ajax也是对XMLHttpRequest的封装。因此对于今天的学习将不会侧重于它封装的所有细节，而是争取掌握XMLHttpRequest。因此今天的小分类应该是这样的.
