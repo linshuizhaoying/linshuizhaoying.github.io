@@ -6,17 +6,9 @@ layout: base
  
   <h1 id="post__title" data-identifier="{{ page.date | date: "%Y%m%d" }}">{{ page.title }}</h1>
   {{ content }}
-  
-<!--高速版-->
-<div id="SOHUCS"></div>
-<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: 'cyrUUn5kH',
-        conf: 'prod_7e8a3c0541308e4534c6e0129a52e25e'
-    });
-</script>        
 
+<!--高速版-->
+<a href="comment.html" target="_blank"><button>点击评论</button></a>
 </article> <!-- end #post__content -->
 
 {% include share.html %}
