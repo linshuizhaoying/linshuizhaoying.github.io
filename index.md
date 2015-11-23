@@ -4,7 +4,8 @@ title: Welcome
 ---
 
 ## 关于本博客
-前端新手点这里 [前端技术树](http://learn.haoqiao.me)
+
+前端技术树因为换服务器所以关闭了，有需要的去[这里](https://github.com/linshuizhaoying/learn.haoqiao.me)fork。
 
 Github地址  [Github](https://github.com/linshuizhaoying)
 
