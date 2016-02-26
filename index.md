@@ -5,6 +5,8 @@ title: Welcome
 
 ## 关于
 
+[我的简历](http://haoqiao.me/resume)
+
 [<<清晰的JS-gitbook>>](https://linshuizhaoying.gitbooks.io/-cjs/content/index.html)
 
 前端技术树重新上线 新手点[这里](http://learn.haoqiao.me)
