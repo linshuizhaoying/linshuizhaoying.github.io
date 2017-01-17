@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 在编码之前先画个图
-tags: [程序流图,类图,前端,Graphviz,]
-keywords: web,代码,前端
+tags: [程序流图,类图,前端,Graphviz,OmniGraffle,sketch,Keynote,百度脑图]
+keywords: web,代码,前端,Graphviz,OmniGraffle,sketch,Keynote,百度脑图
 description: 
 ---
 
