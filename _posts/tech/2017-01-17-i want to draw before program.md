@@ -86,10 +86,14 @@ digraph G{
 完全随心所欲的画图，而且根据绘制的类型不同可以自己调整风格。更方便的是你还可以去下载它的模板`stencil`，来达到快速画图的目的。
 ![imgn](http://haoqiao.qiniudn.com/OmniGraffle1-2.png)
 这里提供一些`stencil`的网站
+
 ```
+
 1.https://stenciltown.omnigroup.com
 2.https://www.graffletopia.com/ （收费）
+
 ```
+
 `OmniGraffle1`的优势我觉得是对于不怎么会画图的程序员，如果看到一些比较好的风格，可以通过直接编辑属性达到快速模仿的目的。
 
 ### sketch
