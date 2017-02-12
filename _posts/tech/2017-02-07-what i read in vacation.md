@@ -13,31 +13,29 @@ description:
 
 ## 《人月神话》
 
-![](media/14868812915560.jpg)
+![imgn](http://haoqiao.qiniudn.com/renyueshenhua.jpg)
 
 
 ## 《持续交付 发布可靠软件的系统方法》
 
-![](media/14868813657851.jpg)
+![imgn](http://haoqiao.qiniudn.com/chixujiaofu.jpg)
 
 
 ## 《浮现式设计 专业软件开发的演进本质》
 
-![](media/14868813976236.jpg)
-
+![imgn](http://haoqiao.qiniudn.com/fuxianshisheji.jpg)
 
 ## 《javascript高效图形编程》
 
-![](media/14868814316281.jpg)
+![imgn](http://haoqiao.qiniudn.com/gaoxiaotuxing.jpg)
 
 
 ## 《领域特定语言》(只看了一半)
 
-![](media/14868814726578.jpg)
+![imgn](http://haoqiao.qiniudn.com/lingyuteding.jpg)
 
 
 ## HTTP 权威指南
 
-![](media/14868815281356.jpg)
-
+![imgn](http://haoqiao.qiniudn.com/httptujie.jpg)
 
