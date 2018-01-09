@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 利用StoryBook开发UI组件管理
+category: 技术
 tags: [学习,开发,前端,React,2018,StoryBook]
 keywords: 学习,开发,前端,UI,2018,React
 description: 

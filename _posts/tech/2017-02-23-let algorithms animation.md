@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 前端开发——让算法"动"起来
+category: 技术
 tags: [学习,开发,前端,总结,数据结构,算法,source code]
 keywords: 数据结构,算法,source code,前端
 description: 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 从零开始开发个人UI管理系统
+category: 技术
 tags: [学习,私货,前端,整站开发]
 keywords: Javascript,代码,前端,学习总结
 description: 

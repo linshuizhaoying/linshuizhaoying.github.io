@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Vue源码学习(从入门到放弃到总结)-Observe
+category: 技术
 tags: [学习,开发,前端,总结,2018,Vue源码学习,Source Code,面试]
 keywords: 总结,2018,Vue源码学习,source code,前端
 description: 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 将RxJS融入React项目
+category: 技术
 tags: [学习,开发,前端,Node,React,RxJS,React-observable]
 keywords: 学习,开发,前端,RxJS,React,React-observable
 description: 

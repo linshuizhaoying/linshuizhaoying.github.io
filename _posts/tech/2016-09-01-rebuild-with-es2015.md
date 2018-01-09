@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 重构UI管理系统实战篇
+category: 技术
 tags: [学习,私货,前端,实战总结]
 keywords: Javascript,代码,前端,学习总结
 description: 

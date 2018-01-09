@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Node + Git + Webhook 自动化部署
+category: 技术
 tags: [学习,开发,前端,Node,Git,webhook]
 keywords: 学习,开发,前端,Node,Git,webhook
 description: 

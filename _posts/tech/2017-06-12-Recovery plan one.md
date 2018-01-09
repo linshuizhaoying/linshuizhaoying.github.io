@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 前端日常恢复计划-轮播图
+category: 技术
 tags: [学习,开发,前端,总结,2018,原生js开发,Source Code,Node]
 keywords: 总结,2018,Node开发,source code,前端
 description: 

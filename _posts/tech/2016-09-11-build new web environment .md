@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 构建新的web开发环境
+category: 技术
 tags: [学习,整理,前端,实战总结]
 keywords: web,代码,前端,学习总结,ci,单元测试,测试平台
 description: 

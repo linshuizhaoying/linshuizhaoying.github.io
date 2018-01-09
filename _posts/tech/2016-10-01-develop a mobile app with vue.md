@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 使用Vue与koa开发移动端App
+category: 技术
 tags: [学习,整理,前端,实战总结,vue,koa]
 keywords: web,代码,前端,学习总结,mobile,移动端,app,手机应用,koa,rest,api,vue
 description: 

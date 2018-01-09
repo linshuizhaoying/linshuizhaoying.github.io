@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 前端日常恢复计划-Promise
+category: 技术
 tags: [学习,开发,前端,总结,2018,原生js开发,Source Code,Node,Promise]
 keywords: 总结,2018,Promise,source code,前端
 description: 
