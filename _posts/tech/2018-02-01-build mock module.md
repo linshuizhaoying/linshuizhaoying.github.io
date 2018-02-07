@@ -291,9 +291,7 @@ const uploadProps = {
       name: 'file',
       action: '',
       showUploadList: false,
-      beforeUpload: (file: any) => {{
-        console.log(file)
-        console.log(file.type)
+      beforeUpload: (file: any) => {
         const isJSON = file.type === 'application/json';
         if (!isJSON) {
           Message.error('只允许上传JSON格式文件!');
