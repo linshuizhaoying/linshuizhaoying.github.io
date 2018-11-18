@@ -37,7 +37,7 @@ description:
 因此更好的方法直接把`.dot`文档拖到`Graphviz`程序上，但有时候这样也觉得太慢。
 这时候你可以考虑用`sublime`的插件`GraphvizPreview`
 只要你全选你的代码就能然后按快捷键就能快速显示图。如图:
-![imgn](http://haoqiao.qiniudn.com/Graphviz1-1.png)
+![imgn](http://img.haoqiao.me/Graphviz1-1.png)
 
 
 graphviz 有两种图，一种是无向图graph，边用--连接，一种是有向图digraph，边用->连接。当然你可以通过代码设置将边框设置为你想要的，还有虚线，子图等等功能，下面我们看网上摘抄的一段代码
@@ -71,7 +71,7 @@ digraph G{
 }
 ```
 
-![imgn](http://haoqiao.qiniudn.com/Graphviz1-2.png)
+![imgn](http://img.haoqiao.me/Graphviz1-2.png)
 
 喜欢更深入学习的童鞋可以戳[这里](http://icodeit.org/2015/11/using-graphviz-drawing/) 这篇博文是我搜到一篇讲解比较详细的。
 
@@ -81,10 +81,10 @@ digraph G{
 
 `Omini`家族的软件都是非常有特色，产品概念性非常完整，上节我们用`Graphviz`来用脚本生成图片，但是习惯了拖来拖去生成图片的我们如果想边思考边绘制原型或者流程图，那么`OmniGraffle`就是非常好的选择。
 
-![imgn](http://haoqiao.qiniudn.com/OmniGraffle1-1.png)
+![imgn](http://img.haoqiao.me/OmniGraffle1-1.png)
 
 完全随心所欲的画图，而且根据绘制的类型不同可以自己调整风格。更方便的是你还可以去下载它的模板`stencil`，来达到快速画图的目的。
-![imgn](http://haoqiao.qiniudn.com/OmniGraffle1-2.png)
+![imgn](http://img.haoqiao.me/OmniGraffle1-2.png)
 这里提供一些`stencil`的网站
 
 ```
@@ -100,7 +100,7 @@ digraph G{
 
 同样的软件还有设计师神器`sketch`,但是个人觉得画程序图不怎么好使，虽然也能画，但是更偏向于设计向。
 
-![imgn](http://haoqiao.qiniudn.com/sketch1-1.png)
+![imgn](http://img.haoqiao.me/sketch1-1.png)
 
 当然`sketch`的模板更加的多，主要是设计师们比较给力。而且还有很多丰富的插件，具体可以点[这里](https://www.zhihu.com/question/27495264)
 
@@ -109,14 +109,14 @@ digraph G{
 在还没有`OmniGraffle`的时候，如果遇到需要简便画图的情况下，大多数人可能会选择`画图工具`或者`Ps`
 但是我当时选择了`keynote` 感觉在没有工具的情况下，效果还行。
 
-![imgn](http://haoqiao.qiniudn.com/keynote1-1.png)
+![imgn](http://img.haoqiao.me/keynote1-1.png)
 
 同理，可以替代的是`PPT`和`WPS`。
 
 ## echarts
 
 现在数据表示最强大的图表制作软件之一就是`echarts`,直接去[官网](http://echarts.baidu.com/)
-![imgn](http://haoqiao.qiniudn.com/9AB1D834-0F14-40BD-B10B-1EFBB317E319.png)
+![imgn](http://img.haoqiao.me/9AB1D834-0F14-40BD-B10B-1EFBB317E319.png)
 
 这个文档这里就不给出了，直接官网查询并使用。
 对于数据展示我现阶段还没很深入的学习因此这里就不展开说明。
@@ -130,11 +130,11 @@ digraph G{
 ## 思维导图
  
 关于思维导图我推荐两个，一个是`ithoughtsX` ，我一直用它来复习学习以及制作读书笔记。
-![imgn](http://haoqiao.qiniudn.com/ithoughtsX.png)
+![imgn](http://img.haoqiao.me/ithoughtsX.png)
 win下也有类似的软件需要大家自己寻找。
 
 一个是在线版的`百度脑图`。
-![imgn](http://haoqiao.qiniudn.com/baidunaotu.png)
+![imgn](http://img.haoqiao.me/baidunaotu.png)
 
 # 总结
 

@@ -15,7 +15,7 @@ description:
 
 首先我们先确定一下需求，为了直接明了，用Ithoughts作了张思维导图。
 
-![imgn](http://haoqiao.qiniudn.com/unitvue1.png)
+![imgn](http://img.haoqiao.me/unitvue1.png)
 
 看需求我们就知道我们需要解决的是vue文件的解析测试与webpack插件的应用。
 

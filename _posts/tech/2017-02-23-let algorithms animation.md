@@ -30,7 +30,7 @@ description:
 
 先来看下效果图
 
-![imgn](http://haoqiao.qiniudn.com/sortanimation1.gif)
+![imgn](http://img.haoqiao.me/sortanimation1.gif)
 
 之后我们分析源码：
 
@@ -179,7 +179,7 @@ state.push(temp);
 
 分分钟改变动画效果。
 
-![imgn](http://haoqiao.qiniudn.com/sortanimation2.gif)
+![imgn](http://img.haoqiao.me/sortanimation2.gif)
 
 这样我们就完成目标中的一小步了。
 
@@ -189,7 +189,7 @@ state.push(temp);
 
 先来看效果
 
-![imgn](http://haoqiao.qiniudn.com/sortanimation3.gif)
+![imgn](http://img.haoqiao.me/sortanimation3.gif)
 
 代码如下:
 
@@ -355,7 +355,7 @@ requestAnimationFrame
 
 最终效果如下:
 
-![imgn](http://haoqiao.qiniudn.com/sortanimation4.gif)
+![imgn](http://img.haoqiao.me/sortanimation4.gif)
 
 有了以上基础你完全可以自己开始构建一个属于自己的排序动画。这篇就到这里。
 

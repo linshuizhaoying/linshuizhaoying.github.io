@@ -31,7 +31,7 @@ for (var i = that.Config.minYear; i <= that.Config.maxYear; i++) {
 
 这种是先将html写好，然后转为js dom节点，用js的`createElement`方法来动态创建节点然后添加到页面里。这种写法的缺点在于你必须对html层级很清楚，然后写的时候要注意父子节点的关系，在很久之前我学习正则表达式的时候写过一个动态生成的工具，但是它仅仅只是判断父子节点的关系，而且还需要按照指定格式来编写。当然喜欢这种方式的童鞋可以不用再自己手动去写了，`github` 上有个开源的项目 [html2js](https://github.com/ArnonEilat/HTML2JS)已经帮我们可以实现这种形式。
 
-![imgn](http://haoqiao.qiniudn.com/html2js1.png)
+![imgn](http://img.haoqiao.me/html2js1.png)
 
 然后关于动态生成还有一种方法，我们拿我之前写的日历控件来看:
 
@@ -106,7 +106,7 @@ for (var i = that.Config.minYear; i <= that.Config.maxYear; i++) {
 我们可以从代码中看到我们将整个html代码用一个数组保存，里面每行都用单引号。这种方式已经很接近template了，因为我需要的是整个静态页面而不需要动态修改里面的内容因此不需要再加个解析引擎，直接动态创建一个div节点把内容填充进去即可。
 当然这种方式看起来蛮清楚，但是如果要自己手打好像太累了，好在我们也有工具来实现类似功能，当然我感觉这种工具自己写也蛮方便的。。。
 
-![imgn](http://haoqiao.qiniudn.com/html2js2.png)
+![imgn](http://img.haoqiao.me/html2js2.png)
 
 工具戳[这里](http://www.css88.com/tool/html2js/)
 
@@ -166,7 +166,7 @@ document.querySelector('#nameTag').textContent = 'linshui';
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/html2js3.png)
+![imgn](http://img.haoqiao.me/html2js3.png)
 
 当然这种写法感觉上好像已经多此一举，因为你用各种mvvm框架都可以直接写组件比如vue。因此这个我们只需要看看就好了-0-
 

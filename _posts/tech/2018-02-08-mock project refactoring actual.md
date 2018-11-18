@@ -306,7 +306,7 @@ cancelText="取消"
 
 最终从 `complied with warnings` 到 `Compiled successfully!`
 
-![imgn](http://haoqiao.qiniudn.com/WechatIMG125.jpeg)
+![imgn](http://img.haoqiao.me/WechatIMG125.jpeg)
 
 ## 代码 重构
 
@@ -485,7 +485,7 @@ message: '类型“Readonly<InterfaceModeState>”上不存在属性“mode”�
 
 以及在修改后，查询某个数据的类型(在 vscode 中)只需要按 ctrl 结合点击该数据就能立刻跳到该属性的定义，这样对开发人员来讲是很方便的一件事情。
 
-![imgn](http://haoqiao.qiniudn.com/project%20refactoring%20actual%201.gif)
+![imgn](http://img.haoqiao.me/project%20refactoring%20actual%201.gif)
 
 如果编译时期出错，在下方的问题中都会直接显示，这样可以在 热更新之前就对错误进行捕获。
 

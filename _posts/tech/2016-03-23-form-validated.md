@@ -28,7 +28,7 @@ description:
 
 然后看一下完成的效果
 
-![imgn](http://haoqiao.qiniudn.com/active80.gif)
+![imgn](http://img.haoqiao.me/active80.gif)
 
 一开始为了完成功能写的匆忙，导致代码非常丑陋0-0.后来用心简化了一下，但是看了下别人用ES6写的，感觉还是自愧不如。不过都是为了学习,在这里我贴出我的代码.
 

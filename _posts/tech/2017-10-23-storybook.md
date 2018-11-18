@@ -53,7 +53,7 @@ getstorybook
 
 之后直接运行`yarn run storybook`就可以看到界面
 
-![imgn](http://haoqiao.qiniudn.com/WechatIMG32.jpeg)
+![imgn](http://img.haoqiao.me/WechatIMG32.jpeg)
 
 然而事实并没有那么简单。因为支持ts的是项目本身，而storybook是独立出来的。因此你需要按照配置进行各种修改。
 
@@ -322,7 +322,7 @@ export default AppWrapper;
 
 然后来看下效果图：
 
-![imgn](http://haoqiao.qiniudn.com/storybook2.gif)
+![imgn](http://img.haoqiao.me/storybook2.gif)
 
 可以看到数据已经传递成功。
 
@@ -356,7 +356,7 @@ storiesOf('Button', module)
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/storybook3.gif)
+![imgn](http://img.haoqiao.me/storybook3.gif)
 
 最后一步就是加入参数调试，这里我们需要加在一些`addon` 来增强体验。
 
@@ -364,11 +364,11 @@ storiesOf('Button', module)
 
 首先加入`addon-notes`，它用来写组件描述，而且经过测试，它是可以加入Html代码，因此可以先自己定义统一格式，然后加入内容。
 
-![imgn](http://haoqiao.qiniudn.com/E6A65857-3411-49A0-BEEE-2CEBA15C7431.png)
+![imgn](http://img.haoqiao.me/E6A65857-3411-49A0-BEEE-2CEBA15C7431.png)
 
 还可以自定义一些信息，比如使用参数，暴露出来的接口等等。加载`Info Addon` 就可以实现。
 
-![imgn](http://haoqiao.qiniudn.com/4A951A01-EBA9-4C5D-94C7-95D10FAA87C3.png)
+![imgn](http://img.haoqiao.me/4A951A01-EBA9-4C5D-94C7-95D10FAA87C3.png)
 
 接下来的核心就是增加参数调试功能
 
@@ -416,7 +416,7 @@ storiesOf('AppWrapper', module)
 
 需要在开发的时候把动态传递的参数给设定好。这样才能即时显示。效果图如下：
 
-![imgn](http://haoqiao.qiniudn.com/storybook4.gif)
+![imgn](http://img.haoqiao.me/storybook4.gif)
 
 然后调用`addon options`
 

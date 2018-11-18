@@ -46,7 +46,7 @@ description:
 ```
 对于基础配置我们可以参考它给出的mockserver文件。然后我自己新建了`api.js`和`api.json`。我们只需要对api.json进行修改就行。具体看文档即可。而且它编写Json的格式可以参考[mockjs](http://mockjs.com/examples.html#Image)
 
-![imgn](http://haoqiao.qiniudn.com/puremock.png)
+![imgn](http://img.haoqiao.me/puremock.png)
 
 
 
@@ -77,7 +77,7 @@ describe('Hello.vue', () => {
 
 结果如图
 
-![imgn](http://haoqiao.qiniudn.com/karma1.png)
+![imgn](http://img.haoqiao.me/karma1.png)
 
 对于vue而言，作者已经在文档中写明了`代码测试的最佳实践是导出组件模块的选项/函数`
 而且在`vue-loader-example`中,作者写的测试案例也是类似差不多，比如:
@@ -169,7 +169,7 @@ test/e2e/reports
 
 使用你的Github账户 login https://travis-ci.org/，点击右上角的Accounts到达一个页面，点击其中的Sync account，同步一下Github上公开的仓库。其实Travis-CI的官网已经给出了详细的步奏，接下来就是选择你要持续集成的项目，打开开关，创建配置文件，触发第一次钩子。
 
-![imgn](http://haoqiao.qiniudn.com/ci1.png)
+![imgn](http://img.haoqiao.me/ci1.png)
 
 然后选中你要持续集成的项目，让灰色的叉叉变成绿勾。
 
@@ -208,15 +208,15 @@ script:
 
 不过要注意一件事情，那就是如果你karma配置文件中没写明 `singleRun: true`那么持续集成将卡住超时。。。然后当你测试没通过时
 
-![imgn](http://haoqiao.qiniudn.com/ci2-1.png)
+![imgn](http://img.haoqiao.me/ci2-1.png)
 
-![imgn](http://haoqiao.qiniudn.com/ci2.png)
+![imgn](http://img.haoqiao.me/ci2.png)
 
 而且你的邮箱将会受到一封邮件告诉你集成失败。
 
 因此你这份提交将提交失败。并且在github上可以看到
 
-![imgn](http://haoqiao.qiniudn.com/ci3.png)
+![imgn](http://img.haoqiao.me/ci3.png)
 
 这样最简单的集成测试就完成了，但是我们不能满足于仅仅只集成单元测试，我们需要将主流的功能一一涵盖,而我们接下来需要做的很简单。
 
@@ -254,11 +254,11 @@ ERROR in ./test/unit/specs/test.spec.js
 
 然后我们把那个总所周知的图标放到`README.md`，点击 `build/failing` 然后选择`markdown`
 
-![imgn](http://haoqiao.qiniudn.com/ci5.png)
+![imgn](http://img.haoqiao.me/ci5.png)
 
 访问github你就可以看到你的编译通过状态
 
-![imgn](http://haoqiao.qiniudn.com/ci6.png)
+![imgn](http://img.haoqiao.me/ci6.png)
 
 接下来是代码测试覆盖率。
 
@@ -330,7 +330,7 @@ after_script:
 
 然后再coveralls官网可以看到
 
-![imgn](http://haoqiao.qiniudn.com/ci%20cover.png)
+![imgn](http://img.haoqiao.me/ci%20cover.png)
 
 往`README.md`中添加
 
@@ -342,7 +342,7 @@ after_script:
 
 这样你就能看到你的代码测试覆盖率了。
 
-![imgn](http://haoqiao.qiniudn.com/ci%20cover2.png)
+![imgn](http://img.haoqiao.me/ci%20cover2.png)
 
 关于跨浏览器集成测试我就不折腾了。。。原因就是折腾了很久也没有弄出个结果QAQ
 
@@ -351,27 +351,27 @@ after_script:
 
 `PageSpeed`chrome套餐,都是在开发者应用中心搜索下载，具体效果如下：
 
-![imgn](http://haoqiao.qiniudn.com/pagespeed1.png)
+![imgn](http://img.haoqiao.me/pagespeed1.png)
 
-![imgn](http://haoqiao.qiniudn.com/pagespeed2.png)
+![imgn](http://img.haoqiao.me/pagespeed2.png)
 
 这两者在开发完成后可以针对性的进行优化~
 
 `wappalyzer` 这个chrome插件可以让你知道目标网站加载了啥，当初配这个是想偷师来着。。。后来发现自己已经习惯直接翻人家源码找东西了。。。
 
-![imgn](http://haoqiao.qiniudn.com/wazzper1.png)
+![imgn](http://img.haoqiao.me/wazzper1.png)
 
 `alloydesigner` 绝对的神器，帮助你完成1px的设计稿完美对准
 
-![imgn](http://haoqiao.qiniudn.com/alloydesigner.png)
+![imgn](http://img.haoqiao.me/alloydesigner.png)
 
 ### 代码质量监控
 
 这里需要提到一个网站`codeclimate.com` 它可以帮你审查你github上的项目的代码质量，如图
 
-![imgn](http://haoqiao.qiniudn.com/codejsclimate.png)
+![imgn](http://img.haoqiao.me/codejsclimate.png)
 
-![imgn](http://haoqiao.qiniudn.com/codecssclimate.png)
+![imgn](http://img.haoqiao.me/codecssclimate.png)
 
 而且能帮你分析整站的重复代码以及给出一些建议。但是关键是它只有14天的免费。。。然后就是20美元一个月...
 

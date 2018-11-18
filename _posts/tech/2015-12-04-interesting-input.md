@@ -13,7 +13,7 @@ description:
 ## 正文
 首先来看这张图
 
-![imgn](http://haoqiao.qiniudn.com/input01.png)
+![imgn](http://img.haoqiao.me/input01.png)
 
 它默认有个路径但是无法修改只能复制。
 
@@ -29,7 +29,7 @@ description:
 
 考虑一下应用场景应该是在文件管理，那么一开始这个value应该是自动获取来的参数，我们可以用vue模拟一下。
 
-![imgn](http://haoqiao.qiniudn.com/active54.gif)
+![imgn](http://img.haoqiao.me/active54.gif)
 
 非常简单的用法,代码也很简单：
 
@@ -63,11 +63,11 @@ module.exports = {
 这是之前没注意到的,它可以在页面加载的时候自动把光标移到你指定的Input.
 经过测试，如果多个Input设置autofocus="true",那么只有第一个会发光。
 
-![imgn](http://haoqiao.qiniudn.com/input2.png)
+![imgn](http://img.haoqiao.me/input2.png)
 
 这个时候我突然想到vue官方文档中的一个例子。它可以定义一个过滤器，在把来自视图（<input> 元素）的值写回模型之前转化它.
 
-![imgn](http://haoqiao.qiniudn.com/active55.gif)
+![imgn](http://img.haoqiao.me/active55.gif)
 
 因为之前没怎么用过filter,因此花了点时间去熟悉，后来找到了使用方法。
 
@@ -174,7 +174,7 @@ Vue.filter('datachange', {
 
 然后看到这个效果，我突然又想到了一个东东。很早之前别人给我看的一个效果。是这样的：
 
-![imgn](http://haoqiao.qiniudn.com/active56.gif)
+![imgn](http://img.haoqiao.me/active56.gif)
 
 当初看到这个效果蛮惊艳的，后来经过查找问人，是[formatter.js](https://github.com/firstopinion/formatter.js)这个插件。
 

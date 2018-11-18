@@ -24,7 +24,7 @@ description:
 
 先来个动图看下最终效果：
 
-![imgn](http://haoqiao.qiniudn.com/active59.gif)
+![imgn](http://img.haoqiao.me/active59.gif)
 
 整个代码我都传到了[github](https://github.com/linshuizhaoying/haoqiao-Fiddle)
 

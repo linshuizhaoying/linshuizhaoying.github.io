@@ -42,7 +42,7 @@ description:
 
 看下最后实现效果
 
-![imgn](http://haoqiao.qiniudn.com/active81.gif)
+![imgn](http://img.haoqiao.me/active81.gif)
 
 最终代码如下:
 

@@ -11,7 +11,7 @@ description:
 
 当初大一的时候报了学校的一个项目，然后这个app是其中一部份功能衍生出来的。主要功能是提供在线图书漂流平台，以书换书或者仅仅只是纯粹的借阅。
 
-![imgn](http://haoqiao.qiniudn.com/tushupiaoliu1.png)
+![imgn](http://img.haoqiao.me/tushupiaoliu1.png)
 
 先大概考虑了一下。
 
@@ -354,7 +354,7 @@ module.exports = router;
 
 最后效果图如下：
 
-![imgn](http://haoqiao.qiniudn.com/drift1.gif)
+![imgn](http://img.haoqiao.me/drift1.gif)
 
 原工程先不贴了，还有优化的步骤没做~
 

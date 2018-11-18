@@ -44,7 +44,7 @@ description:
 
 然后通过一些工具来保存，比如inboard
 
-![imgn](http://haoqiao.qiniudn.com/WechatIMG265.jpeg)  
+![imgn](http://img.haoqiao.me/WechatIMG265.jpeg)  
   
 ### 工具
 常用的一些css 网站肯定要有个组织备用。
@@ -66,13 +66,13 @@ description:
 
 更重要的是平时对`css代码片段`的搜集。
 代码片段搜集有几种方式，一种是通过工具，比如`lepton`(通过github保存代码片段)。
-![imgn](http://haoqiao.qiniudn.com/WechatIMG267.jpeg)
+![imgn](http://img.haoqiao.me/WechatIMG267.jpeg)
 
 一种是本地搭建wiki，做个css分类，这个的好处在于你可以积累各种各样的内容，而且能引入类似`jsfiddle`的demo。
-![imgn](http://haoqiao.qiniudn.com/WechatIMG266.jpeg)
+![imgn](http://img.haoqiao.me/WechatIMG266.jpeg)
 
 或者利用一些框架的ui库组织工具，比如`react-styleguidist`。
-![imgn](http://haoqiao.qiniudn.com/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f32373142333732783130325330633035326933462f72656163742d7374796c6567756964697374372e676966.gif)
+![imgn](http://img.haoqiao.me/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f32373142333732783130325330633035326933462f72656163742d7374796c6567756964697374372e676966.gif)
 
 开发阶段的很多内容其实就是看平时积累，项目越做越多，自己的代码库就积累的越多，开发时候效率就越快。
 

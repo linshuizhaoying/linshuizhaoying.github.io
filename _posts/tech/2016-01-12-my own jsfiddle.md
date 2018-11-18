@@ -169,7 +169,7 @@ for (var i = 0; i < deleteLink.length; i++) {
 
 来贴张成果图:
 
-![imgn](http://haoqiao.qiniudn.com/jsfiddleone.png)
+![imgn](http://img.haoqiao.me/jsfiddleone.png)
 
 所以最基础的版本我们已经有了，剩下的就是布局调整，添加新功能，增强体验等等操作了。欲知后事如何,我们下回分解。
 

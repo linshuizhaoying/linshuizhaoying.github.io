@@ -52,7 +52,7 @@ result:
 1: bar
 
 ```
-![imgn](http://haoqiao.qiniudn.com/jquerylearn1.png)
+![imgn](http://img.haoqiao.me/jquerylearn1.png)
 
 可以看见对li进行迭代并且对每一项都传递执行一个函数。说明each中返回参数至少有一个计数的。
 
@@ -213,7 +213,7 @@ obj.length === +obj.length
 
 这是测试结果
 
-![imgn](http://haoqiao.qiniudn.com/jquerylearn2.png)
+![imgn](http://img.haoqiao.me/jquerylearn2.png)
 
 全等符号是不会将比较的对象进行类型转换的。这里能想到obj.length === +obj.length应该是对象类型进行判断，但是怎么判断的？继续看资料-0-
 
@@ -221,9 +221,9 @@ obj.length === +obj.length
 +号的作用不是自增，'+'号其实是将后面跟的操作数转型成了数字类型。
 ```
 
-![imgn](http://haoqiao.qiniudn.com/jquerylearn3.png)
+![imgn](http://img.haoqiao.me/jquerylearn3.png)
 
-![imgn](http://haoqiao.qiniudn.com/jquerylearn4.png)
+![imgn](http://img.haoqiao.me/jquerylearn4.png)
 
 如果obj是一个string类型，如"abc",我们可以拿到length属性，如果是一个function，或者一个数组，我们都可以拿到他们的length属性，但如果是一个object类型的数据，它可能是不包含length属性的。对于非数组、非字符串、非函数类型的数据，我们可以尝试使用for in循环来遍历数据.
 

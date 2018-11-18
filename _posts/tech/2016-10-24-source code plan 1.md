@@ -16,7 +16,7 @@ description:
 
 ### 第一个是工具，对于工具很多人可能会直接操起手中的代码编辑器直接来阅读，这的确是阅读的手段之一，但是我这里要安利一个工具`lambda-view` [github](https://github.com/Jianru-Lin/lambda-view)
 
-![imgn](http://haoqiao.qiniudn.com/lv.png)
+![imgn](http://img.haoqiao.me/lv.png)
 
 ### 第二个是中文文档,当然如果只有英文文档也是可以的。
 
@@ -80,7 +80,7 @@ first_.first(array, [n]) Alias: head, take
 
 然后用`sublime`打开从`github`上下载下来的文件夹，查看test目录里的arrays.js
 
-![imgn](http://haoqiao.qiniudn.com/underscore-array1.png)
+![imgn](http://img.haoqiao.me/underscore-array1.png)
 
 然后看`first`的断言
 
@@ -111,7 +111,7 @@ function _first(array,n) {
 
 然后用chrome跑一下,发现
 
-![imgn](http://haoqiao.qiniudn.com/underscore-array2.png)
+![imgn](http://img.haoqiao.me/underscore-array2.png)
 
 当测试n>0的时候正常，n=0的时候发现边界不对。我们改改
 

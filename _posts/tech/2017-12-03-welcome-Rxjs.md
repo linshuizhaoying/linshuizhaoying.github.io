@@ -1144,7 +1144,7 @@ example.subscribe({
 
 [拉拽效果](https://jsfiddle.net/s6323859/1ahzh7a7/2/)
 
-![imgn](http://haoqiao.qiniudn.com/WechatIMG50.jpeg)
+![imgn](http://img.haoqiao.me/WechatIMG50.jpeg)
 
 
 ```
@@ -1655,7 +1655,7 @@ source 结束example 就直接结束，因为source 跟newest 不会再有对应
 [完成拖拽Demo](https://jsfiddle.net/s6323859/ochbtpk5/3/)
 
 
-![imgn](http://haoqiao.qiniudn.com/WechatIMG52.jpeg)
+![imgn](http://img.haoqiao.me/WechatIMG52.jpeg)
 
 ```
 
@@ -1893,7 +1893,7 @@ example.subscribe({
 
 [图片跟随例子](https://jsbin.com/hayixa/2/edit?html,css,js,output)
 
-![imgn](http://haoqiao.qiniudn.com/rxdelay.gif)
+![imgn](http://img.haoqiao.me/rxdelay.gif)
 
 `debounce`
 
@@ -2655,7 +2655,7 @@ selectItem
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/rxautocomplete1.gif)
+![imgn](http://img.haoqiao.me/rxautocomplete1.gif)
 
 `window系列operators`
 
@@ -2772,7 +2772,7 @@ var example = source.map(x => x + 1);
 
 普通函数是返回所有结果再进行下一轮操作
 
-![imgn](http://haoqiao.qiniudn.com/l0HlPZeB9OvFu7QwE.gif)
+![imgn](http://img.haoqiao.me/l0HlPZeB9OvFu7QwE.gif)
 
 >operators 都必须完整的运算出每个元素的返回值并组成一个结果返回
 
@@ -2812,7 +2812,7 @@ example.subscribe(console.log);
 
 `每个元素送出后就是运算到底，在这个过程中不会等待其他的元素运算。这就是渐进式取值的特性`
 
-![imgn](http://haoqiao.qiniudn.com/3o6ZtqrBfUyHvMDQ2c.gif)
+![imgn](http://img.haoqiao.me/3o6ZtqrBfUyHvMDQ2c.gif)
 
 ## Subject
 

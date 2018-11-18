@@ -23,7 +23,7 @@ description:
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/active83.gif)
+![imgn](http://img.haoqiao.me/active83.gif)
 
 效果图如上。需要新加的一个是对输入框的`offsetLeft` `offsetTop`获取并重新设定组件的位置，达到一种点击输入框就能让组件在其正下方显示。
 

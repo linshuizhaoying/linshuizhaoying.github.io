@@ -112,7 +112,7 @@ let app = new Observer(data);
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/vuesource1.png)
+![imgn](http://img.haoqiao.me/vuesource1.png)
 
 我们回顾下上面代码做了什么
 
@@ -356,7 +356,7 @@ console.log(sub + " " +sub.length)
 
 直接看chrome下结果显示
 
-![imgn](http://haoqiao.qiniudn.com/vuesource2.png)
+![imgn](http://img.haoqiao.me/vuesource2.png)
 
 在sub中Length和数组下标已经无法一一对应了。
 

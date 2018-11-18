@@ -108,7 +108,7 @@ Stack.prototype.seeAll = function() {
 
 我们测试几个字符 `aba` `hello` `vxxnynxxv`
 
-![imgn](http://haoqiao.qiniudn.com/ispalind.jpg)
+![imgn](http://img.haoqiao.me/ispalind.jpg)
 
 ### 排序
 
@@ -152,7 +152,7 @@ console.log(bubbleSort(nums))
 从代码中我们可以看到并没有对相等键值的两个元素进行处理。
 对冒泡不太理解可以自己手写一下冒泡顺序然后和下面的图来对比一下：
 
-![imgn](http://haoqiao.qiniudn.com/bubbleSort.jpg)
+![imgn](http://img.haoqiao.me/bubbleSort.jpg)
 
 
 #### 快速排序
@@ -193,7 +193,7 @@ console.log(quickSort(nums))
 在脑中循环一下就知道用递归来写最容易理解。
 快排的时间复杂度是O(nlogn)，属于不稳定的排序
 
-![imgn](http://haoqiao.qiniudn.com/quickSort.jpg)
+![imgn](http://img.haoqiao.me/quickSort.jpg)
 
 #### 选择排序
 
@@ -252,7 +252,7 @@ console.log(insertionSort(nums))
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/insertionSort.jpg)
+![imgn](http://img.haoqiao.me/insertionSort.jpg)
 
 插入排序的空间复杂度是O(n^2),而且它是稳定的排序
 
@@ -303,7 +303,7 @@ console.log(shellsort(nums))
 
 它属于不稳定的排序，时间复杂度为O(nlog^2n)
 
-![imgn](http://haoqiao.qiniudn.com/shellSort.jpg)
+![imgn](http://img.haoqiao.me/shellSort.jpg)
 
 ####  归并算法
 

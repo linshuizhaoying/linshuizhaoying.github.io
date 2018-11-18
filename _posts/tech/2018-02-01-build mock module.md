@@ -74,7 +74,7 @@ export function exportFile(data: string, filename: string, type: string) {
 
 `exportFile(JSON.stringify(this.state.currentProjectData), 'default.md', 'markdwon')`
 
-![imgn](http://haoqiao.qiniudn.com/1241517547766_.pic_hd.jpg)
+![imgn](http://img.haoqiao.me/1241517547766_.pic_hd.jpg)
 
 当然我们现在获得的数据是没有进行处理的，我们需要对数据做个过滤，剔除一些关键信息以及没必要的数据。
 
@@ -332,7 +332,7 @@ const uploadProps = {
 
 来看下实际的交互效果
 
-![imgn](http://haoqiao.qiniudn.com/2018-uploadJson.gif)
+![imgn](http://img.haoqiao.me/2018-uploadJson.gif)
 
 这样我们就打通了项目的导入导出功能的交互。之后就是接口对接一下就行了。
 
@@ -363,7 +363,7 @@ mode(pin): "{data: 1 || 2}"
 
 这很简单。主要部分是 UI 这块，不过通过对数据流的管理也是花时间就能解决的事情。如下图:
 
-![imgn](http://haoqiao.qiniudn.com/build%20mock%20module%201.gif)
+![imgn](http://img.haoqiao.me/build%20mock%20module%201.gif)
 
 之后是克隆项目这块,
 我们首先已经知道项目 Model 里面包含了 接口 Model,因此我们克隆整个项目其实是需要将整个接口提取出来，团队成员是需要剔除的，因为新克隆项目应该是只有创建者，因此我们需要把 用户 Id 也从前端传过去，当然也可不传，通过 Jwt 对 token 解析也能识别用户信息。
@@ -379,7 +379,7 @@ mode(pin): "{data: 1 || 2}"
 假设你注册的时候默认分配给一个用户头像，然后再个人信息里用户想要更改。
 这时候问题来了。更改头像其实是一个交互问题，你肯定不能让用户一步步操作。而是一步到位，符合要求的图片上传之后，拿到上传后的图片地址。然后更改本地的数据。还需要在后台自动更新数据。
 
-![imgn](http://haoqiao.qiniudn.com/build%20mock%20module%202.gif)
+![imgn](http://img.haoqiao.me/build%20mock%20module%202.gif)
 
 这里是用 redux 维护了一个本地的前端数据层，所有显示的变更显示操作需要对其进行更新。
 

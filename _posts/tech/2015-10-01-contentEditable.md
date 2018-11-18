@@ -9,7 +9,7 @@ description:
 ## 前言
 最近项目用到一个`contentEditable`属性，它可以用于表明元素是否是可编辑的。也就是说，它配合事件监听能达到的效果是这样的：
 
-![imgn](http://haoqiao.qiniudn.com/contenteditable.png)
+![imgn](http://img.haoqiao.me/contenteditable.png)
 
 这个效果我是用jquery 的contentEditable插件，它可以监控是否内容是否修改。用在后台的编辑功能是蛮实用的。但是这插件在我另一个项目中却"失联"了。因此只能考虑自己来实现监控。
 

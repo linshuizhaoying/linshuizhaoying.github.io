@@ -309,7 +309,7 @@ exports.put = function(url, data, success, options) {
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/ajax101.png)
+![imgn](http://img.haoqiao.me/ajax101.png)
 
 非常简洁实用的代码，而且它有很强的扩展性。
 

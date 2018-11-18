@@ -149,7 +149,7 @@ console.log(Mock.mock('@sex'));  // 结果: 未知
 
 直接来看它提供接口编辑的页面
 
-![imgn](http://haoqiao.qiniudn.com/build%20mock%201.png)
+![imgn](http://img.haoqiao.me/build%20mock%201.png)
 
 ```
 
@@ -189,7 +189,7 @@ console.log(Mock.mock('@sex'));  // 结果: 未知
 
 然后在浏览器端发送请求。看下 node 端输出和浏览器端拿到的数据，基本可以肯定最终输出就是这个。
 
-![imgn](http://haoqiao.qiniudn.com/build%20mock%202.png)
+![imgn](http://img.haoqiao.me/build%20mock%202.png)
 
 然后我们往上翻，可以看到这么一段代码:
 

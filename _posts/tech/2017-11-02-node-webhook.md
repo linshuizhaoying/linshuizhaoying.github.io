@@ -87,13 +87,13 @@ server
 
 然后选择`webhooks`
 
-![imgn](http://haoqiao.qiniudn.com/webhooks1.png)
+![imgn](http://img.haoqiao.me/webhooks1.png)
 
 选择`add webhook`
 
 然后按照如下配置即可:
 
-![imgn](http://haoqiao.qiniudn.com/webhooks2.png)
+![imgn](http://img.haoqiao.me/webhooks2.png)
 
 这里需要记住你自己设置的`secret` 以及你定义的推送动作，我这里是`pushCode` 。
 

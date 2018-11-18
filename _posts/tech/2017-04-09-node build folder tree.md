@@ -14,7 +14,7 @@ description:
 具体来说它是一个仿Tree命令能够罗列给定目录的树形结构。而且我的做法是开发一个命令行工具，但这里先不提，我们就专注这个目录列表功能。
 需要输出相同的结构。我们先来看下需要达到的效果
 
-![imgn](http://haoqiao.qiniudn.com/node-tree-1.png)
+![imgn](http://img.haoqiao.me/node-tree-1.png)
 
 ## 正文
 
@@ -291,7 +291,7 @@ _getAllNames: function(level, dir) {
 
 我做了很多判断，但还是低估了一个目录它可能的复杂性(目录中有空目录，目录中有空文件，文件和目录的多个嵌套等等)。因为我开发的时候是根据几个example来进行调节判断。当我最后写完，重新再去测试几个目录的时候发现出现上述的file缺陷。
 如图：
-![imgn](http://haoqiao.qiniudn.com/node-tree-3.png)
+![imgn](http://img.haoqiao.me/node-tree-3.png)
 
 因此需要改写为递归方式。我们不可能根据别的属性来进行判断。因此我们需要依赖的还是之前的那份目录结构缓存。
 
@@ -379,7 +379,7 @@ _showList(obj, level) {
 
 这里只需要判断文件类型，利用递归的特性将每个文件的路径存于`newpath`，然后判断长度，如果大于level就跳过。具体注释都在源码里了。
 
-![imgn](http://haoqiao.qiniudn.com/node-tree-2.png)
+![imgn](http://img.haoqiao.me/node-tree-2.png)
 
 ## 结尾
 

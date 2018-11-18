@@ -22,7 +22,7 @@ description:
 ```
 
 
-![imgn](http://haoqiao.qiniudn.com/active84.gif)
+![imgn](http://img.haoqiao.me/active84.gif)
 
 
 看上去效果好像都写好了，但是这两天写的感觉不太对，尤其是后续优化方面的桎梏。以及无法跨月份选择。这都是之前没考虑清楚，现在写完感觉也蛮混乱的。不过还是把当月的选择给写完了。

@@ -121,7 +121,7 @@ innerHTML很多情况下都优于document.write，其原因在于其允许更精
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/cssjianjiao1.png)
+![imgn](http://img.haoqiao.me/cssjianjiao1.png)
 
 ```
 6.css尖角的实现

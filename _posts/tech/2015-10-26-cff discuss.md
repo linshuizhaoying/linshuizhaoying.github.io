@@ -17,7 +17,7 @@ description:
 ```
 如图：
 
-![imgn](http://haoqiao.qiniudn.com/2e34c3da924e0e3e8ae6daa9b71ee30e.png)
+![imgn](http://img.haoqiao.me/2e34c3da924e0e3e8ae6daa9b71ee30e.png)
 
 于是一下子炸出了不少潜水鱼，于是我凑了个热闹，提出用`透明遮罩`来解决。
 

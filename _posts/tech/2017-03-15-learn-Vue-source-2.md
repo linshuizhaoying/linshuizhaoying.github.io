@@ -110,7 +110,7 @@ Observer.publish('test', {msg: '传递参数'});
 
 当然以现在的水平即使是模仿写出一个也是很吃力的，而且勉强写出来的质量肯定有问题。因此我打算用别的方式来学习一个。读几份不同mvvm实现源码来了解一下。
 
-![imgn](http://haoqiao.qiniudn.com/mvvm-detail1.png)
+![imgn](http://img.haoqiao.me/mvvm-detail1.png)
 
 先手动跟着画一下mvvm整个流程图,初步了解一下构筑流程。这里我先读的是`DMQ`的mvvm实现，他这份更接近vue最初的双向绑定。
 
@@ -723,7 +723,7 @@ MVVM.prototype = {
 
 被之前那么一连串调用搞晕的我们可以直接来看一个动态图:当一个mvvm运行时都处理了什么:
 
-![imgn](http://haoqiao.qiniudn.com/vue-source-active-1.gif)
+![imgn](http://img.haoqiao.me/vue-source-active-1.gif)
 
 
 我们对着demo一步步分析输出的内容

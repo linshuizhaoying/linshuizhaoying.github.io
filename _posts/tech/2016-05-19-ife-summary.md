@@ -14,11 +14,11 @@ description:
 
 首先我们来看现在的所有[任务](http://ife.baidu.com/task/all)
 
-![imgn](http://haoqiao.qiniudn.com/ife1.png)
+![imgn](http://img.haoqiao.me/ife1.png)
 
-![imgn](http://haoqiao.qiniudn.com/ife2.png)
+![imgn](http://img.haoqiao.me/ife2.png)
 
-![imgn](http://haoqiao.qiniudn.com/ife3.png)
+![imgn](http://img.haoqiao.me/ife3.png)
 
 这么多任务我也不细细展开，我就从之前看到的来讲。主要还是Js这块，不讲css是因为这块还是要多看别人的写法然后自己去写。
 
@@ -293,7 +293,7 @@ function addEvent(element, type, handler) {
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/ife-bfs.png)
+![imgn](http://img.haoqiao.me/ife-bfs.png)
 
 这是图的算法.从以上代码中可以看到作者对代码进行封装的程度很高.
 

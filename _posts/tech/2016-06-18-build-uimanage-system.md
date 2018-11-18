@@ -10,7 +10,7 @@ description:
 ## 前言
 整个暑假开始之前就已经在着手开发这款系统，它长这个样子.
 
-![imgn](http://haoqiao.qiniudn.com/uimanage01.png)
+![imgn](http://img.haoqiao.me/uimanage01.png)
 
 恩，它现在还是一个半成品，原本打算开发完写总结，但是感觉这样到时候会漏掉一些细节，因此在开发后端的时候打算开始写一些思路和步骤。
 
@@ -26,7 +26,7 @@ description:
 
 这部分是先设计数据库关系。
 
-![imgn](http://haoqiao.qiniudn.com/uimanage02.png)
+![imgn](http://img.haoqiao.me/uimanage02.png)
 
 这是最初的设计稿，可能开发到后面会添加一些字段，但是基本上大局不会改变。
 
@@ -299,7 +299,7 @@ router.get('/admin', function(req, res, next) {
 基本功能已经写完了，剩下的就是边角料和重新以ES2015重构整个项目。
 先来看效果：
 
-![imgn](http://haoqiao.qiniudn.com/uimanage8291.gif)
+![imgn](http://img.haoqiao.me/uimanage8291.gif)
 
 ps:看不到图可能是图太大了，建议另外复制动态图链接打开。
 
@@ -410,7 +410,7 @@ exports.getCurrentUser = function ( req, res, next ){
 
 第二点组件化我是这么考虑的，因为一开始我构思的功能来看
 
-![imgn](http://haoqiao.qiniudn.com/82911.png)
+![imgn](http://img.haoqiao.me/82911.png)
 
 应该是加载初步的列表，然后点击右边的<- ->来打开配置界面。这样我就将其分成两个部分`basic-ui.vue` 和`basic-viewcode.vue` 并让`basic-ui.vue`传递参数给`basic-viewcode.vue`
 
@@ -456,7 +456,7 @@ var UiSchema = new mongoose.Schema({
 
 整个项目结构如下：
 
-![imgn](http://haoqiao.qiniudn.com/82911tree.png)
+![imgn](http://img.haoqiao.me/82911tree.png)
 
 ## 结尾
 

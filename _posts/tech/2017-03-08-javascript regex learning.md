@@ -247,7 +247,7 @@ description:
 
 看来我们只需要前三位正确匹配就好了，所以我先去下载了一份国家的手机号码格式
 
-![imgn](http://haoqiao.qiniudn.com/14889483746264.jpg)
+![imgn](http://img.haoqiao.me/14889483746264.jpg)
 
 然后我们找下规律
 

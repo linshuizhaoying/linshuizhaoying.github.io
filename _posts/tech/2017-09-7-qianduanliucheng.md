@@ -83,7 +83,7 @@ description:
 
 给个简单的例子。
 
-![imgn](http://haoqiao.qiniudn.com/%E6%B5%81%E7%A8%8B%E5%9B%BE1.0.png)
+![imgn](http://img.haoqiao.me/%E6%B5%81%E7%A8%8B%E5%9B%BE1.0.png)
 
 它包含了功能模块，接口。
 

@@ -11,7 +11,7 @@ description:
 
 ## 正文
  
-![imgn](http://haoqiao.qiniudn.com/active82.gif)
+![imgn](http://img.haoqiao.me/active82.gif)
 
 先去抄了一个界面，然后开始写代码。
 

@@ -22,7 +22,7 @@ description:
 
 [在线Demo](https://jsfiddle.net/mu3udxmm/)
 
-![imgn](http://haoqiao.qiniudn.com/2017-carousel.gif)
+![imgn](http://img.haoqiao.me/2017-carousel.gif)
 
 它的具体原理：
 
@@ -264,7 +264,7 @@ Stops the carousel from cycling through items.
 
 [在线demo](https://jsfiddle.net/1pbmrzap/)
 
-![imgn](http://haoqiao.qiniudn.com/2017-carousel2.gif)
+![imgn](http://img.haoqiao.me/2017-carousel2.gif)
 
 它的html结构也类似于之前的。但是减少了一些重复的部分。
 主要通过动态增减`active类名`隐藏显示item配合`@keyframes动画`以及达到轮播效果。
@@ -357,7 +357,7 @@ document.querySelector('.carousel-indicators').addEventListener('click', functio
 
 [在线demo](https://codepen.io/forbesg/pen/akGaqW)
 
-![imgn](http://haoqiao.qiniudn.com/2017-carousel3.gif)
+![imgn](http://img.haoqiao.me/2017-carousel3.gif)
 
 这个就是典型的自动播放型。我们可以来看下具体代码
 
@@ -378,7 +378,7 @@ document.querySelector('.carousel-indicators').addEventListener('click', functio
 
 [在线demo](https://codepen.io/zomgdomo/pen/MjNJPN)
 
-![imgn](http://haoqiao.qiniudn.com/2017-carousel4.gif)
+![imgn](http://img.haoqiao.me/2017-carousel4.gif)
 
 可以仔细看下它的代码:
 

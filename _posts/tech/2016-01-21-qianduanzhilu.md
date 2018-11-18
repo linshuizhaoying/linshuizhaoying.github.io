@@ -37,7 +37,7 @@ js之路
 
 这本书最终会开源，应该是在每个板块内容至少都有10篇文章左右吧=0=。可以来看下现在的进度：
 
-![imgn](http://haoqiao.qiniudn.com/active76.gif)
+![imgn](http://img.haoqiao.me/active76.gif)
 
 如果你看到比较优秀的文章欢迎发给我。（国内国外皆可。要求就是最好都有demo。）
 
@@ -51,7 +51,7 @@ js之路
 
 ## 正文
 
-![imgn](http://haoqiao.qiniudn.com/active61.gif)
+![imgn](http://img.haoqiao.me/active61.gif)
 
 可以看到是很常见的效果。我们来看它是如何实现的.
 
@@ -178,7 +178,7 @@ input:checked + label::before {
 
 一次为基础可以来看下扩展的效果:
 
-![imgn](http://haoqiao.qiniudn.com/active62.gif)
+![imgn](http://img.haoqiao.me/active62.gif)
 
 以上效果也是纯css来完成的。
 
@@ -188,7 +188,7 @@ input:checked + label::before {
 
 我们可以先在第一个例子里先试试:
 
-![imgn](http://haoqiao.qiniudn.com/active63.gif)
+![imgn](http://img.haoqiao.me/active63.gif)
 
 看看我们修改的代码
 
@@ -384,7 +384,7 @@ content-box
 
 所以来看这张图：
 
-![imgn](http://haoqiao.qiniudn.com/active64.gif)
+![imgn](http://img.haoqiao.me/active64.gif)
 
 仔细看这张图几分钟，我们可以看到
 
@@ -407,7 +407,7 @@ input[type="checkbox"], input[type="radio"] {
 
 然后我们继续看下一个内容。在看一个例子之前我先去对本地fiddle调试工具加上awesome.min.css的引用。
 
-![imgn](http://haoqiao.qiniudn.com/active65.gif)
+![imgn](http://img.haoqiao.me/active65.gif)
 
 这个例子我们也可以在看源码之前把它分析部分
 
@@ -575,7 +575,7 @@ input[type="reset"] {
 
 然后我们再来看一个比较惊艳的效果:
 
-![imgn](http://haoqiao.qiniudn.com/active66.gif)
+![imgn](http://img.haoqiao.me/active66.gif)
 
 
 这个效果非常炫酷，而且也是纯css制作。基于一开始什么也分析不出来我们直接看源码:
@@ -808,7 +808,7 @@ counter-reset: counter1 1 counter2 4;
 
 `order属性是用来控制flex容器中flex项目的排列顺序。默认情况flex项目在flex容器的顺序是flex项目出现的顺序。`
 
-![imgn](http://haoqiao.qiniudn.com/flexbox-order.jpg)
+![imgn](http://img.haoqiao.me/flexbox-order.jpg)
 
 ` counter-increment` 是对其中counter变量自增1
 
@@ -819,7 +819,7 @@ counter-reset: counter1 1 counter2 4;
 
 最后一个例子是根据data里内容来做筛选，这里我不展开分析，只记录一下效果以及源码。
 
-![imgn](http://haoqiao.qiniudn.com/active67.gif)
+![imgn](http://img.haoqiao.me/active67.gif)
 
 源码:
 

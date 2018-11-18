@@ -199,7 +199,7 @@ describe('设计模式Two基础单元测试', function() {
 
 如果我们将defaultData.methods.safeFactory("Javascript","zhaoying")里的参数改一改改为linshui.我们来运行`karma start`来看结果是什么
 
-![imgn](http://haoqiao.qiniudn.com/designpatter1.png)
+![imgn](http://img.haoqiao.me/designpatter1.png)
 
 ` this[type] is not a constructor`我们就可以很清楚的看见哪部分有问题。
 

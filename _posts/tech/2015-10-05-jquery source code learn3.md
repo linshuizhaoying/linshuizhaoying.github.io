@@ -157,9 +157,9 @@ $.map( [0,1,2], function(n){
 
 其实这个应该是自己慢慢试出来，不过没关系，我们可以弥补一下去测试看看。
 
-![imgn](http://haoqiao.qiniudn.com/concat1.png)
+![imgn](http://img.haoqiao.me/concat1.png)
 
-![imgn](http://haoqiao.qiniudn.com/concat2.png)
+![imgn](http://img.haoqiao.me/concat2.png)
 
 发现结果确实如此。
 
@@ -196,7 +196,7 @@ console.log(_.map([1, 2, 3], function(n){ return [ n, n + 1 ]; }));
 
 ```
 
-![imgn](http://haoqiao.qiniudn.com/concat3.png)
+![imgn](http://img.haoqiao.me/concat3.png)
 
 发现结果如上图，并没有做jquery的扁平化结果集。
 

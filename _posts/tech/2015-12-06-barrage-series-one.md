@@ -222,13 +222,13 @@ html:
 
 然后我们看下演示效果:
 
-![imgn](http://haoqiao.qiniudn.com/active58.gif)
+![imgn](http://img.haoqiao.me/active58.gif)
 
 哦，我贴的是高级扩展的，基础的就只有往前滚动的效果。
 
 对于高级扩展我现在完成的是这几种:
 
-![imgn](http://haoqiao.qiniudn.com/42C4E611-EE01-4890-BA59-63A88BE2EAB0.png)
+![imgn](http://img.haoqiao.me/42C4E611-EE01-4890-BA59-63A88BE2EAB0.png)
 
 ## 结尾
 

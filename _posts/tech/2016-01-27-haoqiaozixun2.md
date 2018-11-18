@@ -48,7 +48,7 @@ description:
 
 其实亮点主要是它支持爬虫代码的解析和插入。我们来看下实体图就明白了:
 
-![imgn](http://haoqiao.qiniudn.com/hqzx1.png)
+![imgn](http://img.haoqiao.me/hqzx1.png)
 
 可以随时更新或者添加新的爬虫代码。如果目标网站结构变化了,只需要简单修改下爬虫插件里面的部分代码就能重新解析了。
 
@@ -90,7 +90,7 @@ function excuteCode(url,code,type){
 
 之后完成雏形之后想到，得搭建一个测试平台来写最基础的爬虫插件。于是开发了如下平台
 
-![imgn](http://haoqiao.qiniudn.com/hqzx2.png)
+![imgn](http://img.haoqiao.me/hqzx2.png)
 
 它的核心代码如下:
 
@@ -180,7 +180,7 @@ var getAlldata = require('./getAlldata');
 
 最后效果图如下：
 
-![imgn](http://haoqiao.qiniudn.com/active77.gif)
+![imgn](http://img.haoqiao.me/active77.gif)
 
 
 # 总结
