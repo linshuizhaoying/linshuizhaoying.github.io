@@ -53,11 +53,10 @@ ts环境引入 antd mobile
 
 ```
 
-<div style={{
+
 width: '22px',
 height: '22px',
-background: url(${require(../assets/icons/home.svg)}) center center / 21px 21px no-repeat }
-}
+background: url(${require(../assets/icons/home.svg)}) center center / 21px 21px no-repeat
 
 事实上 svg 不够多,可以去开源的站点下载
 
