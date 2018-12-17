@@ -41,17 +41,17 @@ ts环境引入 antd mobile
 
 2、移动端ICON问题
 
-```
 
 由于 antd mobile不提供icon了
 
-https://github.com/ant-design/ant-design-icons/tree/master/packages/icons/svg
+> https://github.com/ant-design/ant-design-icons/tree/master/packages/icons/svg
 
 需要自行手动下载svg
 
 使用如下
 
 
+```
 
 <div style={{
 width: '22px',
