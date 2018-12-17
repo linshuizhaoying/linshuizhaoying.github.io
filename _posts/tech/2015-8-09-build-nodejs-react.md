@@ -112,4 +112,4 @@ browserify是一个工具，可以将node模块编译成浏览器可执行的com
 
 
 That's all.
-![pic1](http://7s1say.com1.z0.glb.clouddn.com/n2.png?imageView2/2/w/600/h/600/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![pic1](http://img.haoqiao.me/n2.png?imageView2/2/w/600/h/600/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)

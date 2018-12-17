@@ -35,7 +35,7 @@ Flexbox Layout 官方名是[CSS Flexible Box Layout Module](http://www.w3.org/TR
 
 在开始介绍flexbox属性之前我们先来介绍一下flexbox模型。flex 布局是由叫做`flex container`的父容器和称为`flex item`的直属子容器组成。
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//CSS3-Flexbox-Model.jpg)
+![img1](http://img.haoqiao.me//CSS3-Flexbox-Model.jpg)
 
 在这个盒子中你可以看到属性和描述flex容器及子容器的术语。更多你可以看官网的[flexbox model](http://www.w3.org/TR/css-flexbox/#box-model)
 
@@ -92,7 +92,7 @@ Flexbox Layout 官方名是[CSS Flexible Box Layout Module](http://www.w3.org/TR
     }
     
     
-![imgn2](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-direction-row.jpg)
+![imgn2](http://img.haoqiao.me//flexbox-flex-direction-row.jpg)
 
 通过`row-reverse`设置上下文从右到左方向
 
@@ -101,7 +101,7 @@ Flexbox Layout 官方名是[CSS Flexible Box Layout Module](http://www.w3.org/TR
       flex-direction:         column;
     }
 
-![imgn3](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-direction-row-reverse.jpg)
+![imgn3](http://img.haoqiao.me//flexbox-flex-direction-row-reverse.jpg)
 
 
 通过` column `设置上下文从上到下方向
@@ -112,7 +112,7 @@ Flexbox Layout 官方名是[CSS Flexible Box Layout Module](http://www.w3.org/TR
     }
 
 
-![imgn4](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-direction-column.jpg)
+![imgn4](http://img.haoqiao.me//flexbox-flex-direction-column.jpg)
 
 
 
@@ -126,7 +126,7 @@ Flexbox Layout 官方名是[CSS Flexible Box Layout Module](http://www.w3.org/TR
 
 
 
-![imgn5](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-direction-column-reverse.jpg)
+![imgn5](http://img.haoqiao.me//flexbox-flex-direction-column-reverse.jpg)
 
 
 ### 默认值: row
@@ -147,7 +147,7 @@ flex-wrap 控制 子容器新起一行。
 flex项目显示在一行，而且默认情况下它们会被缩小到适应flex容器的宽度
 
 
-![imgn5](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-wrap-nowrap.jpg)
+![imgn5](http://img.haoqiao.me//flexbox-flex-wrap-nowrap.jpg)
 
 
     .flex-container {
@@ -157,7 +157,7 @@ flex项目显示在一行，而且默认情况下它们会被缩小到适应flex
 
 flex项目将自动根据需求新起一行。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-wrap-wrap.jpg)
+![imgn](http://img.haoqiao.me//flexbox-flex-wrap-wrap.jpg)
 
     .flex-container {
       -webkit-flex-wrap: wrap-reverse; /* Safari */
@@ -166,7 +166,7 @@ flex项目将自动根据需求新起一行。
 
 flex将显示多行并逆向显示
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-wrap-wrap-reverse.jpg)
+![imgn](http://img.haoqiao.me//flexbox-flex-wrap-wrap-reverse.jpg)
 
 ### 默认值：nowrap
 
@@ -202,7 +202,7 @@ flex将显示多行并逆向显示
 
 根据上下文从右侧对齐
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-justify-content-flex-start.jpg)
+![imgn](http://img.haoqiao.me//flexbox-justify-content-flex-start.jpg)
 
     .flex-container {
       -webkit-justify-content: flex-end; /* Safari */
@@ -210,7 +210,7 @@ flex将显示多行并逆向显示
     }
 
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-justify-content-flex-end.jpg)
+![imgn](http://img.haoqiao.me//flexbox-justify-content-flex-end.jpg)
 
 根据上下文居中对齐
 
@@ -220,7 +220,7 @@ flex将显示多行并逆向显示
       justify-content:         center;
     }
     
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-justify-content-center.jpg)
+![imgn](http://img.haoqiao.me//flexbox-justify-content-center.jpg)
 
 
 将容器的所有空间分配，每个子容器分配相同的间距，首尾两项沿着主容器边沿
@@ -230,7 +230,7 @@ flex将显示多行并逆向显示
       justify-content:         space-between;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-justify-content-space-between.jpg)
+![imgn](http://img.haoqiao.me//flexbox-justify-content-space-between.jpg)
 
 将容器的所有空间分配，每个子容器分配相同的间距，首尾也如此
 
@@ -239,7 +239,7 @@ flex将显示多行并逆向显示
       justify-content:         space-around;
     }
     
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-justify-content-space-around.jpg)
+![imgn](http://img.haoqiao.me//flexbox-justify-content-space-around.jpg)
 
 默认值：flex-start 
 
@@ -259,7 +259,7 @@ Flex items可以根据当前横轴线对齐，像`justify-content`一样但是�
 
 Flex items填补整个flex容器的高度(或者宽度)
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-items-stretch.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-items-stretch.jpg)
 
     .flex-container {
       -webkit-align-items: flex-start; /* Safari */
@@ -273,7 +273,7 @@ Flex items填补整个flex容器的高度(或者宽度)
       align-items:         flex-start;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-items-flex-start.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-items-flex-start.jpg)
 
 从容器交叉结束处堆放
 
@@ -283,7 +283,7 @@ Flex items填补整个flex容器的高度(或者宽度)
     }
     
     
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-items-flex-end.jpg)   
+![imgn](http://img.haoqiao.me//flexbox-align-items-flex-end.jpg)   
 
 
 从容器交叉轴中心堆放
@@ -293,7 +293,7 @@ Flex items填补整个flex容器的高度(或者宽度)
       align-items:         center;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-items-center.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-items-center.jpg)
 
 根据它们的基线对齐
 
@@ -302,7 +302,7 @@ Flex items填补整个flex容器的高度(或者宽度)
       align-items:         baseline;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-items-baseline.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-items-baseline.jpg)
 
 ### 默认值:stretch
 
@@ -321,7 +321,7 @@ Flex items填补整个flex容器的高度(或者宽度)
 
 对每一排都分配相同空间
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-content-stretch.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-content-stretch.jpg)
 
 
 从交叉轴开始处堆放
@@ -331,7 +331,7 @@ Flex items填补整个flex容器的高度(或者宽度)
       align-content:         flex-start;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-content-flex-start.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-content-flex-start.jpg)
 
 
 从交叉轴的结尾处堆放
@@ -341,7 +341,7 @@ Flex items填补整个flex容器的高度(或者宽度)
       align-content:         flex-end;
     }
     
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-content-flex-end.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-content-flex-end.jpg)
 
 从容器交叉轴中心堆放
 
@@ -350,7 +350,7 @@ Flex items填补整个flex容器的高度(或者宽度)
       align-content:         center;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-content-center.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-content-center.jpg)
 
 flex items的每一行都间隔相同距离，第一行和最后一行沿着边沿对齐
 
@@ -359,7 +359,7 @@ flex items的每一行都间隔相同距离，第一行和最后一行沿着边�
       align-content:         space-between;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-content-space-between.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-content-space-between.jpg)
 
 
 flex items的每一行都间隔相同距离
@@ -371,7 +371,7 @@ flex items的每一行都间隔相同距离
       align-content:         space-around;
     }
     
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-content-space-around.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-content-space-around.jpg)
     
 ### 默认值：stretch
 
@@ -400,7 +400,7 @@ order属性用来对flex容器内的子项进行排序。
     
 它可以让子项重新排序而不需要重组html代码。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-order.jpg)    
+![imgn](http://img.haoqiao.me//flexbox-order.jpg)    
 
 ### 默认值:0
 
@@ -416,11 +416,11 @@ order属性用来对flex容器内的子项进行排序。
     
 如果它们有相同`flex-grow`值它们将有相同大小。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-grow-1.jpg)
+![imgn](http://img.haoqiao.me//flexbox-flex-grow-1.jpg)
 
 第二项是其它项的三倍
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-grow-2.jpg)
+![imgn](http://img.haoqiao.me//flexbox-flex-grow-2.jpg)
     
 ### 默认值:0
 
@@ -437,7 +437,7 @@ order属性用来对flex容器内的子项进行排序。
 
 如果你设置为0，它将采用原来的尺寸。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-shrink.jpg)
+![imgn](http://img.haoqiao.me//flexbox-flex-shrink.jpg)
     
 ### 默认值:1
 
@@ -454,7 +454,7 @@ order属性用来对flex容器内的子项进行排序。
 
 `flex-basis`决定了初始大小。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-flex-basis.jpg)
+![imgn](http://img.haoqiao.me//flexbox-flex-basis.jpg)
 
 ### 默认值:auto
 
@@ -484,7 +484,7 @@ order属性用来对flex容器内的子项进行排序。
       align-self:         auto | flex-start | flex-end | center | baseline | stretch;
     }
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//flexbox-align-self.jpg)
+![imgn](http://img.haoqiao.me//flexbox-align-self.jpg)
 
 ### 默认值:auto
 

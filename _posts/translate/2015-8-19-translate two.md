@@ -29,15 +29,15 @@ description:
 
 在我们写代码之前，我们先来探讨这个效果实现的流程。首先，我们需要创建一个卷曲的水波纹的效果，这个可以通过波状的图形来实现。（译者PS:比如word里的柱形图拉一拉。）
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//t-2-1.png)      
+![img1](http://img.haoqiao.me//t-2-1.png)      
  
 然后将它无缝重叠。
 
-![img2](http://7s1say.com1.z0.glb.clouddn.com//t-2-2.png)
+![img2](http://img.haoqiao.me//t-2-2.png)
 
 然后让它无限滚动起来。
 
-![img3](http://7s1say.com1.z0.glb.clouddn.com//t-2-3.gif)
+![img3](http://img.haoqiao.me//t-2-3.gif)
 
 从上图中的红色框框中，你可以看到基本我们将要实现的效果。
 

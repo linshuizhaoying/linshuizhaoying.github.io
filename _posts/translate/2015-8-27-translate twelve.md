@@ -88,7 +88,7 @@ description:
 文中其实是有例子的，但是作者是直接写进了他的网站，因此想看例子的可以去原文看。
 然后就是在mac下我试了一下，通过Inkscape这个工具并搭配以这项技术延伸出来的[脚本](https://github.com/ConnorAtherton/walkway/)制作了一个svg线条动画。
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//xxx.gif)
+![img1](http://img.haoqiao.me//xxx.gif)
 
 
 

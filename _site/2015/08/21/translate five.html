@@ -13,7 +13,7 @@
 
 
 
-<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+<link rel="shortcut icon" href="http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
 
 <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 
@@ -22,7 +22,7 @@
   <body>
     <aside id="sidebar">
   <nav id="tags">
-    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+    <a href="/index.html" id="avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
 
     <ul id="tags__ul">
       <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
@@ -43,7 +43,7 @@
 
   <div id="posts-list">
     <form action="" id="search-form">
-      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
       <!-- NOTE: input field is disabled by default -->
       <input id="search-input" type="text" placeholder="Search..." disabled >
     </form>
@@ -239,11 +239,11 @@ Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BU
 
 <p>为了达到这个目的，我们需要考虑这些子项的该如何放置层次（字面上的意思），然后再裁切这些层，最后只有这些层的扇形是可见的。我们来看一张原理图。</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//menu-layers.png" alt="menu" /></p>
+<p><img src="http://img.haoqiao.me//menu-layers.png" alt="menu" /></p>
 
 <p>半透明的黑色盒子仅用于演示需要。这些项在实际中是旋转而不是路径裁剪。因此对于每一个项，都将被裁剪为相同大小的扇形。然后旋转相应的角度来使它们之间不会重叠。我们再来看另一张原理图。</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//menu-layers-rotated.png" alt="menu2" /></p>
+<p><img src="http://img.haoqiao.me//menu-layers-rotated.png" alt="menu2" /></p>
 
 <p>如果你倾斜下脑袋，你会更加清晰的看到里面的结构。对于第一个子项，它不是旋转的结构而是已经裁剪了。</p>
 
@@ -251,7 +251,7 @@ Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BU
 
 <p>在我们想要继续之前。这里有个动图来展现我们之前讲到的理论。你可以看到它们都是从同一的地方出发，然后旋转不同角度。</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//circ.gif" alt="menu3" /></p>
+<p><img src="http://img.haoqiao.me//circ.gif" alt="menu3" /></p>
 
 <p>即使这些元素被裁剪，原则上它们还是一个矩形。所以你看到扇形在旋转，你要记得这是一个矩形在旋转。</p>
 
@@ -280,7 +280,7 @@ Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BU
 
 <p>知道了原理，我们来看一下原理演示图</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//bounding-box-coordinates.png" alt="menu4" /></p>
+<p><img src="http://img.haoqiao.me//bounding-box-coordinates.png" alt="menu4" /></p>
 
 <p>这些坐标，环绕着扇形半径，将被应用于path命令来画扇形。</p>
 
@@ -383,14 +383,14 @@ Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BU
 
 <p>这是polygon()函数裁剪的路径</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//diamond-menu.png" alt="menu6" /></p>
+<p><img src="http://img.haoqiao.me//diamond-menu.png" alt="menu6" /></p>
 
 <h3 id="icons">往菜单里增加icons/内容</h3>
 
 <p>这个非常简单。你只需要确定icons/文本/其它内容在可见区域里面可视。再次的，用坐标系来确定元素的高和宽。<br />
 你可以估计这些子项的位置然后在这些新的扇形区域展现。</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//text-position.png" alt="menu7" /></p>
+<p><img src="http://img.haoqiao.me//text-position.png" alt="menu7" /></p>
 
 <p>这可能需要一些实验才能精确定位。</p>
 
@@ -400,11 +400,11 @@ Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BU
 
 <p>这是错误的例子</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//text-not-rotated.png" alt="menu8" /></p>
+<p><img src="http://img.haoqiao.me//text-not-rotated.png" alt="menu8" /></p>
 
 <p>这才是正确的</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//text-rotated.png" alt="menu9" /></p>
+<p><img src="http://img.haoqiao.me//text-rotated.png" alt="menu9" /></p>
 
 <h2 id="section-11">另一种方法</h2>
 
@@ -450,7 +450,7 @@ Webkit浏览器不支持SVG定义的裁剪路径的指针事件。这是一个BU
 
 <p>最后附赠一个作者写的生成器</p>
 
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com//circulus-screenshot.png" alt="menu8" /></p>
+<p><img src="http://img.haoqiao.me//circulus-screenshot.png" alt="menu8" /></p>
 
 <p><a href="http://sarasoueidan.com/tools/circulus/">生成器</a></p>
 

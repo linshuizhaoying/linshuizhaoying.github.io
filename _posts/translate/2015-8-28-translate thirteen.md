@@ -69,7 +69,7 @@ sass
 
 效果如下
 
-![img](http://7s1say.com1.z0.glb.clouddn.com//window-optimized-700x375.png)
+![img](http://img.haoqiao.me//window-optimized-700x375.png)
 
 我们画了一个有背景图片的div作为窗口，并应用了模糊效果。
 
@@ -79,7 +79,7 @@ sass
 
 在我们继续之前，先看看真实生活中的雨滴。
 
-![img2](http://7s1say.com1.z0.glb.clouddn.com//real-700x375.jpg)
+![img2](http://img.haoqiao.me//real-700x375.jpg)
 
 由于光线折射，雨滴中含翻转图像。它的形状更像一个半球体，并配上黑色边框
 
@@ -116,7 +116,7 @@ sass
 
 这个效果非常简单，画一个椭圆的div,用之前的背景图片来填充它，缩放背景，然后颠倒。效果如下
 
-![img3](http://7s1say.com1.z0.glb.clouddn.com//borderless-optimized-700x374.png)
+![img3](http://img.haoqiao.me//borderless-optimized-700x374.png)
 
 现在我们将增加一个边框，让雨滴看起来更加蓬松
     
@@ -147,7 +147,7 @@ sass
     
 注意我们并没有直接在雨滴中直接增加一个边框，我们创建一个新的div并移动它，让它看起来更加自然
 
-![img4](http://7s1say.com1.z0.glb.clouddn.com//bordered-optimized-700x374.png)
+![img4](http://img.haoqiao.me//bordered-optimized-700x374.png)
 
 
 现在雨滴看起来更加棒，让我们创建上百个雨滴。
@@ -211,7 +211,7 @@ sass
     }
 
 
-![img7](http://7s1say.com1.z0.glb.clouddn.com//raindrops-nopos-optimized-700x370.png)
+![img7](http://img.haoqiao.me//raindrops-nopos-optimized-700x370.png)
 
 最后，我们需要把改变每个雨滴中背景的位置，让它看起来更加自然
     
@@ -224,7 +224,7 @@ sass
     }
     ...
     
-![img8](http://7s1say.com1.z0.glb.clouddn.com//raindrops-nofilter-optimized-700x370.png)    
+![img8](http://img.haoqiao.me//raindrops-nofilter-optimized-700x370.png)    
 
 这就是整个过程，希望你能享受它。
 

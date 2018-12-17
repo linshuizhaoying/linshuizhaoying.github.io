@@ -15,7 +15,7 @@ description:
 
 由于本篇并不是在开发中写的，而是一篇总结，因此很多东西我都会跳过不说，只讲重点的，工程我已经放到了github上。有兴趣的可以点[这里](https://github.com/linshuizhaoying/commets.haoqiao.me)
 
-首先我们来看下界面![gif1](http://7s1say.com1.z0.glb.clouddn.com//test.gif)
+首先我们来看下界面![gif1](http://img.haoqiao.me//test.gif)
 因此我们可以先确定要构建的组件
     
     1.Content 用来作为包含内容的父组件

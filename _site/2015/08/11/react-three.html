@@ -13,7 +13,7 @@
 
 
 
-<link rel="shortcut icon" href="http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+<link rel="shortcut icon" href="http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
 
 <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 
@@ -22,7 +22,7 @@
   <body>
     <aside id="sidebar">
   <nav id="tags">
-    <a href="/index.html" id="avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+    <a href="/index.html" id="avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
 
     <ul id="tags__ul">
       <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
@@ -43,7 +43,7 @@
 
   <div id="posts-list">
     <form action="" id="search-form">
-      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://7s1say.com1.z0.glb.clouddn.com/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
       <!-- NOTE: input field is disabled by default -->
       <input id="search-input" type="text" placeholder="Search..." disabled >
     </form>
@@ -164,8 +164,8 @@ return (
 首先是分析我们设计的思路，我们是想要在props里面传过来url，然后组件在渲染之前自己拿到数据，然后再渲染。这就涉及到组件的生命周期。我一开始的想法是直接在组件的componentDidMount里直接$get拿数据，但是遇到了问题，首先是数据获取异步的问题，如果是$get，我url提交过去了，后台处理中，没等后台处理返回结果它就先返回了。这样的结果就是只渲染了父组件。render的时候调用this.state.data还是是undefined。在chrome里面调试的时候可以发现过了一会state里面才有内容。<br />
 «««&lt; HEAD</p>
 
-<h1 id="img1http7s1saycom1z0glbclouddncomreact11jpgimageview22w500h500q100watermark2textqnkg5li05rc054wn5b2xfont5a6l5l2tfontsize500fillizawrkzgrgdissolve100gravitysoutheastdx10dy10"><img src="http://7s1say.com1.z0.glb.clouddn.com//react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img1" /></h1>
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com/react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img1" /><br />
+<h1 id="img1http7s1saycom1z0glbclouddncomreact11jpgimageview22w500h500q100watermark2textqnkg5li05rc054wn5b2xfont5a6l5l2tfontsize500fillizawrkzgrgdissolve100gravitysoutheastdx10dy10"><img src="http://img.haoqiao.me//react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img1" /></h1>
+<p><img src="http://img.haoqiao.me/react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img1" /><br />
 »»»&gt; 50e947e626468b25132932e5bef01ba0de58fb7c</p>
 
 <p>遇到这种之前没接触过react问题，当然先是去群里吼一声，然后先天不聪大神直接给出两种解决方案</p>
@@ -236,15 +236,15 @@ React.render(
 <table>
   <tbody>
     <tr>
-      <td>![img2](http://7s1say.com1.z0.glb.clouddn.com//react12.png?imageView2/2/w/500/h/500/q/100</td>
+      <td>![img2](http://img.haoqiao.me//react12.png?imageView2/2/w/500/h/500/q/100</td>
       <td>watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)</td>
     </tr>
   </tbody>
 </table>
 
-<h1 id="img3http7s1saycom1z0glbclouddncomreact13pngimageview22w500h500q100watermark2textqnkg5li05rc054wn5b2xfont5a6l5l2tfontsize500fillizawrkzgrgdissolve100gravitysoutheastdx10dy10"><img src="http://7s1say.com1.z0.glb.clouddn.com//react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img3" /></h1>
-<p><img src="http://7s1say.com1.z0.glb.clouddn.com/react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img2" /><br />
-<img src="http://7s1say.com1.z0.glb.clouddn.com/react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img3" /></p>
+<h1 id="img3http7s1saycom1z0glbclouddncomreact13pngimageview22w500h500q100watermark2textqnkg5li05rc054wn5b2xfont5a6l5l2tfontsize500fillizawrkzgrgdissolve100gravitysoutheastdx10dy10"><img src="http://img.haoqiao.me//react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img3" /></h1>
+<p><img src="http://img.haoqiao.me/react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img2" /><br />
+<img src="http://img.haoqiao.me/react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10" alt="img3" /></p>
 
 <blockquote>
   <blockquote>

@@ -35,7 +35,7 @@ description:
 
 我们先来看看我的一些收藏夹。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//active25.gif)
+![imgn](http://img.haoqiao.me//active25.gif)
 
 你可以看到我好像很多收藏，这些都是资源，哪来的？平时积累。
 
@@ -51,7 +51,7 @@ description:
 
 自从有了知乎，我的知识面扩大了很多，因此我会第一时间先用知乎找找别人有没有提过这个问题。如下：
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//howtlearn1.png)
+![imgn](http://img.haoqiao.me//howtlearn1.png)
 
 先找到Node.js这个话题，然后直接找精华，你看直接就有了，你还虚什么？
 
@@ -59,7 +59,7 @@ description:
 
 对于Node.js，你还可以用quora来进行深层次的提高。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//howtlearn2.png)
+![imgn](http://img.haoqiao.me//howtlearn2.png)
 
 于是你掌握第一步，之后你需要做的就是在实战中google。(别问我如何翻墙，详情可看[learn.haoqiao.me](http://learn.haoqiao.me))
 

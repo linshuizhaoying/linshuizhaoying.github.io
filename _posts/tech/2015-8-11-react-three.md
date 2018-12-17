@@ -65,9 +65,9 @@ description:
 首先是分析我们设计的思路，我们是想要在props里面传过来url，然后组件在渲染之前自己拿到数据，然后再渲染。这就涉及到组件的生命周期。我一开始的想法是直接在组件的componentDidMount里直接$get拿数据，但是遇到了问题，首先是数据获取异步的问题，如果是$get，我url提交过去了，后台处理中，没等后台处理返回结果它就先返回了。这样的结果就是只渲染了父组件。render的时候调用this.state.data还是是undefined。在chrome里面调试的时候可以发现过了一会state里面才有内容。
 <<<<<<< HEAD
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img1](http://img.haoqiao.me//react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 =======
-![img1](http://7s1say.com1.z0.glb.clouddn.com/react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img1](http://img.haoqiao.me/react11.jpg?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 >>>>>>> 50e947e626468b25132932e5bef01ba0de58fb7c
 
 遇到这种之前没接触过react问题，当然先是去群里吼一声，然后先天不聪大神直接给出两种解决方案
@@ -136,12 +136,12 @@ description:
 <<<<<<< HEAD
 
 
-![img2](http://7s1say.com1.z0.glb.clouddn.com//react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img2](http://img.haoqiao.me//react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 
-![img3](http://7s1say.com1.z0.glb.clouddn.com//react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img3](http://img.haoqiao.me//react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 =======
-![img2](http://7s1say.com1.z0.glb.clouddn.com/react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
-![img3](http://7s1say.com1.z0.glb.clouddn.com/react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img2](http://img.haoqiao.me/react12.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img3](http://img.haoqiao.me/react13.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 
 >>>>>>> 50e947e626468b25132932e5bef01ba0de58fb7c
 

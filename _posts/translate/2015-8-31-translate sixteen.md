@@ -28,7 +28,7 @@ description:
 
 ## 移动端菜单
 
-![img](http://7s1say.com1.z0.glb.clouddn.com//mobile1.jpg)
+![img](http://img.haoqiao.me//mobile1.jpg)
 
 移动端菜单注意事项：
 
@@ -42,7 +42,7 @@ description:
 
 开发者在创建互动的下拉菜单很依赖:hover和:active。但是在触摸屏上，这些属性并不能很好的工作。（你无法hover一个链接并让它的子菜单像下面这个例子一样出现）
 
-![img2](http://7s1say.com1.z0.glb.clouddn.com//mobile2.jpg)
+![img2](http://img.haoqiao.me//mobile2.jpg)
 
 
 ### 快速响应

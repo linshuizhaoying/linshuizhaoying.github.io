@@ -51,7 +51,7 @@ description:
 记得如果gulp和supervisor如果因为写的代码有bug崩掉要手动重启。
 之后我们访问127.0.0.0:3000就能看到我们的测试结果。
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//react01.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img1](http://img.haoqiao.me//react01.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 看示例图中下方显示就是我们要做的组件的大概界面。因此我们需要现在index.jade中写入：
 
       .portlet.box.blue
@@ -112,7 +112,7 @@ description:
 	});
    
 此时如果代码无误的话我们刷新浏览器就能看到我们的组合组件。
-![img2](http://7s1say.com1.z0.glb.clouddn.com//react02.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img2](http://img.haoqiao.me//react02.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 事实上我们在测试前用jade写好效果，然后直接用chrome分析节点复制，然后把class替换为className就可以了。
 
 ### 界面参数的传递
@@ -185,5 +185,5 @@ description:
 	
 	
 然后我们刷新浏览器，我们能看到如下图
-![img3](http://7s1say.com1.z0.glb.clouddn.com//%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-10%2003.23.58%20PM.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+![img3](http://img.haoqiao.me//%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-08-10%2003.23.58%20PM.png?imageView2/2/w/500/h/500/q/100|watermark/2/text/Qnkg5Li05rC054Wn5b2x/font/5a6L5L2T/fontsize/500/fill/IzAwRkZGRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
 接下来就是对url这个值进行处理，这已经不是React的范围，因此本章结束。

@@ -54,21 +54,21 @@ React将用这种方式试图找到从渲染的上一步到下一步之间的最
     
 React只是试图逐级对比两颗树。这大大降低了解决问题的复杂性而且在Web应用中将一个组件移到其他级的树上它不仅不会造成很大浪费而且会很节约。它们通常只移动子节点。
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//t-1-1.png)
+![img1](http://img.haoqiao.me//t-1-1.png)
 
 ### 列表
  让我们来假设我们有个组件它将迭代渲染5个组件并将在下一步中插入一个新的新的组件放到迭代列表中间。这很难知道两个组件列表之间的映射关系。
  
  默认的，React将上一步的第一个组件作为下一个列表中的第一个。你可以提供`key`属性来帮助React找出映射。实践中，这通常很简单的能找到其中列表中拥有唯一key的子组件。
  
-![img2](http://7s1say.com1.z0.glb.clouddn.com//t-1-2.png)
+![img2](http://img.haoqiao.me//t-1-2.png)
 
 ### 组件
 一个React组件通常由用户自定义的组件构成，最后形成以 `div`为主的树。当React匹配相同组件的时候这些额外的信息将被diff算法用来查找具有相同类的组件。
 
 举个栗子，一个 `<Header>`被一个`<ExampleBlock>`代替。React将会移除`<Header>`并创建新的块。我们不需要花费昂贵的时间试图匹配两个组件因为他们不可能有相同处。
 
-![img3](http://7s1say.com1.z0.glb.clouddn.com//t-1-3.png)
+![img3](http://img.haoqiao.me//t-1-3.png)
 
 ### 事件委派
 
@@ -89,7 +89,7 @@ React只是试图逐级对比两颗树。这大大降低了解决问题的复杂
 
 批处理意味着在事件周期中，有DOM被恰好被更新一次。这个属性是编写高质量应用的关键，而且现在很难简单的用javascript来写编写类似功能。而在React，这已经被默认定义了。
 
-![img4](http://7s1say.com1.z0.glb.clouddn.com//t-1-4.png)
+![img4](http://img.haoqiao.me//t-1-4.png)
 
 ### 子树渲染
 当`setState`被调用，组件重构子组件的虚拟DOM。如果你在根调用`setState`，整个组件将被重新渲染。所有的组件，即使它们没有改变，都会有它们自己的`Render`.这听起来很吓人，很低效，但是我们并没有接触真实的DOM。
@@ -98,7 +98,7 @@ React只是试图逐级对比两颗树。这大大降低了解决问题的复杂
 
 另一个关键点是写React代码，你经常调用setState在根节点改变时。你在组件中调用它然后获得改变事件或者在多个组件之上调用。你很少能够直达到顶端。这意味着变化被定位在用户交互中。
 
-![img5](http://7s1say.com1.z0.glb.clouddn.com//t-1-5.png)
+![img5](http://img.haoqiao.me//t-1-5.png)
 
 ### 选择子树渲染
 
@@ -112,7 +112,7 @@ React只是试图逐级对比两颗树。这大大降低了解决问题的复杂
 
 如果你想要保持这个方法能被在任何时候调用，因此你需要确保计算时间少于渲染时间。即使子渲染不是非常严格的需要。
 
-![img6](http://7s1say.com1.z0.glb.clouddn.com//1-1-6.png)
+![img6](http://img.haoqiao.me//1-1-6.png)
 
 ## 结论
 

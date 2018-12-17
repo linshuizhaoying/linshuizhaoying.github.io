@@ -28,7 +28,7 @@ ScrollMagic是一个非常棒的库，它能帮助你处理用户当前滚动的
 
 来看个典型的例子
 
-![magic1](http://7s1say.com1.z0.glb.clouddn.com//scrollmagic1.gif)
+![magic1](http://img.haoqiao.me//scrollmagic1.gif)
  
 它可以做到钉帧spnning效果。如此炫酷的效果却只需要短短几行代码
 

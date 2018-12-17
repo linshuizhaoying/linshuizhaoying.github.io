@@ -27,13 +27,13 @@ description:
 
 下面的效果就是切换选择时显示不同的emoji。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//emoji1.gif)
+![imgn](http://img.haoqiao.me//emoji1.gif)
 
 [Demo Click Here](http://jsfiddle.net/linshuizhaoying/gjdao84r/)
 
 这是改进版
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-09-05%2010.15.34%20AM.png)
+![imgn](http://img.haoqiao.me//%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202015-09-05%2010.15.34%20AM.png)
 
 [Demo Click Here](http://jsfiddle.net/linshuizhaoying/gjdao84r/1/)
 

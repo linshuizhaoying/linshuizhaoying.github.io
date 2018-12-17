@@ -23,7 +23,7 @@ description:
 
 ## 正文
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//PseudoElementsImageCaptions.jpg)
+![imgn](http://img.haoqiao.me//PseudoElementsImageCaptions.jpg)
 
 今天我将向你介绍简单的关于数据属性和伪元素的css窍门。
 

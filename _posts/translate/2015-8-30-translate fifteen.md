@@ -33,13 +33,13 @@ description:
 
 在写代码之前，我将介绍一下原理。最重要的一点是使你想要填充图标的区域是透明的。
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//animation-2.gif)
+![img1](http://img.haoqiao.me//animation-2.gif)
 
 我们的处理方式是Icons跟随页面的scroll移动，颜色层是固定不变的。
 
 为了100%说明这一点，看下图：
 
-![img2](http://7s1say.com1.z0.glb.clouddn.com//icons-filled-effect-animation.gif)
+![img2](http://img.haoqiao.me//icons-filled-effect-animation.gif)
 
 这说明，这个结构只是一个无序的列表，我创建两个空列表项来让顶部和底部有更多的空间。
     

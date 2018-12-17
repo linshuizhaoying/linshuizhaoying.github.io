@@ -58,15 +58,15 @@ description:
 
 请注意：这个事件栈是忽略`focus`和`blur`事件的。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//01-ios-opt-small.png)
+![imgn](http://img.haoqiao.me//01-ios-opt-small.png)
 
 这是ios事件级联
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//02-android-opt-small.png)
+![imgn](http://img.haoqiao.me//02-android-opt-small.png)
 
 这是android事件级联
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//03-pointer-opt-small.png)
+![imgn](http://img.haoqiao.me//03-pointer-opt-small.png)
 
 这是ie11的事件级联
 

@@ -83,7 +83,7 @@ mock无需等待，让前端独立于后端进行开发。这个概念在接触M
 
 这是[github地址](https://github.com/typicode/json-server)
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//active39.gif)
+![imgn](http://img.haoqiao.me//active39.gif)
 
 它可以完美解决跨域以及环境问题，更重要的是它可以用到时直接调用。支持基本的route:
 

@@ -17,7 +17,7 @@ description:
 
 关于css3属性是不是看够了？市面上的书抄来抄去都是抄属性介绍，因此我写的这本是结合某官方的定义然后配合大量Demo。包括各种通过该属性实现的特效Demo,基本接近于实战开发，拿来就能用。什么叫大量，就是每个属性我都是配Demo,每一句定义都配一个动态图。来个直观的展示。
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//active6.gif)
+![imgn](http://img.haoqiao.me//active6.gif)
 
 这本可能需要写挺久的，因为需要大量实践的例子。因此很多效果我不一定在第一版就写进去，这属于持续更新的gitbook。初版如果能按照预期的话也需要一个半月。感兴趣的可以Email我。
 
@@ -41,7 +41,7 @@ Gsap的优秀毋庸置疑，但是它是一个收费的商业引擎，因此我�
 
 也来个直观图：
 
-![imgn](http://7s1say.com1.z0.glb.clouddn.com//active7.gif)
+![imgn](http://img.haoqiao.me//active7.gif)
 
 这本书，说实话，比上一本消耗的精力大很多，我也不确定什么时候能完成，当然类似写一点放一点的事情我也不打算干。。。可能需要大概3个月时间来完成吧。
 

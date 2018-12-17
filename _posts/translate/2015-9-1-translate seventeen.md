@@ -27,7 +27,7 @@ description:
 
 你可以用shaps属性来为一个元素创建形状。你可以通过shape函数来定义属性的值。
 
-![img1](http://7s1say.com1.z0.glb.clouddn.com//shape-rule.png)
+![img1](http://img.haoqiao.me//shape-rule.png)
 
 你可以用一下的函数
     
@@ -73,13 +73,13 @@ description:
 
 因为每一个形状都是由一些点定义来表明坐标，因此如果改变坐标系中的点将直接改变形状。举个例子，下面图中用`polygon()`来创建多边形。这个形状有六个点，改变坐标系中的点将改变形状。而且将会影响内部浮动的内容。
 
-![img2](http://7s1say.com1.z0.glb.clouddn.com//shape-points.png)
+![img2](http://img.haoqiao.me//shape-points.png)
 
 ### 用形状函数来定义的形状
 
 我们将开始通过围绕一个圆形的头像和一些信息来演示。
 
-![img3](http://7s1say.com1.z0.glb.clouddn.com//demo-user-profile-screenshot.png)
+![img3](http://img.haoqiao.me//demo-user-profile-screenshot.png)
 
 
 我们用`circle()`函数来让图片应用圆形，用下面的html：
@@ -100,7 +100,7 @@ description:
     	margin-right: 15px;
     }
 
-![img4](http://7s1say.com1.z0.glb.clouddn.com//demo-user-profile-screenshot-incomplete.png)
+![img4](http://img.haoqiao.me//demo-user-profile-screenshot-incomplete.png)
 
 对比一下你就能发现差别。
 
@@ -133,7 +133,7 @@ description:
 
     shape-inside: circle(250px at 500px 300px); /* defines a circle whose center is positioned at 500px horizontally and 300px vertically, with a radius of 250px */
 
-![img5](http://7s1say.com1.z0.glb.clouddn.com//closest-side-farthest-side.png)
+![img5](http://img.haoqiao.me//closest-side-farthest-side.png)
 
 ` ellipse()`函数和`circle()`函数类似。接受同样的值，不过它不是用一个半径作为参数，而是两个，一个x轴方向，一个y轴方向。
 
@@ -142,7 +142,7 @@ description:
 当不是直接用` ellipse()`函数和`circle()`函数，`insert()`用来创建多边形。它可以帮助我们创建圆角的内容浮动在圆角边的元素。
 
 
-![img6](http://7s1say.com1.z0.glb.clouddn.com//inset-example.png)
+![img6](http://img.haoqiao.me//inset-example.png)
 
 `insert()`还能接受四个偏移值。用于指定从引用框的边缘向内偏移。它还能通过round关键词接受四个圆角的值。
 
@@ -161,7 +161,7 @@ description:
 
 来看个例子：
 
-![img7](http://7s1say.com1.z0.glb.clouddn.com//polygon-example-incomplete.png)
+![img7](http://img.haoqiao.me//polygon-example-incomplete.png)
 
 然后添加css：
     
@@ -187,7 +187,7 @@ description:
 
 然后结果如下：
 
-![img8](http://7s1say.com1.z0.glb.clouddn.com//polygon-example-finished.png)
+![img8](http://img.haoqiao.me//polygon-example-finished.png)
 
 [Demo click here](http://jsfiddle.net/linshuizhaoying/7fmeoev1/1/)
 
@@ -199,7 +199,7 @@ description:
 
 举个例子：
 
-![img9](http://7s1say.com1.z0.glb.clouddn.com//leaf.png)
+![img9](http://img.haoqiao.me//leaf.png)
 
 用`shape-outside`属性和`url()`来获取图片的点，我们可以用这个叶子环绕内容。
 
@@ -216,7 +216,7 @@ description:
 
 当然如果你定义了一个背景，它将被裁剪成定义的形状。结果如下：
 
-![img11](http://7s1say.com1.z0.glb.clouddn.com//shape-image-example.png)
+![img11](http://img.haoqiao.me//shape-image-example.png)
 
 如果你像创建负责的图形，你可用ps中透明图层图像来代替。
 
