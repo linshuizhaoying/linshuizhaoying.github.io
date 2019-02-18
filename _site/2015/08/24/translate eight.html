@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/28/translate%20thirteen.html"><span class="pl__circle"></span><span class="pl__title">CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/27/translate%20twelve.html"><span class="pl__circle"></span><span class="pl__title">Animated line drawing in SVG (创建svg线条动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/26/translate%20eleven.html"><span class="pl__circle"></span><span class="pl__title">Graphical Text Effects (CSS VS SVG:图像文字效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/25/translate%20nine.html"><span class="pl__circle"></span><span class="pl__title">A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150824">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpiamvdomeenblogcss-element-function">原文来源:<a href="http://iamvdo.me/en/blog/css-element-function">这里</a></h3>
+
+<h3 id="iamvdo">作者: iamvdo</h3>
+
+<h3 id="section-1">译者: 临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+
+<p>这是今天的翻译文-0-。。。我发现我有种突然想把<a href="http://greensock.com/">gsap</a>的官方文档认真的翻译或者系统的写一些列学习文章（⊙﹏⊙其实是最近在练习一个demo，但是没有系统的学习总感觉不得劲。。）。不过自己已经作死的每日刷一个翻译日常，=-=也不知道哪天能开坑。</p>
+
+<h2 id="section-3">正文</h2>
+
+<h3 id="section-4">闭包</h3>
+
+<p>在javascript中，一个闭包是任何函数保存对其父作用域中变量的引用，即使这个父类已经返回结束。</p>
+
+<p>这意味着几乎所有函数都是一个闭包，因为在<a href="http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/#variable-scope">变量作用域</a>中我们明白了，一个函数能被引用，或者可以访问</p>
+
+<pre><code>任何在它们自己的作用域中的变量和参数
+任何在外部（父）函数中的变量和参数
+任何在全局作用域中的变量
+</code></pre>
+
+<p>所以，你甚至不知道你已经在不经意间使用过闭包，但是我们不仅仅追求能够使用它，更要理解它。如果我们不知道它是如何工作的，我们无法完整的使用它。因此，我们把闭包定义成三个知识点。</p>
+
+<h3 id="section-5">知识点1：你可以引用当前函数的父函数中的变量</h3>
+
+<pre><code>function setLocation(city) {
+  var country = "France"; 
+
+  function printLocation() {       
+    console.log("You are in " + city + ", " + country);  
+  }
+
+  printLocation();
+}
+
+setLocation ("Paris");  // output: You are in Paris, France
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/1/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>在这例子中，printLocation函数调用了包含它的setLocation函数的country变量</p>
+
+<h3 id="section-6">知识点2:内部函数可以引用定义外部函数中的变量，即使它们已经执行返回</h3>
+
+<pre><code>function setLocation(city) {
+  var country = "France"; 
+
+  function printLocation() {       
+    console.log("You are in " + city + ", " + country);  
+  }
+
+  return printLocation;
+}
+
+var currentLocation = setLocation ("Paris");   
+
+currentLocation();   // output: You are in Paris, France
+</code></pre>
+
+<p><a href="http://jsbin.com/vajihuwixu/edit?js,console,output">在js bin中的例子</a></p>
+
+<h3 id="section-7">知识点3:内部函数可以通过引用存储外部函数的变量，而不是保存值</h3>
+
+<pre><code>function cityLocation() {
+  var city = "Paris";
+
+  return {
+    get: function() { console.log(city); },  
+    set: function(newCity) { city = newCity; }
+  };
+}
+
+var myLocation = cityLocation();
+
+myLocation.get();           // output: Paris
+myLocation.set('Sydney');
+myLocation.get();           // output: Sydney
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/3/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>这个例子说明闭包可以读和更新它们存储的变量，任何闭包都能够看到这个更新。这意味着闭包是引用它们外部函数的变量而不是拷贝它们的值。这是很重要的一点，因为我们等会会看到在立即执行函数表达式中看到一些复杂的逻辑问题。</p>
+
+<p>闭包有个有趣的是特性就是它内部的函数都会自动隐藏。唯一改变内部存储的值方法只有间接修改。比如我们刚刚的例子。</p>
+
+<h2 id="section-8">回调</h2>
+
+<p>在javascript中，函数是第一类对象。函数可以作为参数传递或者作为返回值。</p>
+
+<p>一个函数作为其它函数的参数或者返回值这叫做高阶函数。作为参数传递的函数叫做回调函数。</p>
+
+<p>回调函数有很多常规用途。其中一项就是使用浏览器的windows对象中的setTimeout()和setInterval()。</p>
+
+<pre><code>function showMessage(message){
+  setTimeout(function(){
+    alert(message);
+  }, 3000);  
+}
+
+showMessage('Function called 3 seconds ago');
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/4/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>另一个例子就是在页面中对元素添加事件监听</p>
+
+<pre><code>// HTML
+
+&amp;lt;button id='btn'&amp;gt;Click me&amp;lt;/button&amp;gt;
+
+// JavaScript
+
+function showMessage(){
+  alert('Woohoo!');
+}
+
+var el = document.getElementById("btn");
+el.addEventListener("click", showMessage);    
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/5/edit?html,js,console,output">在js bin中的例子</a>  </p>
+
+<p>建立一个理解高级函数和回调函数的工作原理的例子是很简单的</p>
+
+<pre><code>function fullName(firstName, lastName, callback){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+
+var greeting = function(ln){
+  console.log('Welcome Mr. ' + ln);
+};
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/6/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>我们传送的是函数的定义而不是调用函数。这是为了防止函数立刻执行，只是在回调函数中需要注意的一点。回调函数就像一个运行中的闭包。他们能访问任何包含他们的外部函数的变量和参数，甚至从全局作用域中获取变量。</p>
+
+<p>下面这个回调函数可以在上个例子中存在，或者它可以在任何匿名函数中。</p>
+
+<pre><code>function fullName(firstName, lastName, callback){
+  console.log("My name is " + firstName + " " + lastName);
+  callback(lastName);
+}
+
+fullName("Jackie", "Chan", function(ln){console.log('Welcome Mr. ' + ln);});
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/7/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>回调在javascript库中提供管理和复用中非常重要。它们让库方法很容易定制和扩展。而且，代码更容易维护，更容易阅读。</p>
+
+<p>让我们写两个函数，一个输出关于发布的文章的信息，另一个输出发送的信息。</p>
+
+<pre><code>function publish(item, author, callback){   // Generic function with common data
+  console.log(item);
+  var date = new Date();
+
+  callback(author, date);
+}
+
+function messages(author, time){   // Callback function with specific data
+  var sendTime = time.toLocaleTimeString();
+  console.log("Sent from " + author + " at " + sendTime);
+}
+
+function articles(author, date){   // Callback function with specific data
+  var pubDate = date.toDateString();
+  console.log("Written by " + author);
+  console.log("Published " + pubDate);
+}
+
+publish("How are you?", "Monique", messages);
+
+publish("10 Tips for JavaScript Developers", "Jane Doe", articles);
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/8/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>我们把代码抽象然后复用，可以发现最后仅需要一个Publish函数即可搞定(译者PS：这已经有点策略模式的味道了。)</p>
+
+<h2 id="section-9">立即执行函数表达式</h2>
+
+<p>这是两种有点不同的写法：</p>
+
+<pre><code>// variant 1
+
+(function () {
+  alert('Woohoo!');
+})();
+
+// variant 2
+
+(function () {
+  alert('Woohoo!');
+}());
+</code></pre>
+
+<p>将一个常规的的函数放入立即执行函数表达式你需要做两步：</p>
+
+<pre><code>1.你需要将整个函数包含在一对括号中。立即执行函数表达式必须是一个表达式而不是函数定义。用一对括号是将一个函数定义转化为函数表达。
+2.你需要在末尾加一对括号，如变式1或者变式2.
+</code></pre>
+
+<p>还有三件事你需要记住：</p>
+
+<p>首先，如果你将一个函数赋值给变量，你不需要将整个函数用括号包住.因为它已经是一个表达式了</p>
+
+<pre><code>var sayWoohoo = function () {
+  alert('Woohoo!');
+ }();
+</code></pre>
+
+<p>第二，必须在末尾加分号，否则可能不会正常工作</p>
+
+<p>最后，你可以传递参数给立即执行函数表达式，像这样：</p>
+
+<pre><code>(function (name, profession) {
+  console.log("My name is " + name + ". I'm an " + profession + ".");
+})("Jackie Chan", "actor");   // output: My name is Jackie Chan. I'm an actor.
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/9/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>传递一个全局对象给立即执行函数表达式是很常见的，因为它可以让函数内部不需要用window对象。这让代码在浏览器环境中更加独立。</p>
+
+<pre><code>(function (global) {
+  // access the global object via 'global'
+})(this);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code will work both in the browser (where the global object is &lt;code&gt;window&lt;/    code&gt;), or in a Node.js environment (where we refer to the global object with the special     variable &lt;code&gt;global&lt;/code&gt;). &lt;/p&gt;
+
+&lt;p&gt;One of the great benefits of an IIFE is that, when using it, you don’t have to worry about polluting the global space with temporary variables. All the variables you define inside an IIFE will be local. Let’s check this out:&lt;/p&gt;
+
+[code language="javascript"](function(){
+
+  var today = new Date();
+  var currentTime = today.toLocaleTimeString();
+  console.log(currentTime);   // output: the current local time (e.g. 7:08:52 PM)
+
+})();
+
+console.log(currentTime);   // output: undefined
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/10/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>在这个例子中，第一个console工作正常，第二个无法输出，因为调用的参数是一个立即执行函数表达式中的局部变量。</p>
+
+<p>我们已经知道闭包保存与外部函数之间变量的引用，然后它们返回最新的值。你认为下列输出会是什么？</p>
+
+<pre><code>function printFruits(fruits){
+  for (var i = 0; i &lt; fruits.length; i++) {
+    setTimeout( function(){
+      console.log( fruits[i] );
+    }, i * 1000 );
+  }
+}
+
+printFruits(["Lemon", "Orange", "Mango", "Banana"]);
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/11/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>最终结果都是Undefined，这是为什么呢？</p>
+
+<p>首先这个函数迭代四遍，由于一开始我们fruits中什么值都没有，它输出undefined。然后当i &lt; fruits.length时返回false。所以这个时候i等于4.这是最近版本中变量在函数中因为在循环中使用，闭包只链接变量本身而不是它的值。(译者PS:其实就是printFruits函数一开始定义的时候已经内部开始循环了，然后因为循环到最后i等于4，这时候你传递参数进来它是输出fruits[4]，注意因为数组是从0开始计数，所以你只能看到输出undfined.你可以输出i的值试试)</p>
+
+<p>为了解决这个问题，我们需要提供一个新的作用域，让每个函数被循环创建，这样能追踪到i变量的状态。</p>
+
+<pre><code>function printFruits(fruits){
+  for (var i = 0; i &amp;lt; fruits.length; i++) {
+    (function(){
+      var current = i;                    // define new variable that will hold the     current value of "i"
+      setTimeout( function(){
+        console.log( fruits[current] );   // this time the value of "current" will be different for each iteration
+      }, current * 1000 );
+    })();
+  }
+}
+
+printFruits(["Lemon", "Orange", "Mango", "Banana"]);
+</code></pre>
+
+<p><a href="http://jsbin.com/sakiqepato/12/edit?js,console,output">在js bin中的例子</a></p>
+
+<p>当然我们可以用下面这种变体</p>
+
+<pre><code>function printFruits(fruits){
+  for (var i = 0; i &amp;lt; fruits.length; i++) {
+    (function(current){
+      setTimeout( function(){
+        console.log( fruits[current] );
+      }, current * 1000 );
+    })( i );
+  }
+}
+
+printFruits(["Lemon", "Orange", "Mango", "Banana"]);
+</code></pre>
+
+<p>立即执行函数表达式通常用在封装模块。来防止被修改其中的内容。这衍生了一种技术：<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript">模块模式</a>它被用在很多现代javascript的库中(举个例子：Jquery和underscore)</p>
+
+<h2 id="section-10">结尾</h2>
+
+<p>这个教程主要目的是为了将这些概念介绍清楚，简要的浓缩为一系列规则。理解它们是成为一个成功的优秀的javascript开发者的必要元素。</p>
+
+<p>如果你想深入了解这些内容，可以点<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript">这里</a></p>
+
+<h2 id="section-11">译者</h2>
+<p>前面两个挺简单，第三块内容很有嚼头。建议去看作者推荐的深入内容。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/24/translate%20eight.html&text=Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/24/translate%20eight.html&title=Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

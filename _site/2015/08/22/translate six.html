@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Thinking Outside the DOM (Dom之外的思考，数据采集和校验） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/28/translate%20thirteen.html"><span class="pl__circle"></span><span class="pl__title">CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/27/translate%20twelve.html"><span class="pl__circle"></span><span class="pl__title">Animated line drawing in SVG (创建svg线条动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/26/translate%20eleven.html"><span class="pl__circle"></span><span class="pl__title">Graphical Text Effects (CSS VS SVG:图像文字效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/25/translate%20nine.html"><span class="pl__circle"></span><span class="pl__title">A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150822">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpwwwsitepointcomthinking-outside-dom-composed-validators-data-collection">原文来源:<a href="http://www.sitepoint.com/thinking-outside-dom-composed-validators-data-collection/">这里</a></h3>
+
+<h3 id="christian-johansen">作者: Christian Johansen</h3>
+
+<h3 id="section-1">译者: 临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+<p>这篇文章好像有姊妹篇，不过这篇更能引起我的兴趣。</p>
+
+<h2 id="section-3">正文</h2>
+
+<p>在第一篇文章中，我们讨论了大多数javascript库的普遍问题：紧密耦合的代码。（那篇文章点<a href="http://www.sitepoint.com/thinking-outside-dom-concepts-setup/">这里</a>）然后，我向你介绍了分离观念的好处。为了证明观念，我们开始开发了一个不仅限于表单的表单验证系统，它甚至可以在DOM之外的地方工作。</p>
+
+<p>这本章我们将介绍如何编写验证器，怎样采集数据和如何报错，最后我会给你一个包含本文例子的Github的仓库链接。</p>
+
+<h3 id="section-4">编写校验器</h3>
+
+<p>在上一篇文章我们介绍了验证单个字段的验证器，用一个规则一对一的验证字段是可以工作的，但是当有大量例子的时候需要更深层次的考虑。你可以通过一个很长的正则表达式来验证一个Email地址，但是这只能告诉你的用户Email是否被接受。一个更好的方法是对email的各个部分进行验证。</p>
+
+<p>它可能长这样：</p>
+
+<pre><code>var rules = [
+  pattern('email', /@/, 'Your email is missing an @'),
+  pattern('email', /^\S+@/, 'Please enter the username in your email address',
+  // ...
+];
+</code></pre>
+
+<p>当这个开始工作，它可能为一个邮箱地址而产生多个错误信息。这要求我们手动重复判断每个部分是否有意义。即使我们现在还没讨论关于错误信息的渲染，拥有一个关于多个验证最后只显示第一个错误信息抽象的概念是很重要的。事实证明，这是<code>&amp;&amp;</code>操作符的语义。下面这个验证器将把多个验证方法作为参数，然后依次应用直到找到失败的那项。</p>
+
+<pre><code>function and() {
+  var rules = arguments;
+
+  return function (data) {
+    var result, l = rules.length;
+
+    for (var i = 0; i &lt; l; ++i) {
+      result = rules[i](data);
+      if (result) {
+        return result;
+      }
+    }
+  };
+}
+</code></pre>
+
+<p>现在我们可以用一种方法来表现我们的邮箱验证而且它只会显示一个错误信息提示。</p>
+
+<pre><code>var rules = [and(
+  pattern('email', /@/, 'Your email is missing an @'),
+  pattern('email', /^\S+@/, 'Please enter the username in your email address',
+  // ...
+)];
+</code></pre>
+
+<p>这个可以被编写成一个独立的验证。</p>
+
+<pre><code>function email(id, messages) {
+  return and(
+    pattern('email', /@/, messages.missingAt),
+    pattern('email', /^\S+@/, messages.missingUser)
+    // ...
+  );
+}
+</code></pre>
+
+<p>当我们想要只有在某些条件符合时检测某些情况，为了解决这个问题，我们需要介绍<code>when</code>方法</p>
+
+<pre><code>function when(pred, rule) {
+  return function (data) {
+    if (pred(data)) {
+      return rule(data);
+    }
+  };
+}
+</code></pre>
+
+<p>正如你所见，<code>when</code>是一个验证，就像<code>required</code>。你可以传入一个验证数据的方法，如果它返回<code>true</code>，我们执行了验证，否则<code>when</code>认为数据是正确的。</p>
+
+<p>我们还需要一个匹配模式：</p>
+
+<pre><code>function matches(id, re) {
+  return function (data) {
+    return re.test(data[id]);
+  };
+}
+</code></pre>
+
+<p>除了它不是一个验证，它已经很接近我们的模式验证。另外值得一提的是这些方法都很简约，而且它们一起应用在实际情况比单个应用更加高效。通过这最后一个拼图，我们已经可以获得一个完整的验证器</p>
+
+<pre><code>function email(id, messages) {
+  return and(
+    pattern(id, /@/, messages.missingAt),
+    pattern(id, /^\S+@/, messages.missingUser),
+    pattern(id, /@\S+$/, messages.missingDomain),
+    pattern(id, /@\S+\.\S+$/, messages.missingTLD),
+    when(matches(id, /@hotmail\.[^\.]+$/),
+      pattern(id, /@hotmail\.com$/, messages.almostHotmail)
+    ),
+    when(matches(id, /@gmail\.[^\.]+$/),
+      pattern(id, /@gmail\.com$/, messages.almostGmail)
+    )
+  );
+}
+</code></pre>
+
+<p>它可以这么应用：</p>
+
+<pre><code>email('email', {
+ missingAt: 'Missing @',
+ missingUser: 'You need something in front of the @',
+ missingDomain: 'You need something after the @',
+ missingTLD: 'Did you forget .com or something similar?',
+ almostHotmail: 'Did you mean hotmail&lt;strong&gt;.com&lt;/strong&gt;?',
+ almostGmail: 'Did you mean gmail&lt;strong&gt;.com&lt;/strong&gt;?'
+});
+</code></pre>
+
+<p>这是Demo <a href="http://jsfiddle.net/linshuizhaoying/ytL0hm9n/">Click Here</a></p>
+
+<h3 id="section-5">提取数据</h3>
+
+<p>现在我们可以验证数据，为了解决我们的表单验证初始化我们需要从表单中将数据提取出来。首先，我们将</p>
+
+<pre><code>&lt;form action="/doit" novalidate&gt;
+  &lt;label for="email"&gt;
+    Email
+    &lt;input type="email" name="email" id="email" value="christian@cjohansen.no"&gt;
+  &lt;/label&gt;
+  &lt;label for="password"&gt;
+    Password
+    &lt;input type="password" name="password" id="password"&gt;
+  &lt;/label&gt;
+  &lt;label class="faded hide-lt-pad"&gt;
+    &lt;input type="checkbox" name="remember" value="1" checked&gt;
+    Remember me
+  &lt;/label&gt;
+  &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+
+<p>转变为</p>
+
+<pre><code>{
+  email: 'christian@cjohansen.no',
+  password: '',
+  remember: '1'
+}
+</code></pre>
+
+<p>在测试中这一步相当简单，但是它将请求访问DOM元素。接下来的测试例子长这样：</p>
+
+<pre><code>describe('extractData', function () {
+  it('fetches data out of a form', function () {
+    var form = document.createElement('form');
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'phoneNumber';
+    input.value = '+47 998 87 766';
+    form.appendChild(input);
+
+    assert.deepEqual(extractData(form), {'phoneNumber': '+47 998 87 766'});
+  });
+});
+</code></pre>
+
+<p>我们来抽象它</p>
+
+<pre><code>it('fetches data out of a form', function () {
+  var form = document.createElement('form');
+  addElement(
+    form,
+    'input',
+    {type: 'text', name: 'phoneNumber', value: '+47 998 87 766'}
+  );
+
+  assert.deepEqual(extractData(form), {'phoneNumber': '+47 998 87 766'});
+});
+</code></pre>
+
+<p>我们将从表单中选择所有的输入来获取数据，比如<code>input</code>，<code>select</code>，<code>textarea</code>。然后提取<code>name</code>属性和当前的值。当然，还需要处理一些特殊值，比如复选框和单选按钮。这个主函数长这样:</p>
+
+<pre><code>function extractData(form) {
+  return getInputs(form).reduce(function (data, el) {
+    var val = getValue[el.tagName.toLowerCase()](el);
+    if (val) { data[el.name] = val.trim(); }
+    return data;
+  }, {});
+};
+</code></pre>
+
+<p>在这个片段中，<code>extractData</code>函数依靠 getInputs()函数。这是为了得到一组表单里的DOM元素作为参数。</p>
+
+<h2 id="section-6">错误报告</h2>
+
+<p>为了显示错误，我们需要设计一个函数来接受一个表单和一组错误信息。然而，这里有个挑战需要解决：为了避免在DOM里复制错误，这个方法需要保持一个状态，让它自己明白哪些错误已经渲染了。它还需要让每个错误在表单中都能在新的被渲染时销毁。<br />
+哪种方案更合适取决于你自己的选择。</p>
+
+<p>我不会深入渲染的细节，下面是一个简单的例子</p>
+
+<pre><code>function renderErrors(form, errors) {
+  removeErrors(form);
+  errors.forEach(function (error) {
+    renderError(form, error);
+  });
+}
+</code></pre>
+
+<p>为了渲染错误，我们需要找到对应的input，然后在它的右侧插入元素。我们只渲染第一个错误提醒。这是一个非常基础的渲染策略但是效果很好：</p>
+
+<pre><code>function renderError(form, error) {
+  var input = form.querySelector("[name=" + error.id + "]");
+  var el = document.createElement("div");
+  el.className = "error js-validation-error";
+  el.innerHTML = error.messages[0];
+  input.parentNode.insertBefore(el, input);
+}
+</code></pre>
+
+<p>在这段代码中，设定了两个class，前者只是为了style，后者作为一个内部的判断，在下面函数里删除</p>
+
+<pre><code>function removeErrors(form) {
+  var errors = form.querySelectorAll(".js-validation-error");
+
+  for (var i = 0, l = errors.length; i &lt; l; ++i) {
+    errors[i].parentNode.removeChild(errors[i]);
+  }
+}
+</code></pre>
+
+<p><a href="http://jsfiddle.net/linshuizhaoying/z8vmc68e/">Demo Click Here</a></p>
+
+<h2 id="section-7">将它们整合在一起</h2>
+
+<p>我们现在需要以下功能：从DOM中读取，验证数据，渲染验证结果。我们需要高级的接口将它们绑在一起：</p>
+
+<pre><code> validateForm(myForm, [
+   required("login", "Please choose a login"),
+   email("email", i18n.validation.emailFormat),
+   confirmation("password", "password-confirmation", "Passwords don't match")
+ ], {
+   success: function (e) {
+     alert("Congratulations, it's all correct!");
+   }
+ });
+</code></pre>
+
+<p>作为渲染，这种高等级接口可以很简单也可以很复杂。在代码中，validateForm()函数直到用户提交第一次submit才会进行验证。如果有错误，它会进入一种“智能验证模式”，错误如果被修复错误信息将会很快被移除。</p>
+
+<p>完整的代码看<a href="http://jsfiddle.net/linshuizhaoying/yxwvvxny/">这里</a></p>
+
+<p>这是该项目的<a href="https://github.com/sitepoint-editors/validate">github地址</a></p>
+
+<p>##译者</p>
+
+<p>最后直接给出的项目有点复杂，建议还是自己重新写一个比较好。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Thinking Outside the DOM (Dom之外的思考，数据采集和校验）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/22/translate%20six.html&text=Thinking Outside the DOM (Dom之外的思考，数据采集和校验）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/22/translate%20six.html&title=Thinking Outside the DOM (Dom之外的思考，数据采集和校验）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

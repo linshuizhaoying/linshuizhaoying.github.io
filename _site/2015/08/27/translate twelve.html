@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Animated line drawing in SVG (创建svg线条动画） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/28/translate%20thirteen.html"><span class="pl__circle"></span><span class="pl__title">CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/27/translate%20twelve.html"><span class="pl__circle"></span><span class="pl__title">Animated line drawing in SVG (创建svg线条动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/26/translate%20eleven.html"><span class="pl__circle"></span><span class="pl__title">Graphical Text Effects (CSS VS SVG:图像文字效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/25/translate%20nine.html"><span class="pl__circle"></span><span class="pl__title">A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150827">Animated line drawing in SVG (创建svg线条动画）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpsjakearchibaldcom2013animated-line-drawing-svg">原文来源:<a href="https://jakearchibald.com/2013/animated-line-drawing-svg/">这里</a></h3>
+
+<h3 id="jake">作者: Jake</h3>
+
+<h3 id="section-1">译者: 临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+
+<p>准备实现一个效果，于是将这篇文章从我的翻译列表中找出来翻译学习。</p>
+
+<h2 id="section-3">正文</h2>
+
+<p>我喜欢用图像来作为展示信息流或者浏览器行为的方式。但是大的图片第一看上去就令人生畏。当我在会议上谈论有关应用缓存和渲染表现时我用了一块空屏幕让图片一点点的画出来作为描述的方法。这是方法：</p>
+
+<h3 id="svg-paths">SVG PATHS</h3>
+
+<pre><code>&lt;path fill="none" stroke="deeppink" stroke-width="14" stroke-miterlimit="0"
+d="M11.6 269s-19.7-42.4 6.06-68.2 48.5-6.06 59.1 12.1l-3.03 28.8 209-227s45.5-21.2 60.6 1.52c15.2 22.7-3.03 47-3.03 47l-225 229s33.1-12 48.5 7.58c50 63.6-50 97-62.1 37.9"
+/&gt;
+</code></pre>
+
+<p>我用 <a href="https://inkscape.org/zh-tw/">Inkscape</a>创建了一些SVG。它有一点笨拙，但是它给你一个SVG DOM视图就像你编辑文本那样。而不是像 Adobe Illustrator导出svg格式。</p>
+
+<p><code>d</code>属性的每一个部分都告诉渲染器下一步需要渲染的点，绘制一条线段，绘制一个贝塞尔曲线的另一点，等等。</p>
+
+<pre><code>&lt;path stroke="#000" stroke-width="4.3" fill="none" d="…"
+  stroke-dasharray=""
+  stroke-dashoffset="0.00"
+/&gt;
+</code></pre>
+
+<p><code>stroke-dasharray </code> 让你指定渲染部分的长度，间隙的长度。<code> stroke-dashoffset</code>让你改变dasharray开始的点。</p>
+
+<p>将它们设置为最大。然后逐渐降低dashoffset，你会发现线段开始绘制。你可以从dom中得到线段的长度。</p>
+
+<pre><code>var path = document.querySelector('.squiggle-container path');
+path.getTotalLength(); // 988.0062255859375
+</code></pre>
+
+<h3 id="section-4">让它运动</h3>
+
+<p>用css动画或者过渡能够很容易让svg动起来。但是它不支持ie，如果你想让IE支持，你需要用<code>requestAnimationFrame</code>并用脚本一帧一帧更新frame的值。</p>
+
+<p>避免使用smil,IE不支持它，而且在chrome和safari中表现得也不算很好。</p>
+
+<p>我准备用CSS过渡。</p>
+
+<p>在第一个例子中我用svg来定义点，你可以用css完成同样的事情。大多数svg属性与css属性相同.(<a href="http://www.w3.org/TR/SVG/styling.html">资料</a>)</p>
+
+<pre><code>var path = document.querySelector('.squiggle-animated path');
+var length = path.getTotalLength();
+// Clear any previous transition
+path.style.transition = path.style.WebkitTransition =
+  'none';
+// Set up the starting positions
+path.style.strokeDasharray = length + ' ' + length;
+path.style.strokeDashoffset = length;
+// Trigger a layout so styles are calculated &amp; the browser
+// picks up the starting position before animating
+path.getBoundingClientRect();
+// Define our transition
+path.style.transition = path.style.WebkitTransition =
+  'stroke-dashoffset 2s ease-in-out';
+// Go!
+path.style.strokeDashoffset = '0';
+</code></pre>
+
+<p>用<code>getBoundingClientRect</code> 来触发布局是一个hack，但是它挺有用。但不幸的是，如果你在同个javascript中同步修改同样的样式两次，那么只会计数最后的修改。我写了篇关于这个的细节的<a href="http://coding.smashingmagazine.com/2013/03/04/animating-web-gonna-need-bigger-api/">文章</a></p>
+
+<p>我通常用offsetWidth来触发布局。但是在firefox中似乎没用。</p>
+
+<h3 id="section-5">更多乐趣</h3>
+
+<p>Lea Verou用了同样的技术创建<a href="http://dabblet.com/gist/6089395">加载动画</a>,Josh Matz 和 El Yosh 扩展了该<a href="http://dabblet.com/gist/6089409">技术</a></p>
+
+<h2 id="section-6">译者</h2>
+
+<p>文中其实是有例子的，但是作者是直接写进了他的网站，因此想看例子的可以去原文看。<br />
+然后就是在mac下我试了一下，通过Inkscape这个工具并搭配以这项技术延伸出来的<a href="https://github.com/ConnorAtherton/walkway/">脚本</a>制作了一个svg线条动画。</p>
+
+<p><img src="http://img.haoqiao.me//xxx.gif" alt="img1" /></p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Animated line drawing in SVG (创建svg线条动画）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/27/translate%20twelve.html&text=Animated line drawing in SVG (创建svg线条动画）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/27/translate%20twelve.html&title=Animated line drawing in SVG (创建svg线条动画）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>

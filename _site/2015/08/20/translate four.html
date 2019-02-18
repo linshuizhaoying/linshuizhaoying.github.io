@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画） | 临水照影的博客</title>
+<meta name="author" content="临水照影的博客">
+
+  <meta name="keywords" content="学习，资料，程序，前端">
+
+
+
+
+<link rel="shortcut icon" href="http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="/pages/rss.xml" rel="alternate" title="临水照影的博客" type="application/atom+xml">
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">所有文章</li>
+       
+        <li id="技术" class="tags__li tags-btn">技术</li>
+       
+        <li id="翻译" class="tags__li tags-btn">翻译</li>
+       
+        <li id="读书" class="tags__li tags-btn">读书</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:4799109@qq.com" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(http://img.haoqiao.me/avatar639D58E2-E732-4FF9-8E05-724717DFEF1F.png)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="翻译 pl__all" href="/2015/08/28/translate%20thirteen.html"><span class="pl__circle"></span><span class="pl__title">CSS-Only Raindrops on Window Effect (创建纯css雨滴窗效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/27/translate%20twelve.html"><span class="pl__circle"></span><span class="pl__title">Animated line drawing in SVG (创建svg线条动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/26/translate%20eleven.html"><span class="pl__circle"></span><span class="pl__title">Graphical Text Effects (CSS VS SVG:图像文字效果）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/25/translate%20nine.html"><span class="pl__circle"></span><span class="pl__title">A Content-switching Component Built 3 Ways (三种方式制作内容切换页面组件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/24/translate%20eight.html"><span class="pl__circle"></span><span class="pl__title">Demystifying Closures, Callbacks and IIFEs (揭秘javascript的闭包，回调，IIFEs）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="读书 pl__all" href="/2015/08/24/book-list-of-2015.html"><span class="pl__circle"></span><span class="pl__title">2015阅读书单</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/23/translate%20seven.html"><span class="pl__circle"></span><span class="pl__title">Responsive Typography With Sass Maps (通过sass地图来打造响应式印刷）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/22/translate%20six.html"><span class="pl__circle"></span><span class="pl__title">Thinking Outside the DOM (Dom之外的思考，数据采集和校验）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/21/translate%20five.html"><span class="pl__circle"></span><span class="pl__title">Building A Circular Navigation with CSS Clip Paths (用CSS路径裁剪遮罩制作环形导航）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/21/sprite-scrollmagic.html"><span class="pl__circle"></span><span class="pl__title">Sprite动画与ScrollMagic的使用</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20three.html"><span class="pl__circle"></span><span class="pl__title">Creating Autocomplete datalist Controls (创建自动完成的DataList控件）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/20/translate%20four.html"><span class="pl__circle"></span><span class="pl__title">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/19/translate%20two.html"><span class="pl__circle"></span><span class="pl__title">Create Text Filling with Water Effect（创建水波纹效果文字）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class=" pl__all" href="/2015/08/17/nodejs-express-vue.html"><span class="pl__circle"></span><span class="pl__title">Node.js + Express + Vue.js 自动化开发环境部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/17/Gulp-task.md.html"><span class="pl__circle"></span><span class="pl__title">Gulp打造前端项目自动化构建流程环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="翻译 pl__all" href="/2015/08/16/translate%20one.html"><span class="pl__circle"></span><span class="pl__title">译文-React’s diff algorithm（React diff算法）</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/16/react-comments.html"><span class="pl__circle"></span><span class="pl__title">Node.js + React.js 开发评论插件系统</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/11/react-three.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(3)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/10/react-two.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲(2)</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/09/build-nodejs-react.html"><span class="pl__circle"></span><span class="pl__title">建立Node.js+Express4.x+React+Gulp的开发环境</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/react-one.html"><span class="pl__circle"></span><span class="pl__title">React从入门到上手三部曲</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/08/language%20learning%20website.html"><span class="pl__circle"></span><span class="pl__title">学习资料第一波</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/05/bushu.html"><span class="pl__circle"></span><span class="pl__title">Node.js 伪部署</span><span class="pl__date">Aug 2015</span></a>
+    
+      <a class="技术 pl__all" href="/2015/08/03/Fitness.html"><span class="pl__circle"></span><span class="pl__title">个人健身系统从零开始(Node.js开发)</span><span class="pl__date">Aug 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+ 
+  <h1 id="post__title" data-identifier="20150820">Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）</h1>
+  <h2 id="section">前言</h2>
+
+<h3 id="httpwwwsitepointcomresponsive-sprite-animations-imagemagick-greensock">原文来源:<a href="http://www.sitepoint.com/responsive-sprite-animations-imagemagick-greensock/">这里</a></h3>
+
+<h3 id="tom-bennet">作者: Tom Bennet</h3>
+
+<h3 id="section-1">译者: 临水照影</h3>
+
+<h2 id="section-2">正文之前</h2>
+
+<p>果然在这种虐单身狗的日子里才有学习的动力。。。</p>
+
+<h2 id="section-3">正文</h2>
+
+<p>Css雪碧图并不是一门新的技术，自从<a href="http://alistapart.com/article/sprites">A List Apart in 2004</a>,这项不起眼的技术就被很多Web开发者作为开发工具的必备。但是，虽然雪碧图带来的加快网页加载速度这个好处显而易见，但它们在移动端开发的讨论非常少。它们的原理都是一样的:将多张图合并成一张主图，在需要的地方根据位置来显示。</p>
+
+<p>在这篇文章中文章中，我们将探索一种简单地方法来创建轻量级的，对移动端更加友好的，甚至有更强互动性的响应式的CSS雪碧图动画。你可以不需要任何特殊的图像软件，仅仅只需要懂一点点css和javascript 。让我们开始吧。</p>
+
+<h3 id="section-4">创建一个雪碧图</h3>
+
+<p>雪碧图基于一个视频游戏（拳皇=-=）。</p>
+
+<p>我们需要将一个连续动作的每一帧放进我们的一张图中。这里有数十种工具可以帮助我们完成这项任务，甚至有些还可以买一送一送张样式表给你。。。<a href="http://compass-style.org/help/tutorials/spriting/">Compass’s built-in spriting features</a>是非常强大的一个工具，<a href="http://wearekiss.com/spritepad">SpritePad</a>是一个基于<br />
+WEB的雪碧图管理工具。然而对于我们的需求而言，一个简单的命令行工具更加适合。</p>
+
+<p><a href="http://www.imagemagick.org/script/index.php">ImageMagick</a>，图像处理的瑞士军刀，是一个免费而且开源的图像处理工具，它可以自动化执行那些非常费力的工作，比如合并图像。ImageMagick可以运行在任何一个操作系统。只需要去下载对应的软件就行了。</p>
+
+<p>保存你动画中相同大小的帧为一系列png文件到一个文件夹。然后打开终端，执行cd跳转到你图像保存的目录，然后执行以下命令：</p>
+
+<pre><code>convert *.png -append result-sprite.png
+</code></pre>
+
+<p>这个命令就是让ImageMagick把所有png文件保存到result-sprite.png一个文件中。这个图像将作为雪碧图，然后通过css改变取值的位置来使其动起来。</p>
+
+<h3 id="css">纯CSS动画</h3>
+
+<p>我们将开始一个简单的的动画，用css3的<code>keyframe</code>动画来使我们的雪碧图动起来。 如果你不熟悉这个属性请自行去找资料（=-=虽然原文中有介绍链接-0-）。我们将通过循环从图片中垂直的找到每个帧的位置然后从头到底取值并放到动画中。</p>
+
+<p>为了让动画能连贯的运行起来，作为默认的行为，我们将需要将雪碧图的每一帧都展现。通过<code>steps()</code>过程，然而我们还需要控制渲染帧的数量，由于我们的工作原理是通过一个方法来实现以百分比控制背景图的位置（作者有提到原理详解，点<a href="https://css-tricks.com/i-like-how-percentage-background-position-works/">这里</a>），我们需要设定步骤的数量会比我们动画总帧数的少一个。</p>
+
+<p>这边是一个实现的例子。。。这次又是<a href="http://codepen.io/SitePoint/pen/MYRKmJ">codepen</a></p>
+
+<p>注意我们精确定义了元素的宽度和高度到每个帧，来避免出现误差。我们设置了动画无限播放和动画帧之间每隔3.5秒，然后我们就能看拳霸中的人物进行一系列的动作。</p>
+
+<p>到目前为止还是很不错的。尝试改变元素的高度，或者对我们的雪碧图应用<code>backgroud-size</code>，然后我们的动画效果将会失效，因为它现在还不是响应式的。它是基于像素尺寸的不变的图像。</p>
+
+<h3 id="section-5">使它响应式</h3>
+
+<p>如果我们希望能够自由的调整雪碧图动画大小，我们有两个选择，这两个选择的关键是我们的雪碧图对高宽比一致的强烈依赖。<br />
+而不是特定大小。我们必须保留它的比例使它能够正确的缩放。</p>
+
+<p>第一个选择就是对我们的背景设置<code>background-size</code> 为雪碧图宽度的100%。然后转换高宽的单位从px转为em。然后再改变基本字体大小。这将满足我们的基本要求。</p>
+
+<p>第二个选择是用纯css固定纵横比技术(可以点<a href="http://www.mademyday.de/css-height-equals-width-with-pure-css.html">这里</a>)。他利用基于百分比的伪元素，以保持一个真实元素比例的任意大小。</p>
+
+<p>下面的例子将给我们的雪碧图增加响应式</p>
+
+<p>点<a href="http://codepen.io/SitePoint/pen/zxXrzP">这里</a></p>
+
+<p>这是一种对移动端很友好的方法。而且支持css3的浏览器也有那么多了，所以一般情况下也不需要考虑兼容了=-=。</p>
+
+<h2 id="javascript-">JavaScript 动画</h2>
+
+<p>如果我们想更加比Css3的keyframe更加精确的控制我们的动画？举个例子，如果我想用基于滚动条位置来将多个雪碧图组成一个复杂的场景，而且能够结合触发和定时功能来代替单一的雪碧图动画该如何做？</p>
+
+<p>为了将设想变成可能，我们需要用javascript来控制我们的雪碧图动画。使用 <a href="http://greensock.com/">GreenSock</a>动画平台和<a href="https://github.com/janpaepke/ScrollMagic">ScrollMagic</a>将可以帮助我们实现这些。（不熟悉这些的童鞋可以去学一下。）</p>
+
+<p>首先，让我们引发一个两秒长的动画在特定的scroll位置。它需要在最后一帧中停止。如果用户回转scroll它需要能够倒播（即使它正播放一半。）</p>
+
+<p>下面是这个<a href="http://codepen.io/SitePoint/pen/vEMLJb">例子</a></p>
+
+<p>注意我们用用的是之前基于em单位的字体方法，尝试改变字体大小然后缩放雪碧图。我们定义了<code>TweenMax.to</code>，设置了目的值为我们元素垂直背景位置的100%，然后用<code>SteppedEase</code>方法来达到逐帧动画的效果。</p>
+
+<p>这一步我们将用滚动条同步我们的动画播放，就像用滚动条来播放一个动画。</p>
+
+<p>这个例子你可以点<a href="http://codepen.io/SitePoint/pen/OPGMOL">这里</a></p>
+
+<p>这个雪碧图在固定位置的动画播放持续时间由用户用滚动条控制代替。为了达到这个效果，我们用了<code>ScrollMagic.Scene</code>设置<code>duration</code>为1500px，然后用<code>setPin</code>方法来固定父元素在整个场景中的位置。如果想了解更多细节，可以去看ScrollMagic的文档。</p>
+
+<p>JavaScript控制雪碧图动画比纯css更加方便。 ScrollMagic 和 GreenSock 这两个库IE9都支持。。。而且对于移动端来说这更加友好。</p>
+
+<h3 id="section-6">总结</h3>
+
+<p>哎呀每次我总结都不想翻译=-=，虽然他说的很有道理。。。不过本篇文章翻译到底才发现只是领了个路，但是作者推荐的技术和库都非常值得去深入研究，因此我打算研究完后再开一章来仔细讲解两个库的使用，而且深入雪碧图的使用也应该会包含其中。</p>
+
+
+   <button><a href="http://comments.haoqiao.me/show/Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）/haoqiao.me">跳到评论系统</a></button>
+
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://linshuizhaoying.github.io/2015/08/20/translate%20four.html&text=Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://linshuizhaoying.github.io/2015/08/20/translate%20four.html&title=Responsive Sprite Animations with ImageMagick and GreenSock (用ImageMagick 和 GreenSock 制作响应式的雪碧图动画）" target="_blank"></a>
+</div> <!-- end #post__share -->
+
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54767140-1', 'linshuizhaoying.github.io');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252932790'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1252932790' type='text/javascript'%3E%3C/script%3E"));</script>
+</html>
