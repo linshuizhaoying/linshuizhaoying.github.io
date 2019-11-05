@@ -159,7 +159,7 @@ generateImg() {
 
 要实现的效果是：
 
-![871572944598_.pic.jpg](http://img.haoqiao.me/blog871572944598_.pic.jpg)
+![imgn](http://img.haoqiao.me/blog871572944598_.pic.jpg)
 
 主要就是在微信配置加载完成后去做对应因此操作。这个在微信开发者工具是看不到效果，必须发到测试环境，在测试公众号打开才有效。
 
