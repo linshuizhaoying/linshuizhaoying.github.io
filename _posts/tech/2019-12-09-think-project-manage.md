@@ -19,7 +19,7 @@ description:
 
 ## 一个产品需要有的能力
 
-![1201575879261_.pic_hd.jpg](http://img.haoqiao.me/blog1201575879261_.pic_hd.jpg)
+![1201575879261](http://img.haoqiao.me/blog1201575879261_.pic_hd.jpg)
 
 项目管理是一个综合学科，项目经理的主要精力会花在沟通协调资源上。
 
@@ -39,11 +39,11 @@ description:
 
 能影响该项目的高层需要让他们全程参与并及时反馈，被影响的人需要在关键节点实时告知其项目状况。
 
-![1151576496846_.pic_hd.jpg](http://img.haoqiao.me/blog1151576496846_.pic_hd.jpg)
+![1151576496846](http://img.haoqiao.me/blog1151576496846_.pic_hd.jpg)
 
 对此有个专门的策略来管理这群人。
 
-![1161576496912_.pic_hd.jpg](http://img.haoqiao.me/blog1161576496912_.pic_hd.jpg)
+![116157649691](http://img.haoqiao.me/blog1161576496912_.pic_hd.jpg)
 
 ### 关键点
 
@@ -91,20 +91,20 @@ description:
 
 ### 沟通管理
 
-![1171576582851_.pic_hd.jpg](http://img.haoqiao.me/blog1171576582851_.pic_hd.jpg)
+![1171576582851](http://img.haoqiao.me/blog1171576582851_.pic_hd.jpg)
 
 > 项目沟通: 确保项目及时且恰当的规划、收集、生成、发布、存储、检索、管理、控制所需各个过程。
 
-![1181576582947_.pic_hd.jpg](http://img.haoqiao.me/blog1181576582947_.pic_hd.jpg)
+![118157658294](http://img.haoqiao.me/blog1181576582947_.pic_hd.jpg)
 
 
 ## 项目收尾
 
 项目收尾最关键就是总结。以及整理资料，可以用于下一个项目。
 
-![1191576582980_.pic_hd.jpg](http://img.haoqiao.me/blog1191576582980_.pic_hd.jpg)
+![1191576582980](http://img.haoqiao.me/blog1191576582980_.pic_hd.jpg)
 
-![1201576583004_.pic_hd.jpg](http://img.haoqiao.me/blog1201576583004_.pic_hd.jpg)
+![1201576583004](http://img.haoqiao.me/blog1201576583004_.pic_hd.jpg)
 
-![1211576583020_.pic.jpg](http://img.haoqiao.me/blog1211576583020_.pic.jpg)
+![1211576583020](http://img.haoqiao.me/blog1211576583020_.pic.jpg)
 
