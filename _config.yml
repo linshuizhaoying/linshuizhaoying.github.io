@@ -7,16 +7,16 @@ kramdown:
   input: GFM
 
 # 作者信息
-author: 
-  name: 临水照影的博客 
+author:
+  name: 临水照影
   email: 4799109@qq.com
   link: http://linshuizhaoying.github.io
   weibo: 不玩
   github: http://github.com/linshuizhaoying
 
 # 站点信息
-title: 临水照影的博客 
-description: 临水照影的博客
+title: 临水照影
+description: 临水照影
 url: http://linshuizhaoying.github.io
 rss_url: /pages/atom.xml
 
